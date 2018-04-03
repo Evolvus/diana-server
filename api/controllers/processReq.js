@@ -1,6 +1,8 @@
 'use strict';
 
 //var Regex = require("regex");
+var crypto = require('crypto'),
+key = 'jenson';
 var mongoose = require('mongoose'),
   //Task = mongoose.model('Tasks');
 blacklistcheck = mongoose.model('blacklist');
@@ -14,28 +16,29 @@ exports.handlerequest = function(req, res) {
     if (err){
       res.send(err);
     }else{
-      console.log(task);
+      //console.log(task);
       console.log(task.length);
 
       for (var i=0 ; i < task.length ; i++){
         var checkval = new RegExp(task[i].pattern.toString());
-        console.log(task[i].pattern.toString());
-        console.log(checkval);
-        console.log(val);
+      //  console.log(task[i].pattern.toString());
+      //  console.log(checkval);
+      //  console.log(val);
         console.log(checkval.test(val));
         //console.log(/^[0-9]{10}$/.test(val));
 
         if (checkval.test(val)) {
-          //  res.send(val + "  is a "+ task[i].name +" to be masked");
-          res.json({"test": val});
+          var hash = crypto.createHmac('md5', key).update(val).digest('hex');
+          var resp = hash + "  is a "+ task[i].name ;
+          res.json({"resp": resp});
           }
-          else{
-          //  res.send(val + "  is good to go");
-            res.json({"test": val});
-          }
+          console.log(i + " " + task.length);
+
+
 
       };
-
+      console.log('Out of for');
+  res.json({"resp": val});
 
     }
   //res.json(task);
