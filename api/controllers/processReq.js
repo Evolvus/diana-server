@@ -26,10 +26,12 @@ exports.handlerequest = function(req, res) {
         //console.log(/^[0-9]{10}$/.test(val));
 
         if (checkval.test(val)) {
-            res.send(val + "  is a "+ task[i].name +" to be masked");
+          //  res.send(val + "  is a "+ task[i].name +" to be masked");
+          res.json({"test": val});
           }
           else{
-            res.send(val + "  is good to go");
+          //  res.send(val + "  is good to go");
+            res.json({"test": val});
           }
 
       };
