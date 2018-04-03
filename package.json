@@ -1,22 +1,22 @@
 {
   "name": "diana-server",
-  "version": "0.0.1",
-  "description": "Diana Server",
-  "main": "index.js",
+  "version": "1.0.0",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Evolvus/diana-server.git"
-  },
-  "keywords": [
-    "diana-server"
-  ],
-  "author": "Evolvus Solutions Pvt Ltd",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Evolvus/diana-server/issues"
+  "devDependencies": {
+    "nodemon": "^1.15.1"
   },
-  "homepage": "https://github.com/Evolvus/diana-server#readme"
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "helmet": "^3.12.0",
+    "mongoose": "^5.0.7",
+    "regex": "^0.1.1"
+  },
+  "description": ""
 }
