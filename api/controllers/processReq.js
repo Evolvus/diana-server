@@ -1,12 +1,26 @@
 'use strict';
 
 //var Regex = require("regex");
+// var http  = require('http'),
+//     https = require('https'),
+//     aws4  = require('aws4');
+
 var crypto = require('crypto'),
 key = 'jenson';
 var mongoose = require('mongoose'),
   //Task = mongoose.model('Tasks');
 blacklistcheck = mongoose.model('blacklist');
 //Task1 = mongoose.model();
+//
+// opts = {
+//         host: 'runtime.lex.us-east-1.amazonaws.com',
+// 		    //host:'10.10.69.203'
+//         service: 'lex',
+//         region: 'us-east-1',
+//         path: '/lex',
+//       };
+// aws4.sign(opts,{accessKeyId:'AKIAIAQRC3ZWYZX3RAEA',
+// secretAccessKey:'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'});
 
 exports.handlerequest = function(req, res) {
   console.log(req.body);
@@ -24,7 +38,7 @@ exports.handlerequest = function(req, res) {
       //  console.log(task[i].pattern.toString());
       //  console.log(checkval);
       //  console.log(val);
-        console.log(checkval.test(val));
+//        console.log(checkval.test(val));
         //console.log(/^[0-9]{10}$/.test(val));
 
         if (checkval.test(val)) {
@@ -32,15 +46,9 @@ exports.handlerequest = function(req, res) {
           var resp = hash + "  is a "+ task[i].name ;
           res.json({"resp": resp});
           }
-          console.log(i + " " + task.length);
-
-
-
       };
-      console.log('Out of for');
   res.json({"resp": val});
-
-    }
+  }
   //res.json(task);
   });
 
