@@ -20,20 +20,12 @@ exports.handleintents = function(req, res) {
       var request = req;//JSON.stringify(req.body);
 
       console.log(request);
-      console.log(typeof(req));
-      console.log(typeof(request));
-      console.log(typeof(req.body));
 
       console.log(typeof(JSON.stringify(req.body.input)));
-        console.log("request.request ::::>>>>",request);
       //request.sessionAttributes = request.sessionAttributes === null ? {} : request.sessionAttributes;
 
-      console.log(typeof("request.currentIntent ::::>>>>",req.body.currentIntent));
-      console.log(typeof("request.currentIntent.name ::::>>>>",req.body.input.currentIntent.name));
-      console.log(("request.currentIntent.name ::::>>>>",req.body.input.currentIntent.name));
-
       //request.userId ='Evolvus';
-      var intentName = req.body.input.currentIntent.name;
+      var intentName = request.body.input.currentIntent.name;
       console.log(`You Intent is :${intentName}`);
 
       switch (intentName) {
@@ -41,7 +33,7 @@ exports.handleintents = function(req, res) {
 
           case 'LambdaTest':
               console.log('Entered GreetIntent Execution Block');
-              handleGreetIntent(request, callback);
+              handleGreetIntent(request, res);
               break;
 
           case 'CustACCIntent':
