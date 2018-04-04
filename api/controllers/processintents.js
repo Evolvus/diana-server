@@ -95,7 +95,7 @@ exports.handleintents = function(req, res) {
 
 
   ////////////////
-  function handleGreetIntent(request, callback) {
+  function handleGreetIntent(request, res) {
         console.log('Start handleGreetIntent');
   console.log(`request ${request}`);
 
