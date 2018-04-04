@@ -168,15 +168,8 @@ exports.handleintents = function(req, res) {
         //     console.error(e);
         // });
 
-//                                     var response = {
-//                                         'contentType': 'PlainText',
-//                                         'content': `${ request.currentIntent.name},${ request.currentIntent.name}`
-//                                     };
-//                                     console.log(`Response :${JSON.stringify(response)}`);
-// //                                    callback(null, close(sessionAttributes, 'Fulfilled', response));
-
-var val = `HI`
-res.json({"intentname": val});
+var val = `HI This is response from diana server`
+res.json({"callbackMessage": val});
   }
 
 
