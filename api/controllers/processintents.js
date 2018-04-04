@@ -1,22 +1,22 @@
 'use strict';
-const date = new Date().getHours();
-
-var VERIFY_TOKEN = "my_awesome_token";
-var https = require('https');
-var PAGE_ACCESS_TOKEN = "EAAFGHqPQGQ0BAEjPJdHfxYP754yuJlOHDW913zZAQoG4eQP8npMbnTwwt6x1sCRZCOi97ZAhQFxtP8DO8ZAkTFCyjsvQrZBFrCBgZCJiZBVK8dYbJlfQRO0wZB6UrOSfwmTbOXqYXGYILgM7J0RhntTuAH7mKauH4RvdZCuh4b7ujgC7eNh87Jsvy";
-
-var {mongoose} = require('./db/mongoose');
-var random = require('random-number-generator')
-
-var {CustomerAccDetails} = require('./models/customer_Acc');
-var {CustomerAuthDetails} = require('./models/Customer_auth');
-
-const AWS = require('aws-sdk');
-AWS.config.region = 'us-east-1';
-AWS.config.update({
-    accessKeyId: "AKIAJVFKZWZ26YRZA7TA",
-    secretAccessKey: "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",
-});
+// const date = new Date().getHours();
+//
+// var VERIFY_TOKEN = "my_awesome_token";
+// var https = require('https');
+// var PAGE_ACCESS_TOKEN = "EAAFGHqPQGQ0BAEjPJdHfxYP754yuJlOHDW913zZAQoG4eQP8npMbnTwwt6x1sCRZCOi97ZAhQFxtP8DO8ZAkTFCyjsvQrZBFrCBgZCJiZBVK8dYbJlfQRO0wZB6UrOSfwmTbOXqYXGYILgM7J0RhntTuAH7mKauH4RvdZCuh4b7ujgC7eNh87Jsvy";
+//
+// var {mongoose} = require('./db/mongoose');
+// var random = require('random-number-generator')
+//
+// var {CustomerAccDetails} = require('./models/customer_Acc');
+// var {CustomerAuthDetails} = require('./models/Customer_auth');
+//
+// const AWS = require('aws-sdk');
+// AWS.config.region = 'us-east-1';
+// AWS.config.update({
+//     accessKeyId: "AKIAJVFKZWZ26YRZA7TA",
+//     secretAccessKey: "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",
+// });
 
 
 
@@ -914,4 +914,3 @@ exports.handleintents = function(req, res) {
   }
 
   //////////////
-};

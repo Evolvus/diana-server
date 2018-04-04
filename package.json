@@ -18,5 +18,13 @@
     "mongoose": "^5.0.7",
     "regex": "^0.1.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Evolvus/diana-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Evolvus/diana-server/issues"
+  },
+  "homepage": "https://github.com/Evolvus/diana-server#readme",
   "description": ""
 }
