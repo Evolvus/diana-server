@@ -5,8 +5,8 @@
 
 exports.handleintents = function(req, res) {
   console.log(req.body);
-  var val = req.body.input;
-  res.json({"intentname": val});
+  //var val = req.body.input;
+  //res.json({"intentname": val});
   ///////////
 
 
@@ -99,12 +99,12 @@ exports.handleintents = function(req, res) {
         console.log('Start handleGreetIntent');
   console.log(`request ${request}`);
 
-        var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
-        console.log('connect to Mongo Db server');
-
-
-        console.log('Token:', PAGE_ACCESS_TOKEN);
-        // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
+        //var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
+        // console.log('connect to Mongo Db server');
+        //
+        //
+        // console.log('Token:', PAGE_ACCESS_TOKEN);
+        // // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
         //
         //
         //     (res) => {
@@ -168,13 +168,15 @@ exports.handleintents = function(req, res) {
         //     console.error(e);
         // });
 
-                                    var response = {
-                                        'contentType': 'PlainText',
-                                        'content': `${ request.currentIntent.name},${ request.currentIntent.name}`
-                                    };
-                                    console.log(`Response :${JSON.stringify(response)}`);
-                                    callback(null, close(sessionAttributes, 'Fulfilled', response));
+//                                     var response = {
+//                                         'contentType': 'PlainText',
+//                                         'content': `${ request.currentIntent.name},${ request.currentIntent.name}`
+//                                     };
+//                                     console.log(`Response :${JSON.stringify(response)}`);
+// //                                    callback(null, close(sessionAttributes, 'Fulfilled', response));
 
+var val = `HI`
+res.json({"intentname": val});
   }
 
 
