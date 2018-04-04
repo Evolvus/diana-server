@@ -17,7 +17,7 @@ exports.handleintents = function(req, res) {
       // context.callbackWaitsForEmptyEventLoop = false;
 
       // var request = event;
-      var request = JSON.stringify(req.body);
+      var request = req;//JSON.stringify(req.body);
 
       console.log(request);
       console.log(typeof(req));
@@ -25,14 +25,15 @@ exports.handleintents = function(req, res) {
       console.log(typeof(req.body));
 
       console.log(typeof(JSON.stringify(req.body.input)));
-console.log(request.input);
+        console.log("request.request ::::>>>>",request);
       //request.sessionAttributes = request.sessionAttributes === null ? {} : request.sessionAttributes;
 
-      console.log(typeof(request.input.currentIntent));
-      console.log(typeof(request.input.currentIntent.name));
+      console.log(typeof("request.currentIntent ::::>>>>",req.body.currentIntent));
+      console.log(typeof("request.currentIntent.name ::::>>>>",req.body.input.currentIntent.name));
+      console.log(("request.currentIntent.name ::::>>>>",req.body.input.currentIntent.name));
 
       //request.userId ='Evolvus';
-      var intentName = request.input.currentIntent.name;
+      var intentName = req.body.input.currentIntent.name;
       console.log(`You Intent is :${intentName}`);
 
       switch (intentName) {
