@@ -73,8 +73,6 @@ var opts = {
 
              console.log(opts);
              aws4.sign(opts, {
-               //accessKeyId: 'AKIAJFKLNVJOERID5ZHA',
-               //secretAccessKey: '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'
                accessKeyId: accessKeyId,
                secretAccessKey: secretAccessKey
 
