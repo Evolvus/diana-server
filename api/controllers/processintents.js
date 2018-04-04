@@ -46,7 +46,7 @@ exports.handleintents = function(req, res) {
       switch (intentName) {
         //// required
 
-          case 'GreetIntentnew':
+          case 'LambdaTest':
               console.log('Entered GreetIntent Execution Block');
               handleGreetIntent(request, callback);
               break;
