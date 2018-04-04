@@ -36,8 +36,14 @@ exports.handleintents = function(req, res) {
 
       // var request = event;
       var request = req.body;
+      console.log(request);
+      console.log(typeof(req));
+      console.log(typeof(request));
+      console.log(typeof(req.body));
+
       request.sessionAttributes = request.sessionAttributes === null ? {} : request.sessionAttributes;
 
+      console.log(typeof(request.currentIntent));
 
       //request.userId ='Evolvus';
       var intentName = request.currentIntent.name;
