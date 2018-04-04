@@ -36,6 +36,12 @@ exports.handleintents = function(req, res) {
               handleGreetIntent(request, res);
               break;
 
+              case 'LambdaNew':
+                  console.log('Entered GreetIntent Execution Block');
+                  handleLambdaNewIntent(request, res);
+                  break;
+
+
           case 'CustACCIntent':
               console.log('Entered CustACCIntent Execution Block');
               handleCustACCIntent(request, callback);
@@ -172,7 +178,17 @@ var val = `HI This is response from diana server`
 res.json({"callbackMessage": val});
   }
 
+///////////
+function handleLambdaNewIntent(request, res) {
+      console.log('Start handleGreetIntent');
+console.log(`request ${request}`);
+var val = `HI This is response from handleLambdaNewIntent server`
+res.json({"callbackMessage": val});
+}
 
+
+
+//////////
 
   //////////handleCust_ACC_Intent
   function handleCustACCIntent(request, callback) {
