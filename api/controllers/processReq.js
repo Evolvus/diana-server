@@ -7,6 +7,7 @@ var http  = require('http'),
  var rp   = require('request-promise');
 
 //var Regex = require("regex");
+
 //var opts = require('./lexconnect');
 var crypto = require('crypto'),
 key = 'jenson';
@@ -46,7 +47,7 @@ var opts = {
            }else{
             // b = {"inputText" : val};
               // b = { "inputText": "hi"  };
-              
+
               // console.log(b);
               // console.log(typeof(b));
               // console.log(typeof(b.tostring()));
