@@ -5,6 +5,7 @@ module.exports = function(app) {
   var processReq = require('../controllers/processReq');
   var channel = require('../controllers/channel');
   var ciservice = require('../controllers/ciservice');
+  var processintents = require('../controllers/processintents');
 
     app.route('/lexregistration')
       .get(todoList.list_all_regs_lex)
@@ -17,6 +18,9 @@ module.exports = function(app) {
     app.route('/handlereq')
       .post(processReq.handlerequest)
       //.post(todoList.register_a_channel_diag);
+
+    app.route('/handleintents')
+      .post(processintents.handleintents)
 
 
     app.route('/blacklist')
