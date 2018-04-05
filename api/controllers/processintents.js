@@ -9,7 +9,7 @@ exports.handleintents = function(req, res) {
   //res.json({"intentname": val});
   ///////////
 
-  var mongoose = require('mongoose'),
+  var {mongoose,ObjectId} = require('mongoose'),
   blacklistcheck = mongoose.model('blacklist'),
   audit = mongoose.model('audit'),
   ciservice = mongoose.model('ciservice'),
@@ -201,29 +201,29 @@ res.json({"callbackMessage": val});
 
 ///////////
 function handleLambdaNewIntent(request, res) {
-      console.log('Start handleGreetIntent');
-console.log(`request ${request}`);
-// audit.find({_id : token}, function(err, ctask) {
-//   if (err){
-//     res.send(err);
-//   }else{
-//     if (ctask.length ===0){
-//         res.json({response :'The channel is not registered with Diana Server or the Token is Incorrect'});
-//     }else{
-//       console.log(ctask[0].enabled);
-//       if( ctask[0].enabled === 1){
-//         res.status(200)
-//       }else{
+      console.log('Start handleLambdaNewIntent');
+console.log(`request ${auditid}`);
+audit.find({_id :ObjectId(auditid)}, function(err, ctask) {
+  if (err){
+    res.send(err);
+  }else{
+    if (ctask.length ===0){
+        res.json({response :'The channel is not registered with Diana Server or the Token is Incorrect'});
+    }else{
+      console.log(ctask[0].enabled);
+      if( ctask[0].enabled === 1){
+        res.status(200)
+      }else{
       //  res.json({response :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
       //  console.log('Data got fetched from the database' + docs.length);
       var val = `HI This is response from handleLambdaNewIntent server`
       res.json({"callbackMessage": val});
-//       }
-//     }
-//
-//   };
-//
-// });
+      }
+    }
+
+  };
+
+});
 
 }
 

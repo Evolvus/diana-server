@@ -88,18 +88,21 @@ function registerrequest(req,res) {
             auditinfo.save(function(err, task) {
               if (err){
                 console.log('Audit information could not be saved' + err);
+                res.json({response :'Audit information could not be saved. Not forwarding to CI Service'});
               }else{
               console.log(task);
               req.body.auditid = task._id;
               console.log(req.body.auditid);
+              handlelexrequest(req, res);
             }
+
             });
           }
         });
 
 
 
-          handlelexrequest(req, res);
+
 
         }else{
           res.json({response :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
@@ -119,7 +122,7 @@ function handlelexrequest(req,res) {
   var channelid = req.body.channel.name;
 
       console.log('in');
-    var    bodytext = '{"inputText" : "'+val+'" , "channelid" : "'+ channelid +'"}';
+    var    bodytext = '{"inputText" : "'+val+'" , "requestAttributes":{"auditid" : "'+ req.body.auditid +'", "channelid" : "'+ channelid +'"}}';
     console.log(bodytext);
 
   var opts = {
@@ -128,7 +131,8 @@ function handlelexrequest(req,res) {
          region: 'us-east-1',
          uri: 'https://runtime.lex.us-east-1.amazonaws.com/bot/dianaBot/alias/dianaServer/user/shrimank/text',
          path: 'bot/dianaBot/alias/dianaServer/user/shrimank/text',
-         body : bodytext
+         body : bodytext,
+         diana : req.body
          };
 
          blacklistcheck.find({}, function(err, task) {
