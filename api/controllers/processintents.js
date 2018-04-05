@@ -207,6 +207,7 @@ function handleLambdaNewIntent(request, res) {
 console.log(`request ${auditid}`);
 audit.find({_id : auditid}, function(err, ctask) {
   console.log('inside find');
+  console.log(ctask);
   if (err){
     res.send(err);
   }else{
