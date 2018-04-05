@@ -202,6 +202,7 @@ res.json({"callbackMessage": val});
 ///////////
 function handleLambdaNewIntent(request, res) {
       console.log('Start handleLambdaNewIntent');
+      var auditid = request.body.input.requestAttributes.auditid;
 console.log(`request ${auditid}`);
 audit.find({_id :auditid}, function(err, ctask) {
   if (err){
