@@ -1,6 +1,10 @@
 'use strict';
 
-
+var mongoose = require('mongoose'),
+blacklistcheck = mongoose.model('blacklist'),
+audit = mongoose.model('audit'),
+ciservice = mongoose.model('ciservice'),
+channel = mongoose.model('channel');
 
 
 exports.handleintents = function(req, res) {
@@ -9,11 +13,7 @@ exports.handleintents = function(req, res) {
   //res.json({"intentname": val});
   ///////////
 
-  var mongoose = require('mongoose'),
-  blacklistcheck = mongoose.model('blacklist'),
-  audit = mongoose.model('audit'),
-  ciservice = mongoose.model('ciservice'),
-  channel = mongoose.model('channel');
+
 
 
 
@@ -205,10 +205,12 @@ function handleLambdaNewIntent(request, res) {
       console.log(request);
       var auditid = request.body.input.requestAttributes.auditid;
 console.log(`request ${auditid}`);
-audit.find({_id :auditid}, function(err, ctask) {
+audit.find({_id : auditid}, function(err, ctask) {
+  console.log('inside find');
   if (err){
     res.send(err);
   }else{
+    console.log('inside else');
     if (ctask.length ===0){
         res.json({response :'The channel is not registered with Diana Server or the Token is Incorrect'});
     }else{
