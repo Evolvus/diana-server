@@ -203,7 +203,7 @@ res.json({"callbackMessage": val});
 function handleLambdaNewIntent(request, res) {
       console.log('Start handleLambdaNewIntent');
 console.log(`request ${auditid}`);
-audit.find({_id :ObjectId(auditid)}, function(err, ctask) {
+audit.find({_id :auditid}, function(err, ctask) {
   if (err){
     res.send(err);
   }else{
