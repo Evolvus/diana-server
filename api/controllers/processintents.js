@@ -42,7 +42,7 @@ exports.handleintents = function(req, res) {
       //request.userId ='Evolvus';
       var intentName = request.body.input.currentIntent.name;
       console.log(`You Intent is :${intentName}`);
-      var auditid = request.body.input.requestAttributes.auditid;
+      var auditid = request.body.input;
       console.log("auditid :>>>>>>>",auditid);
       switch (intentName) {
         //// required
