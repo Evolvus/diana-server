@@ -9,7 +9,7 @@ exports.handleintents = function(req, res) {
   //res.json({"intentname": val});
   ///////////
 
-  var {mongoose,ObjectId} = require('mongoose'),
+  var mongoose = require('mongoose'),
   blacklistcheck = mongoose.model('blacklist'),
   audit = mongoose.model('audit'),
   ciservice = mongoose.model('ciservice'),
