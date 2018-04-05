@@ -15,8 +15,9 @@ module.exports = function(app) {
       .get(todoList.list_all_regs_diag)
       .post(todoList.register_a_channel_diag);
 
-    app.route('/handlereq')
+    app.route('/webhook')
       .post(processReq.handlerequest)
+      .get(processReq.handlegetrequest)
       //.post(todoList.register_a_channel_diag);
 
     app.route('/handleintents')
