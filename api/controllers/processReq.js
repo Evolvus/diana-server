@@ -93,6 +93,11 @@ function registerrequest(req,res) {
               console.log(task);
               req.body.auditid = task._id;
               console.log(req.body.auditid);
+
+
+              //var answersinfo = new answers(answersdata);
+
+
               handlelexrequest(req, res);
             }
 
@@ -173,7 +178,18 @@ function handlelexrequest(req,res) {
                   if(err){
                     console.log('Could not update channel success count' + err);
                   }
-                })
+                });
+
+                // var answersdata = {
+                //   channelName:req.body.channel.name,
+                //   ciservice:'',
+                //   query:  req.body.input,
+                //   answereByCi:'',
+                //   userName:'',
+                //   requestDate: new Date(),
+                //   status:
+                // };
+
                 //JSON.parse(html).timestamp = new Date();
                 res.json(JSON.parse(html));
                 var out = html;

@@ -28,3 +28,12 @@ exports.listciservice = function(req, res) {
   });
 
 };
+
+exports.stats = function(req, res) {
+  Task3.find({name : ciserviceName}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+
+};

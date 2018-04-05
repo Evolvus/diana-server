@@ -32,8 +32,14 @@ module.exports = function(app) {
       .post(channel.regchannel)
       .get(channel.listchannel)
 
+      app.route('/channel/:channelName')
+        .get(channel.stats)
+
       app.route('/ciservice')
         .post(ciservice.regciservice)
         .get(ciservice.listciservice)
+
+        app.route('/ciservice/:ciserviceName')
+          .get(ciservice.listciservice)
 
 };

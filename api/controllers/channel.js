@@ -28,3 +28,14 @@ exports.listchannel = function(req, res) {
   });
 
 };
+
+
+
+exports.stats = function(req, res) {
+  Task2.find({name : req.params.channelName}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+
+};
