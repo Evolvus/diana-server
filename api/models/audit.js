@@ -11,13 +11,13 @@ var audit = new Schema({
     type: String
   },
   requestData: {
-    type: String
+    type: Object
     },
   responseData: {
     type: String
   },
   userName: {
-    type: String  
+    type: String
   },
   requestDate: {
     type: Date,
