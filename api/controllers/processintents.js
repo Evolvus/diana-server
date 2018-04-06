@@ -127,7 +127,7 @@ function handleGreetIntent(request, resp,auditModel) {
               // res.on('data', (d) => {
               //     console.log(d);
               //     request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                    request.sessionAttributes.userFirstName ="Aditya";
+              //      request.sessionAttributes.userFirstName ="Aditya";
 
 //                   request.sessionAttributes.custuserid=request.userId
 
@@ -137,7 +137,7 @@ function handleGreetIntent(request, resp,auditModel) {
                   var custuserid1=2157056904312202;
                 //  console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
 
-                  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
+                //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
                   console.log(custuserid1);
 
       CustomerAccDetails.find({
@@ -145,7 +145,9 @@ function handleGreetIntent(request, resp,auditModel) {
       }).then((docs) => {
               console.log('Data got fetched from the database' + docs.length);
               console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
-              var userFirstName = request.sessionAttributes.userFirstName;
+//              var userFirstName = request.sessionAttributes.userFirstName;
+              var userFirstName = "Aditya";
+
               console.log(`userFirstName:${userFirstName}`);
 
               if (docs.length === 0) {
