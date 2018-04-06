@@ -49,7 +49,7 @@ exports.handleintents = function(req, res) {
 
       var auditid = request.body.input.requestAttributes.auditid;
       var auditModel;
-      audit.find(_id:auditid,function(err,data){
+      audit.find({_id : auditid},function(err,data){
         auditModel = data;
         switch (intentName) {
           //// required
@@ -118,7 +118,7 @@ exports.handleintents = function(req, res) {
                 break;
         }
 
-        
+
       })
       console.log("auditid :>>>>>>>",auditid);
 
