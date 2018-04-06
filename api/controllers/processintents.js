@@ -1,5 +1,8 @@
 'use strict';
 
+const date = new Date().getHours();
+
+
 var mongoose = require('mongoose'),
 blacklistcheck = mongoose.model('blacklist'),
 audit = mongoose.model('audit'),
@@ -113,16 +116,21 @@ function handleGreetIntent(request, resp,auditModel) {
       console.log('connect to Mongo Db server');
 
       console.log('Token:', PAGE_ACCESS_TOKEN);
-      https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
+    //  https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
 
 
-          (res) => {
-              console.log('res:', res);
-              console.log('headers:', res.headers);
-              res.on('data', (d) => {
-                  console.log(d);
-                  request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                  request.sessionAttributes.custuserid=request.userId;
+        //  (res) => {
+              // console.log('res:', res);
+              // console.log('headers:', res.headers);
+              // res.on('data', (d) => {
+              //     console.log(d);
+              //     request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
+                   request.sessionAttributes.userFirstName = request.body.input.userId;
+
+//                   request.sessionAttributes.custuserid=request.userId
+
+                   request.sessionAttributes.custuserid=request.body.input.userId;
+
 
                   var custuserid1=request.sessionAttributes.custuserid;
                   console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
@@ -199,11 +207,11 @@ function handleGreetIntent(request, resp,auditModel) {
                                           // console.log(`Response :${JSON.stringify(response)}`);
                                           // callback(null, close(request.sessionAttributes, 'Fulfilled', response));
                                       });
-                               });
-
-          }).on('error', (e) => {
-          console.error(e);
-      });
+                               //});
+      // 
+      //     }).on('error', (e) => {
+      //     console.error(e);
+      // });
 
 
 }

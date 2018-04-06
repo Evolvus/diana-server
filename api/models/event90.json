@@ -1,0 +1,24 @@
+{
+  "messageVersion": "1.0",
+  "invocationSource": "FulfillmentCodeHook",
+  "userId": 1616183481793273,
+  "sessionAttributes": {
+    "fid": "abcd@gmail.com"
+  },
+  "bot": {
+    "name": "MyGrootBot",
+    "alias": "$LATEST",
+    "version": "$LATEST"
+  },
+  "outputDialogMode": "Text",
+  "currentIntent": {
+    "name": "GreetIntentnew",
+    "slots": {
+      "one": "doggy",
+      "three": null,
+      "two": null,
+      "facebookid": "acd@gmail.com"
+    },
+    "confirmationStatus": "None"
+  }
+}
