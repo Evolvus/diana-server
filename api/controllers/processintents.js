@@ -48,73 +48,80 @@ exports.handleintents = function(req, res) {
       console.log("requestAttributes :>>>>>>>",requestAttributes);
 
       var auditid = request.body.input.requestAttributes.auditid;
+      var auditModel;
+      audit.find(_id:auditid,function(err,data){
+        auditModel = data;
+        switch (intentName) {
+          //// required
+
+            case 'LambdaTest':
+                console.log('Entered GreetIntent Execution Block');
+                handleGreetIntent(request, res);
+                break;
+
+                case 'LambdaNew':
+                    console.log('Entered GreetIntent Execution Block');
+                    handleLambdaNewIntent(request, res);
+                    break;
+
+
+            case 'CustACCIntent':
+                console.log('Entered CustACCIntent Execution Block');
+                handleCustACCIntent(request, callback);
+                break;
+
+            case 'CustAuthIntent':
+                console.log('Entered CustAuthIntent Execution Block');
+                handleCustAuthIntent(request, callback);
+                break;
+
+            case 'getotp':
+                console.log('Entered GetCustAuthIntent Execution Block');
+                handleGetCustAuthIntent(request, callback);
+                break;
+
+            case 'genotp':
+                console.log('Entered GetCustAuthIntent Execution Block');
+                handlegenotpIntent(request, callback);
+                break;
+
+            case 'GetBalIntentnew':
+                console.log('Entered GetBalIntent Execution Block');
+                handleGetBalIntent(request, callback);
+                break;
+
+            case 'getCustAccIntentnew':
+                console.log('Entered getCustAccIntent Execution Block');
+                handlegetCustAccIntent(request, callback);
+                break;
+
+            case 'disconnectIntentnew':
+                console.log('Entered disconnectIntent Execution Block');
+                handledisconnectIntent(request, callback);
+                break;
+
+
+        /////////Not required
+
+
+
+            case 'GetCustAuthIntentnew':
+                console.log('Entered GetCustAuthIntent Execution Block');
+                handleGetCustAuthIntent(request, callback);
+                break;
+
+        ///////////////
+
+
+            default:
+                handleDefault(request, callback);
+                break;
+        }
+
+        
+      })
       console.log("auditid :>>>>>>>",auditid);
-      switch (intentName) {
-        //// required
 
-          case 'LambdaTest':
-              console.log('Entered GreetIntent Execution Block');
-              handleGreetIntent(request, res);
-              break;
-
-              case 'LambdaNew':
-                  console.log('Entered GreetIntent Execution Block');
-                  handleLambdaNewIntent(request, res);
-                  break;
-
-
-          case 'CustACCIntent':
-              console.log('Entered CustACCIntent Execution Block');
-              handleCustACCIntent(request, callback);
-              break;
-
-          case 'CustAuthIntent':
-              console.log('Entered CustAuthIntent Execution Block');
-              handleCustAuthIntent(request, callback);
-              break;
-
-          case 'getotp':
-              console.log('Entered GetCustAuthIntent Execution Block');
-              handleGetCustAuthIntent(request, callback);
-              break;
-
-          case 'genotp':
-              console.log('Entered GetCustAuthIntent Execution Block');
-              handlegenotpIntent(request, callback);
-              break;
-
-          case 'GetBalIntentnew':
-              console.log('Entered GetBalIntent Execution Block');
-              handleGetBalIntent(request, callback);
-              break;
-
-          case 'getCustAccIntentnew':
-              console.log('Entered getCustAccIntent Execution Block');
-              handlegetCustAccIntent(request, callback);
-              break;
-
-          case 'disconnectIntentnew':
-              console.log('Entered disconnectIntent Execution Block');
-              handledisconnectIntent(request, callback);
-              break;
-
-
-  /////////Not required
-
-
-
-          case 'GetCustAuthIntentnew':
-              console.log('Entered GetCustAuthIntent Execution Block');
-              handleGetCustAuthIntent(request, callback);
-              break;
-
-  ///////////////
-
-
-          default:
-              handleDefault(request, callback);
-              break;
-      }
 
 
       // callback(null, 'Hello from Lambda');
@@ -214,7 +221,7 @@ console.log(`request ${auditid}`);
 var val = `HI This is response from handleLambdaNewIntent server`
 var responeData = {"callbackMessage": val};
 audit.responseData =responeData;
-saveAudit(request,audit);
+saveAudit(request,auditModel);
 res.json(responeData);
 
 // });
@@ -223,13 +230,13 @@ res.json(responeData);
 
 
 
-function saveAudit(request,audit){
+function saveAudit(request,auditModel){
   var auditid = request.body.input.requestAttributes.auditid;
-  audit.requestData=request.body;
-  audit.userName = request.body.input.userId;
-  audit.lastUpdatedDate = new Date();
+  auditModel.requestData=request.body;
+  auditModel.userName = request.body.input.userId;
+  auditModel.lastUpdatedDate = new Date();
 
-  audit.update({_id : auditid}, {$set:audit},  {upsert: true}, function(err,task){
+  audit.update({_id : auditid}, {$set:auditModel},  {upsert: true}, function(err,task){
     if (err){
       console.log('Could not update channel req count'+ err);
     }
