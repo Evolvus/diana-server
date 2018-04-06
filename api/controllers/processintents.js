@@ -763,7 +763,7 @@ resp.json(responeData);
                   accountNumber = accountNumber.replace(accountNumber.substring(3, 4), "*****");
                   var accountNumber2 = `${doc[1].accounts}`;
                   accountNumber2 = accountNumber2.replace(accountNumber2.substring(3, 4), "*****");
-                  var inputTranscript = '${request.inputTranscript}';
+                  //var inputTranscript = '${request.inputTranscript}';
                   console.log(balofuser);
                   console.log(`${doc[0].AccountBal}`);
                   console.log(inputTranscript);
