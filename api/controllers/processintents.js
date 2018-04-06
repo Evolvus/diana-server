@@ -220,13 +220,15 @@ audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" ,requestData :reques
   else{
   // var val = `HI This is response from handleLambdaNewIntent server`
   // res.json({"callbackMessage": val});
-
+console.log("inside else bock");
   var response = {
       'contentType': 'PlainText',
       'content': `HI This is response from handleLambdaNewIntent server`
   };
+  console.log("call back start");
   callback(null, close(sessionAttributes, 'Fulfilled', response));
 
+  console.log("call back end");
 
   }
 // });
