@@ -129,9 +129,11 @@ console.log("request>>>>>",request);
               // console.log('headers:', res.headers);
               // res.on('data', (d) => {
               //     console.log(d);
-              //     request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                   request.body.input.requestAttributes.userFirstName ="Aditya";
-                  console.log(request.body.input.requestAttributes.userFirstName);
+                //   request.body.input.sessionAttributes.userFirstName = JSON.parse(d).first_name;
+                   request.body.input.sessionAttributes.userFirstName ="Aditya";
+                  //console.log(request.body.input.requestAttributes.userFirstName);
+                  
+                 console.log(request.body.input.sessionAttributes.userFirstName);
 //                   request.sessionAttributes.custuserid=request.userId
 
                    // request.sessionAttributes.custuserid=request.body.input.userId;
