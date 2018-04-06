@@ -147,8 +147,8 @@ console.log("request>>>>>",request);
       }).then((docs) => {
               console.log('Data got fetched from the database' + docs.length);
               console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
-//              var userFirstName = request.sessionAttributes.userFirstName;
-              var userFirstName = "Aditya";
+              var userFirstName = request.body.input.requestAttributes.userFirstName;
+              //var userFirstName = "Aditya";
 
               console.log(`userFirstName:${userFirstName}`);
 
@@ -173,13 +173,16 @@ console.log("request>>>>>",request);
                 var cifofuser = `${docs[0].cifid}`;
                 console.log(docs);
                 // request.sessionAttributes.cifidd = `${cifofuser}`;
-                // var nameofuser = `${docs[0].customer_Name}`;
+                 var nameofuser = `${docs[0].customer_Name}`;
+                 request.body.input.requestAttributes.cifidd=`${cifofuser}`;
                 // request.sessionAttributes.coreusername = `${nameofuser}`;
+                request.body.input.requestAttributes.coreusername=`${nameofuser}`;
+
                 // console.log(request.sessionAttributes.coreusername);
 
                 ///////////
                 console.log("Inside else block");
-                var val = `Hi Aditya ,${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
+                var val = `Hi ${request.body.input.requestAttributes.coreusername} ,${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
                 var responeData = {"callbackMessage": val};
                 auditModel.responseData =responeData;
                 console.log("auditModel>>",auditModel);
