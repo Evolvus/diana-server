@@ -129,15 +129,15 @@ console.log("request>>>>>",request);
               // res.on('data', (d) => {
               //     console.log(d);
               //     request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                    request.body.input.sessionAttributes.userFirstName ="Aditya";
-
+//                    request.body.input.sessionAttributes.userFirstName ="Aditya";
+      console.log(request.body.input.sessionAttributes);
 //                   request.sessionAttributes.custuserid=request.userId
 
                    // request.sessionAttributes.custuserid=request.body.input.userId;
                    //
 
                   var custuserid1=2157056904312202;
-                  console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
+                  //console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
 
                 //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
                   console.log(custuserid1);
