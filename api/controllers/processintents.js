@@ -127,15 +127,15 @@ function handleGreetIntent(request, resp,auditModel) {
               // res.on('data', (d) => {
               //     console.log(d);
               //     request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                   request.sessionAttributes.userFirstName = request.body.input.userId;
+                    request.sessionAttributes.userFirstName ="Aditya";
 
 //                   request.sessionAttributes.custuserid=request.userId
 
-                   request.sessionAttributes.custuserid=request.body.input.userId;
+                   // request.sessionAttributes.custuserid=request.body.input.userId;
+                   //
 
-
-                  var custuserid1=request.sessionAttributes.custuserid;
-                  console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
+                  var custuserid1=2157056904312202;
+                //  console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
 
                   console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
                   console.log(custuserid1);
