@@ -134,6 +134,8 @@ console.log(typeof(request.body.input.requestAttributes));
                    request.body.input.sessionAttributes= {userFirstName :"Aditya"};
                   //console.log(request.body.input.requestAttributes.userFirstName);
 
+                  console.log(typeof(request.body.input.sessionAttributes));
+                  console.log(typeof(request.body.input.requestAttributes));
                  console.log(request.body.input.sessionAttributes);
 //                   request.sessionAttributes.custuserid=request.userId
 
