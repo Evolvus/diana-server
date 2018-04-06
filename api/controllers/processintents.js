@@ -211,13 +211,11 @@ console.log(`request ${auditid}`);
 //   if (err){
 //     res.send(err);
 //   }else{
-audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" ,requestData :request.body,responseData : "responseData1",userName :"userName1",lastUpdatedDate : new Date()}},  {upsert: true}, function(err,task){
+audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" ,requestData :request.body,responseData : "responseData1",userName :request.body.input.userId,lastUpdatedDate : new Date()}},  {upsert: true}, function(err,task){
   if (err){
     console.log('Could not update channel req count'+ err);
   }
   else{
-  //  res.json({response :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
-  //  console.log('Data got fetched from the database' + docs.length);
   var val = `HI This is response from handleLambdaNewIntent server`
   res.json({"callbackMessage": val});
   }
