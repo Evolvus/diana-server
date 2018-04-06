@@ -723,7 +723,7 @@ resp.json(responeData);
       var cnt = 0;
       console.log('connect to Mongo Db server');
       var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
-
+ var inputTranscript =request.body.input.inputTranscript;
       //var faceid = `${request.sessionAttributes.fid}`;
       //var faceid = `${request.sessionAttributes.fbid1}`;
       // var faceid = `abcd@gmail.com`;
@@ -760,10 +760,10 @@ resp.json(responeData);
                   var inputTranscript = '${request.inputTranscript}';
                   console.log(balofuser);
                   console.log(`${doc[0].AccountBal}`);
-                  console.log(request.inputTranscript);
-                  console.log(`inputTranscript:${inputTranscript}`);
+                  console.log(inputTranscript);
+                  console.log(`inputTranscript:${request.body.input}`);
 
-                  if (`${accounttype}` === request.inputTranscript) {
+                  if (`${accounttype}` === inputTranscript) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
@@ -785,7 +785,7 @@ resp.json(responeData);
                       // };
                       // console.log(`Response :${JSON.stringify(response)}`);
                       // callback(null, close(sessionAttributes, 'Fulfilled', response));
-                  } else if (`${accounttype}` === request.inputTranscript) {
+                  } else if (`${accounttype}` === inputTranscript) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
@@ -812,7 +812,7 @@ resp.json(responeData);
                       // };
                       // console.log(`Response :${JSON.stringify(response)}`);
                       // callback(null, close(sessionAttributes, 'Fulfilled', response));
-                  } else if (`${accounttype2}` == request.inputTranscript) {
+                  } else if (`${accounttype2}` == inputTranscript) {
                       console.log('got rec' + doc);
                       console.log("Inside if block");
                       var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
@@ -829,7 +829,7 @@ resp.json(responeData);
                       // };
                       // console.log(`Response :${JSON.stringify(response)}`);
                       // callback(null, close(sessionAttributes, 'Fulfilled', response));
-                  } else if (`${accounttype2}` == request.inputTranscript) {
+                  } else if (`${accounttype2}` == inputTranscript) {
                       console.log('got rec' + doc);
                       console.log("Inside if block");
                       var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
