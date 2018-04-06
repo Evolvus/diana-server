@@ -812,51 +812,58 @@ function saveAudit(request,auditModel){
 
   function handlegenotpIntent(request, callback) {
       console.log('Start handlegenotpIntent');
-      var sessionAttributes = request.sessionAttributes;
-      console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
+//      var sessionAttributes = request.sessionAttributes;
+      var requestAttributes = request.body.input.requestAttributes;
+
+      console.log(`Session Attr:${JSON.stringify(requestAttributes)}`);
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
-  //  var faceid = `${request.currentIntent.slots.facebookid}`;
-  //var faceid = `abcd@gmail.com`;
-      //request.sessionAttributes.fid = faceid;
-    //  request.sessionAttributes.fbid1 = `${request.currentIntent.slots.facebookid}`;
-      //console.log('facebook id is ' + faceid);
-  var cifofuser= `${request.sessionAttributes.cifidd}` ;
-      console.log('Token:', PAGE_ACCESS_TOKEN);
-      https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
-
-
-          (res) => {
-              console.log('res:', res);
-              console.log('headers:', res.headers);
-              res.on('data', (d) => {
-                  console.log(d);
-                  request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                  console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
-                  // use below code to resend the reply
-                  //callSendAPI(messageData);
-              });
-
-          }).on('error', (e) => {
-          console.error(e);
-      });
+  var cifofuser= `${request.body.input.requestAttributes.cifidd}` ;
+    //  console.log('Token:', PAGE_ACCESS_TOKEN);
+      // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
+      //
+      //
+      //     (res) => {
+      //         console.log('res:', res);
+      //         console.log('headers:', res.headers);
+      //         res.on('data', (d) => {
+      //             console.log(d);
+      //             request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
+      //             console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
+      //             // use below code to resend the reply
+      //             //callSendAPI(messageData);
+      //         });
+      //
+      //     }).on('error', (e) => {
+      //     console.error(e);
+      // });
 
       CustomerAuthDetails.find({
           cifid: cifofuser
       }).then((docs) => {
               console.log('Data got fetched from the database' + docs.length);
               console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
-              var userFirstName = request.sessionAttributes.userFirstName;
+              var userFirstName = request.body.input.requestAttributes.userFirstName;
               console.log(`userFirstName:${userFirstName}`);
 
               if (docs.length === 0) {
-                  var response = {
-                      'contentType': 'PlainText',
-                      'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
-                  };
-                  console.log(`Response :${JSON.stringify(response)}`);
-                  callback(null, close(sessionAttributes, 'Fulfilled', response));
+///////////
+console.log("Inside if block");
+var val = `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
+var responeData = {"callbackMessage": val};
+auditModel.responseData =responeData;
+console.log("auditModel>>",auditModel);
+saveAudit(request,auditModel);
+resp.json(responeData);
+//////////
+
+                  // var response = {
+                  //     'contentType': 'PlainText',
+                  //     'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
+                  // };
+                  // console.log(`Response :${JSON.stringify(response)}`);
+                  // callback(null, close(sessionAttributes, 'Fulfilled', response));
               } else {
                 var cifofuser = `${docs[0].cifid}`;
 
@@ -866,17 +873,29 @@ function saveAudit(request,auditModel){
                 }).then((doc) => {
                     console.log('in for balance');
                     var nameofuser = `${doc[0].customer_Name}`;
-                    request.sessionAttributes.coreusername = `${nameofuser}`;
-                    console.log(request.sessionAttributes.coreusername);
+                    request.body.input.requestAttributes.coreusername = `${nameofuser}`;
+                    console.log(request.body.input.requestAttributes.coreusername);
     },
     (e) => {
-        var response = {
-            'contentType': 'PlainText',
-            'content': `Something went wrong `
-        };
-        console.log('Unable to fetch Data from database', e);
-        console.log(`Response :${JSON.stringify(response)}`);
-        callback(null, close(sessionAttributes, 'Fulfilled', response));
+//////////
+console.log("Inside e block");
+var val = `Something went wrong `
+var responeData = {"callbackMessage": val};
+auditModel.responseData =responeData;
+console.log("auditModel>>",auditModel);
+saveAudit(request,auditModel);
+resp.json(responeData);
+
+///////
+
+
+        // var response = {
+        //     'contentType': 'PlainText',
+        //     'content': `Something went wrong `
+        // };
+        // console.log('Unable to fetch Data from database', e);
+        // console.log(`Response :${JSON.stringify(response)}`);
+        // callback(null, close(sessionAttributes, 'Fulfilled', response));
     });
                   console.log(docs);
                   console.log(docs[0].cifid);
@@ -884,7 +903,7 @@ function saveAudit(request,auditModel){
                   var otpGen = random(999999, 111111);
                   console.log(otpGen);
 
-                  request.sessionAttributes.otp = `${otpGen}`;
+                  request.body.input.requestAttributes.otp = `${otpGen}`;
                   console.log(docs);
 
                   var mobileofuser = `${docs[0].RegisterMobile}`;
@@ -893,57 +912,66 @@ function saveAudit(request,auditModel){
                   console.log(`${docs[0].RegisterMobile}`);
                   console.log(`otp is :${otpGen}`);
                   console.log(`${docs[0].otp}`);
+                  //
+                  // var sns = new AWS.SNS();
+                  // var params = {
+                  //     Message: `Dear ${userFirstName}, you are trying to access confidential information via DIANA and otp is : ${otpGen}`,
+                  //     MessageStructure: 'string',
+                  //     PhoneNumber: `${mobileofuser}`,
+                  //     Subject: 'Reference'
+                  // };
 
-                  var sns = new AWS.SNS();
-                  var params = {
-                      Message: `Dear ${userFirstName}, you are trying to access confidential information via DIANA and otp is : ${otpGen}`,
-                      MessageStructure: 'string',
-                      PhoneNumber: `${mobileofuser}`,
-                      Subject: 'Reference'
-                  };
+                  // sns.publish(params, function(err, data) {
+                  //     if (err) {
+                  //         console.log(err, err.stack);
+                  //     } // an error occurred
+                  //     else {
+                  //         console.log(data);
+                  //         var custuserid1=request.sessionAttributes.custuserid;
+                  //         console.log(custuserid1);
+                  //       // successful response
+                  //       CustomerAccDetails.update({cifid: cifofuser},{userid:custuserid1},{multi:true},(err)=> {
+                  //           if(err) {
+                  //             console.log(err);
+                  //           } else {
+                  //               console.log("updated successfully");
+///////////////
+console.log("Inside e block");
+var val = `Hi ${request.body.input.requestAttributes.coreusername},${msg1} otp has shared please type the same..`
+var responeData = {"callbackMessage": val};
+auditModel.responseData =responeData;
+console.log("auditModel>>",auditModel);
+saveAudit(request,auditModel);
+resp.json(responeData);
 
-                  sns.publish(params, function(err, data) {
-                      if (err) {
-                          console.log(err, err.stack);
-                      } // an error occurred
-                      else {
-                          console.log(data);
-                          var custuserid1=request.sessionAttributes.custuserid;
-                          console.log(custuserid1);
-                        // successful response
-                        CustomerAccDetails.update({cifid: cifofuser},{userid:custuserid1},{multi:true},(err)=> {
-                            if(err) {
-                              console.log(err);
-                            } else {
-                                console.log("updated successfully");
-
-
-                          var response = {
-                              'contentType': 'PlainText',
-                              'content': `Hi ${request.sessionAttributes.coreusername},${msg1} otp has shared please type the same..`
-                          };
-                          console.log(`Response :${JSON.stringify(response)}`);
-                          callback(null, close(sessionAttributes, 'Fulfilled', response));
+/////////
+                          //
+                          // var response = {
+                          //     'contentType': 'PlainText',
+                          //     'content': `Hi ${request.sessionAttributes.coreusername},${msg1} otp has shared please type the same..`
+                          // };
+                          // console.log(`Response :${JSON.stringify(response)}`);
+                          // callback(null, close(sessionAttributes, 'Fulfilled', response));
                         }
 
                                       })
                       }
-                  });
-
-                  console.log(params);
-                  console.log(params.PhoneNumber);
-              }
-          },
-          (e) => {
-              var response = {
-                  'contentType': 'PlainText',
-                  'content': `Something went wrong `
-              };
-              console.log('Unable to fetch Data from database', e);
-              console.log(`Response :${JSON.stringify(response)}`);
-              callback(null, close(sessionAttributes, 'Fulfilled', response));
-          });
-  }
+  //                 });
+  //
+  //                 console.log(params);
+  //                 console.log(params.PhoneNumber);
+  //             }
+  //         },
+  //         (e) => {
+  //             var response = {
+  //                 'contentType': 'PlainText',
+  //                 'content': `Something went wrong `
+  //             };
+  //             console.log('Unable to fetch Data from database', e);
+  //             console.log(`Response :${JSON.stringify(response)}`);
+  //             callback(null, close(sessionAttributes, 'Fulfilled', response));
+  //         });
+  // }
 
 
   //Prepare Response
