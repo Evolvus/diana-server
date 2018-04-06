@@ -202,7 +202,7 @@ res.json({"callbackMessage": val});
 ///////////
 function handleLambdaNewIntent(request, res) {
       console.log('Start handleLambdaNewIntent');
-      console.log(request);
+      console.log("request.body>>>>>>>>>",request.body);
       var auditid = request.body.input.requestAttributes.auditid;
 console.log(`request ${auditid}`);
 // audit.find({_id : auditid}, function(err, ctask) {
@@ -211,7 +211,7 @@ console.log(`request ${auditid}`);
 //   if (err){
 //     res.send(err);
 //   }else{
-audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" ,requestData :request,responseData : "responseData1",userName :"userName1",lastUpdatedDate : new Date()}},  {upsert: true}, function(err,task){
+audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" ,requestData :"request1",responseData : "responseData1",userName :"userName1",lastUpdatedDate : new Date()}},  {upsert: true}, function(err,task){
   if (err){
     console.log('Could not update channel req count'+ err);
   }
