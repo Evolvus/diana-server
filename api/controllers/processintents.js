@@ -136,7 +136,7 @@ console.log("request>>>>>",request);
                    // request.sessionAttributes.custuserid=request.body.input.userId;
                    //
 
-                  var custuserid1=215705690431220;
+                  var custuserid1=2157056904312202;
                   //console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
 
                 //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
@@ -184,10 +184,7 @@ console.log("request>>>>>",request);
                 saveAudit(request,auditModel);
                 resp.json(responeData);
 ////////////////
-
-                        }
-
-                                      },
+                                      }},
                                       (e) => {
                                         ///////////
                                         console.log("Inside error block");
