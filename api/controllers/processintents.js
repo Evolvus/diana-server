@@ -45,7 +45,7 @@ exports.handleintents = function(req, callback) {
       var input = request.body.input;
       console.log("input :>>>>>>>",input);
       var requestAttributes = request.body.input.requestAttributes;
-      var sessionAttributes = request.body.input.sessionAttributes;
+      var sessionAttributes = "sessionAttributes";
 
       console.log("requestAttributes :>>>>>>>",requestAttributes);
       console.log("sessionAttributes :>>>>>>>",sessionAttributes);
