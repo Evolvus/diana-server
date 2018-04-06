@@ -478,7 +478,7 @@ function saveAudit(request,auditModel){
       console.log('Start handleGetCustAuthIntent');
     //  var sessionAttributes = request.sessionAttributes;
       //console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
-      const slots = request.currentIntent.slots;
+    //  const slots = request.currentIntent.slots;
       var cnt = 0;
     //  var otpGen = request.sessionAttributes.otp;
     var otpGen = 111111;
