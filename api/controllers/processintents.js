@@ -20,6 +20,23 @@ exports.handleintents = function(req, resp) {
       console.log(request);
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
 
+      request.body.input.sessionAttributes= {cifidd :123450};
+      request.body.input.sessionAttributes.userFirstName="Aditya";
+     console.log(typeof(request.body.input.sessionAttributes));
+     console.log(typeof(request.body.input.requestAttributes));
+     request.body.input.sessionAttributes.custuserid=2157056904312202;
+     request.body.input.sessionAttributes.otp=111111;
+     // request.body.input.sessionAttributes= {cifidd :123452};
+     // request.body.input.sessionAttributes.userFirstName="Anitha";
+
+
+
+   console.log(request.body.input.sessionAttributes.userFirstName);
+
+     // request.sessionAttributes.custuserid=request.body.input.userId;
+     //
+
+    var custuserid1=request.body.input.sessionAttributes.custuserid;
 
       console.log(typeof(JSON.stringify(req.body.input)));
       var intentName = request.body.input.currentIntent.name;
@@ -131,17 +148,17 @@ console.log(typeof(request.body.input.requestAttributes));
               // res.on('data', (d) => {
               //     console.log(d);
                 //   request.body.input.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                   request.body.input.sessionAttributes= {userFirstName :"Aditya"};
-
-                  console.log(typeof(request.body.input.sessionAttributes));
-                  console.log(typeof(request.body.input.requestAttributes));
-                 console.log(request.body.input.sessionAttributes.userFirstName);
-                  request.body.input.sessionAttributes.custuserid=2157056904312202;
-
-                   // request.sessionAttributes.custuserid=request.body.input.userId;
-                   //
-
-                  var custuserid1=request.body.input.sessionAttributes.custuserid;
+                 //   request.body.input.sessionAttributes= {userFirstName :"Aditya"};
+                 //
+                 //  console.log(typeof(request.body.input.sessionAttributes));
+                 //  console.log(typeof(request.body.input.requestAttributes));
+                 // console.log(request.body.input.sessionAttributes.userFirstName);
+                 //  request.body.input.sessionAttributes.custuserid=2157056904312202;
+                 //
+                 //   // request.sessionAttributes.custuserid=request.body.input.userId;
+                 //   //
+                 //
+                 //  var custuserid1=request.body.input.sessionAttributes.custuserid;
                   //console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
 
                 //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
@@ -484,13 +501,13 @@ function saveAudit(request,auditModel){
       //console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
     //  const slots = request.currentIntent.slots;
       var cnt = 0;
-      console.log(typeof(request.body.input.sessionAttributes));
-      console.log(typeof(request.body.input.requestAttributes));
-      request.body.input.sessionAttributes= {cifidd :123452};
-      request.body.input.sessionAttributes.userFirstName="Anitha";
-     console.log(typeof(request.body.input.sessionAttributes));
-     console.log(typeof(request.body.input.requestAttributes));
-      request.body.input.sessionAttributes.otp=111111;
+     //  console.log(typeof(request.body.input.sessionAttributes));
+     //  console.log(typeof(request.body.input.requestAttributes));
+     //  request.body.input.sessionAttributes= {cifidd :123452};
+     //  request.body.input.sessionAttributes.userFirstName="Anitha";
+     // console.log(typeof(request.body.input.sessionAttributes));
+     // console.log(typeof(request.body.input.requestAttributes));
+     //  request.body.input.sessionAttributes.otp=111111;
       var otpGen = request.body.input.sessionAttributes.otp;
     //var otpGen = 111111;
 
@@ -699,10 +716,10 @@ resp.json(responeData);
       var sessionAttributes = request.sessionAttributes;
       console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
       const slots = request.body.input.currentIntent.slots;
-      request.body.input.sessionAttributes= {cifidd :123450};
-      request.body.input.sessionAttributes.userFirstName="Adi";
-     console.log(typeof(request.body.input.sessionAttributes));
-     console.log(typeof(request.body.input.requestAttributes));
+     //  request.body.input.sessionAttributes= {cifidd :123450};
+     //  request.body.input.sessionAttributes.userFirstName="Adi";
+     // console.log(typeof(request.body.input.sessionAttributes));
+     // console.log(typeof(request.body.input.requestAttributes));
       var cnt = 0;
       console.log('connect to Mongo Db server');
       var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
@@ -998,10 +1015,10 @@ resp.json(responeData);
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
-      request.body.input.sessionAttributes= {cifidd :123452};
-request.body.input.sessionAttributes.userFirstName="Anitha";
-     console.log(typeof(request.body.input.sessionAttributes));
-     console.log(typeof(request.body.input.requestAttributes));
+     //  request.body.input.sessionAttributes= {cifidd :123452};
+     //  request.body.input.sessionAttributes.userFirstName="Anitha";
+     // console.log(typeof(request.body.input.sessionAttributes));
+     // console.log(typeof(request.body.input.requestAttributes));
     //  var cifofuser= 123452 ;
   var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
