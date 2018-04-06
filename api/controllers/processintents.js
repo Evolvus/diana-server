@@ -15,6 +15,8 @@ exports.handleintents = function(req, resp) {
       var request = req;
 
       console.log(request);
+      request.sessionAttributes = request.sessionAttributes === null ? {} : request.sessionAttributes;
+
 
       console.log(typeof(JSON.stringify(req.body.input)));
       var intentName = request.body.input.currentIntent.name;
@@ -115,7 +117,7 @@ function handleGreetIntent(request, resp,auditModel) {
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       console.log('connect to Mongo Db server');
 
-      console.log('Token:', PAGE_ACCESS_TOKEN);
+    //  console.log('Token:', PAGE_ACCESS_TOKEN);
     //  https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
 
 
