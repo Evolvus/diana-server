@@ -224,6 +224,7 @@ res.json(responeData);
 
 
 function saveAudit(request,audit){
+  var auditid = request.body.input.requestAttributes.auditid;
   audit.requestData=request.body;
   audit.userName = request.body.input.userId;
   audit.lastUpdatedDate = new Date();
