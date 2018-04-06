@@ -205,12 +205,17 @@ function handleLambdaNewIntent(request, res) {
       console.log(request);
       var auditid = request.body.input.requestAttributes.auditid;
 console.log(`request ${auditid}`);
-audit.find({_id : auditid}, function(err, ctask) {
-  console.log('inside find');
-  console.log(ctask);
+// audit.find({_id : auditid}, function(err, ctask) {
+//   console.log('inside find');
+//   console.log(ctask);
+//   if (err){
+//     res.send(err);
+//   }else{
+audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" }},  {upsert: true}, function(err,task){
   if (err){
-    res.send(err);
-  }else{
+    console.log('Could not update channel req count'+ err);
+  }
+  else{
     console.log('inside else');
     if (ctask.length ===0){
         res.json({response :'The channel is not registered with Diana Server or the Token is Incorrect'});
