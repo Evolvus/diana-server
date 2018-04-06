@@ -17,7 +17,7 @@ var audit = new Schema({
     type: String
   },
   userName: {
-    type: Number
+    type: String
   },
   requestDate: {
     type: Date,
