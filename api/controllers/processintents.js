@@ -208,7 +208,7 @@ function handleGreetIntent(request, resp,auditModel) {
                                           // callback(null, close(request.sessionAttributes, 'Fulfilled', response));
                                       });
                                //});
-      // 
+      //
       //     }).on('error', (e) => {
       //     console.error(e);
       // });
