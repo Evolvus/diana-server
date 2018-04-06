@@ -7,7 +7,7 @@ ciservice = mongoose.model('ciservice'),
 channel = mongoose.model('channel');
 
 
-exports.handleintents = function(req, res) {
+exports.handleintents = function(req, callback) {
   console.log(req.body);
   //var val = req.body.input;
   //res.json({"intentname": val});
@@ -59,7 +59,7 @@ exports.handleintents = function(req, res) {
 
               case 'LambdaNew':
                   console.log('Entered GreetIntent Execution Block');
-                  handleLambdaNewIntent(request, res);
+                  handleLambdaNewIntent(request, callback);
                   break;
 
 
@@ -200,7 +200,9 @@ res.json({"callbackMessage": val});
   }
 
 ///////////
-function handleLambdaNewIntent(request, res) {
+//function handleLambdaNewIntent(request, res) {
+  function handleLambdaNewIntent(request, callback) {
+
       console.log('Start handleLambdaNewIntent');
       console.log("request.body>>>>>>>>>",request.body);
       var auditid = request.body.input.requestAttributes.auditid;
@@ -216,8 +218,16 @@ audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" ,requestData :reques
     console.log('Could not update channel req count'+ err);
   }
   else{
-  var val = `HI This is response from handleLambdaNewIntent server`
-  res.json({"callbackMessage": val});
+  // var val = `HI This is response from handleLambdaNewIntent server`
+  // res.json({"callbackMessage": val});
+
+  var response = {
+      'contentType': 'PlainText',
+      'content': `HI This is response from handleLambdaNewIntent server`
+  };
+  callback(null, close(sessionAttributes, 'Fulfilled', response));
+
+
   }
 // });
 
