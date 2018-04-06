@@ -136,7 +136,7 @@ console.log(typeof(request.body.input.requestAttributes));
 
                   console.log(typeof(request.body.input.sessionAttributes));
                   console.log(typeof(request.body.input.requestAttributes));
-                 console.log(request.body.input.sessionAttributes);
+                 console.log(request.body.input.sessionAttributes.userFirstName);
 //                   request.sessionAttributes.custuserid=request.userId
 
                    // request.sessionAttributes.custuserid=request.body.input.userId;
