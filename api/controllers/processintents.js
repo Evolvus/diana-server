@@ -69,7 +69,7 @@ exports.handleintents = function(req, resp) {
 
             case 'GetBalIntentnew':
                 console.log('Entered GetBalIntent Execution Block');
-                handleGetBalIntent(request, callback);
+                handleGetBalIntent(request, resp,auditModel);
                 break;
 
             case 'getCustAccIntentnew':
@@ -693,7 +693,7 @@ resp.json(responeData);
 
   /////////////
 
-  function handleGetBalIntent(request, callback) {
+  function handleGetBalIntent(request, resp,auditModel) {
       console.log('Start handleGetBalIntent');
       console.log(request);
       var sessionAttributes = request.sessionAttributes;
