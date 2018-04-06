@@ -698,15 +698,19 @@ resp.json(responeData);
       console.log(request);
       var sessionAttributes = request.sessionAttributes;
       console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
-      const slots = request.currentIntent.slots;
+      const slots = request.body.input.currentIntent.slots;
+      request.body.input.sessionAttributes= {cifidd :123450};
+      request.body.input.sessionAttributes.userFirstName="Adi";
+     console.log(typeof(request.body.input.sessionAttributes));
+     console.log(typeof(request.body.input.requestAttributes));
       var cnt = 0;
       console.log('connect to Mongo Db server');
-      var cifofuser= `${request.sessionAttributes.cifidd}` ;
+      var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
       //var faceid = `${request.sessionAttributes.fid}`;
-      var faceid = `${request.sessionAttributes.fbid1}`;
+      //var faceid = `${request.sessionAttributes.fbid1}`;
       // var faceid = `abcd@gmail.com`;
-      console.log('facebook id is ' + faceid);
+      //console.log('facebook id is ' + faceid);
 
       CustomerAuthDetails.find({
           cifid: cifofuser
@@ -746,76 +750,158 @@ resp.json(responeData);
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
+/////
+console.log("Inside if block");
+var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
+var responeData = {"callbackMessage": val};
+auditModel.responseData =responeData;
+console.log("auditModel>>",auditModel);
+saveAudit(request,auditModel);
+resp.json(responeData);
 
-                      var response = {
-                          'contentType': 'PlainText',
-                          'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
-                      };
-                      console.log(`Response :${JSON.stringify(response)}`);
-                      callback(null, close(sessionAttributes, 'Fulfilled', response));
+
+
+////
+                      // var response = {
+                      //     'contentType': 'PlainText',
+                      //     'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
+                      // };
+                      // console.log(`Response :${JSON.stringify(response)}`);
+                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
                   } else if (`${accounttype}` === request.inputTranscript) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
 
-                      var response = {
-                          'contentType': 'PlainText',
-                          'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
-                      };
-                      console.log(`Response :${JSON.stringify(response)}`);
-                      callback(null, close(sessionAttributes, 'Fulfilled', response));
+
+/////////
+console.log("Inside if block");
+var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
+var responeData = {"callbackMessage": val};
+auditModel.responseData =responeData;
+console.log("auditModel>>",auditModel);
+saveAudit(request,auditModel);
+resp.json(responeData);
+
+
+
+/////////
+
+
+
+                      // var response = {
+                      //     'contentType': 'PlainText',
+                      //     'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
+                      // };
+                      // console.log(`Response :${JSON.stringify(response)}`);
+                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
                   } else if (`${accounttype2}` == request.inputTranscript) {
                       console.log('got rec' + doc);
+                      console.log("Inside if block");
+                      var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                      var responeData = {"callbackMessage": val};
+                      auditModel.responseData =responeData;
+                      console.log("auditModel>>",auditModel);
+                      saveAudit(request,auditModel);
+                      resp.json(responeData);
+
                       //console.log(AccountBal}`;);
-                      var response = {
-                          'contentType': 'PlainText',
-                          'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                      };
-                      console.log(`Response :${JSON.stringify(response)}`);
-                      callback(null, close(sessionAttributes, 'Fulfilled', response));
+                      // var response = {
+                      //     'contentType': 'PlainText',
+                      //     'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                      // };
+                      // console.log(`Response :${JSON.stringify(response)}`);
+                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
                   } else if (`${accounttype2}` == request.inputTranscript) {
                       console.log('got rec' + doc);
+                      console.log("Inside if block");
+                      var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                      var responeData = {"callbackMessage": val};
+                      auditModel.responseData =responeData;
+                      console.log("auditModel>>",auditModel);
+                      saveAudit(request,auditModel);
+                      resp.json(responeData);
+
+
                       //console.log(AccountBal}`;);
-                      var response = {
-                          'contentType': 'PlainText',
-                          'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                      };
-                      console.log(`Response :${JSON.stringify(response)}`);
-                      callback(null, close(sessionAttributes, 'Fulfilled', response));
+                      // var response = {
+                      //     'contentType': 'PlainText',
+                      //     'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                      // };
+                      // console.log(`Response :${JSON.stringify(response)}`);
+                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
                   } else {
-                      var response = {
-                          'contentType': 'PlainText',
-                          'content': `${salofuser} ${nameofuser},Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                      };
-                      console.log(`Response :${JSON.stringify(response)}`);
-                      callback(null, close(sessionAttributes, 'Fulfilled', response));
+                    console.log("Inside if block");
+                    var val =  `${salofuser} ${nameofuser},Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                    var responeData = {"callbackMessage": val};
+                    auditModel.responseData =responeData;
+                    console.log("auditModel>>",auditModel);
+                    saveAudit(request,auditModel);
+                    resp.json(responeData);
+
+
+
+                      // var response = {
+                      //     'contentType': 'PlainText',
+                      //     'content': `${salofuser} ${nameofuser},Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                      // };
+                      // console.log(`Response :${JSON.stringify(response)}`);
+                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
 
                   }
               }, (e) => {
-                  var response = {
-                      'contentType': 'PlainText',
-                      'content': `Something went wrong in fetching account bal`
-                  };
-                  console.log('Unable to fetch Data from database', e);
-                  console.log(`Response :${JSON.stringify(response)}`);
-                  callback(null, close(sessionAttributes, 'Fulfilled', response));
+                console.log("Inside if block");
+                var val =  `Something went wrong in fetching account bal`
+                var responeData = {"callbackMessage": val};
+                auditModel.responseData =responeData;
+                console.log("auditModel>>",auditModel);
+                saveAudit(request,auditModel);
+                resp.json(responeData);
+
+                  // var response = {
+                  //     'contentType': 'PlainText',
+                  //     'content': `Something went wrong in fetching account bal`
+                  // };
+                  // console.log('Unable to fetch Data from database', e);
+                  // console.log(`Response :${JSON.stringify(response)}`);
+                  // callback(null, close(sessionAttributes, 'Fulfilled', response));
               })
           } else {
-              var response = {
-                  'contentType': 'PlainText',
-                  'content': `Something went wrong Thank You.`
-              };
-              console.log(`Response :${JSON.stringify(response)}`);
-              callback(null, close(sessionAttributes, 'Fulfilled', response));
+
+            console.log("Inside if block");
+            var val = `Something went wrong Thank You.`
+            var responeData = {"callbackMessage": val};
+            auditModel.responseData =responeData;
+            console.log("auditModel>>",auditModel);
+            saveAudit(request,auditModel);
+            resp.json(responeData);
+
+
+              // var response = {
+              //     'contentType': 'PlainText',
+              //     'content': `Something went wrong Thank You.`
+              // };
+              // console.log(`Response :${JSON.stringify(response)}`);
+              // callback(null, close(sessionAttributes, 'Fulfilled', response));
           }
       }, (e) => {
-          var response = {
-              'contentType': 'PlainText',
-              'content': `Something went wrong `
-          };
-          console.log('Unable to fetch Data from database', e);
-          console.log(`Response :${JSON.stringify(response)}`);
-          callback(null, close(sessionAttributes, 'Fulfilled', response));
+
+        console.log("Inside if block");
+        var val = `Something went wrong `
+        var responeData = {"callbackMessage": val};
+        auditModel.responseData =responeData;
+        console.log("auditModel>>",auditModel);
+        saveAudit(request,auditModel);
+        resp.json(responeData);
+
+
+          // var response = {
+          //     'contentType': 'PlainText',
+          //     'content': `Something went wrong `
+          // };
+          // console.log('Unable to fetch Data from database', e);
+          // console.log(`Response :${JSON.stringify(response)}`);
+          // callback(null, close(sessionAttributes, 'Fulfilled', response));
       })
   }
 
