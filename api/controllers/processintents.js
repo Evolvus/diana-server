@@ -130,13 +130,13 @@ console.log("request>>>>>",request);
               //     console.log(d);
               //     request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
                    request.body.input.requestAttributes.userFirstName ="Aditya";
-      console.log(request.body.input.requestAttributes.userFirstName);
+                  console.log(request.body.input.requestAttributes.userFirstName);
 //                   request.sessionAttributes.custuserid=request.userId
 
                    // request.sessionAttributes.custuserid=request.body.input.userId;
                    //
 
-                  var custuserid1=2157056904312202;
+                  var custuserid1=2157056904312201;
                   //console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
 
                 //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
@@ -163,12 +163,7 @@ console.log("request>>>>>",request);
                 resp.json(responeData);
 
                 /////////////////
-                  // var response = {
-                  //     'contentType': 'PlainText',
-                  //     'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Diana customer. to validate Facebook Banking registeration details please type Register or Reg.`
-                  // };
-                  // console.log(`Response :${JSON.stringify(response)}`);
-                  // callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+
               } else {
                 var cifofuser = `${docs[0].cifid}`;
                 console.log(docs);
@@ -189,12 +184,7 @@ console.log("request>>>>>",request);
                 saveAudit(request,auditModel);
                 resp.json(responeData);
 ////////////////
-                          // var response = {
-                          //     'contentType': 'PlainText',
-                          //     'content': `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
-                          // };
-                          // console.log(`Response :${JSON.stringify(response)}`);
-                          // callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+
                         }
 
                                       },
@@ -207,14 +197,7 @@ console.log("request>>>>>",request);
                                         console.log("auditModel>>",auditModel);
                                         saveAudit(request,auditModel);
                                         resp.json(responeData);
-                        ////////////////
-                                          // var response = {
-                                          //     'contentType': 'PlainText',
-                                          //     'content': `Something went wrong `
-                                          // };
-                                          // console.log('Unable to fetch Data from database', e);
-                                          // console.log(`Response :${JSON.stringify(response)}`);
-                                          // callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+
                                       });
                                //});
       //
