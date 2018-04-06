@@ -30,7 +30,7 @@ exports.handleintents = function(req, resp) {
 
             case 'LambdaTest':
                 console.log('Entered GreetIntent Execution Block');
-                handleGreetIntent(request, res);
+                handleGreetIntent(request, resp,auditModel);
                 break;
 
           case 'LambdaNew':
@@ -139,12 +139,22 @@ function handleGreetIntent(request, resp,auditModel) {
               console.log(`userFirstName:${userFirstName}`);
 
               if (docs.length === 0) {
-                  var response = {
-                      'contentType': 'PlainText',
-                      'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Diana customer. to validate Facebook Banking registeration details please type Register or Reg.`
-                  };
-                  console.log(`Response :${JSON.stringify(response)}`);
-                  callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+                ////////////////
+                console.log("Inside if block");
+                var val = `Hi ${userFirstName},${msg1}, I see that you are not registered as a Diana customer. to validate Facebook Banking registeration details please type Register or Reg.`
+                var responeData = {"callbackMessage": val};
+                auditModel.responseData =responeData;
+                console.log("auditModel>>",auditModel);
+                saveAudit(request,auditModel);
+                resp.json(responeData);
+
+                /////////////////
+                  // var response = {
+                  //     'contentType': 'PlainText',
+                  //     'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Diana customer. to validate Facebook Banking registeration details please type Register or Reg.`
+                  // };
+                  // console.log(`Response :${JSON.stringify(response)}`);
+                  // callback(null, close(request.sessionAttributes, 'Fulfilled', response));
               } else {
                 var cifofuser = `${docs[0].cifid}`;
                 console.log(docs);
@@ -153,23 +163,41 @@ function handleGreetIntent(request, resp,auditModel) {
                 request.sessionAttributes.coreusername = `${nameofuser}`;
                 console.log(request.sessionAttributes.coreusername);
 
-                          var response = {
-                              'contentType': 'PlainText',
-                              'content': `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
-                          };
-                          console.log(`Response :${JSON.stringify(response)}`);
-                          callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+                ///////////
+                console.log("Inside else block");
+                var val = `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
+                var responeData = {"callbackMessage": val};
+                auditModel.responseData =responeData;
+                console.log("auditModel>>",auditModel);
+                saveAudit(request,auditModel);
+                resp.json(responeData);
+////////////////
+                          // var response = {
+                          //     'contentType': 'PlainText',
+                          //     'content': `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
+                          // };
+                          // console.log(`Response :${JSON.stringify(response)}`);
+                          // callback(null, close(request.sessionAttributes, 'Fulfilled', response));
                         }
 
                                       },
                                       (e) => {
-                                          var response = {
-                                              'contentType': 'PlainText',
-                                              'content': `Something went wrong `
-                                          };
-                                          console.log('Unable to fetch Data from database', e);
-                                          console.log(`Response :${JSON.stringify(response)}`);
-                                          callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+                                        ///////////
+                                        console.log("Inside error block");
+                                        var val = `Something went wrong `
+                                        var responeData = {"callbackMessage": val};
+                                        auditModel.responseData =responeData;
+                                        console.log("auditModel>>",auditModel);
+                                        saveAudit(request,auditModel);
+                                        resp.json(responeData);
+                        ////////////////
+                                          // var response = {
+                                          //     'contentType': 'PlainText',
+                                          //     'content': `Something went wrong `
+                                          // };
+                                          // console.log('Unable to fetch Data from database', e);
+                                          // console.log(`Response :${JSON.stringify(response)}`);
+                                          // callback(null, close(request.sessionAttributes, 'Fulfilled', response));
                                       });
                                });
 
