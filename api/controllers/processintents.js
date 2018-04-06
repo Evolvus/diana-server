@@ -63,7 +63,7 @@ exports.handleintents = function(req, resp) {
 
             case 'genotp':
                 console.log('Entered GetCustAuthIntent Execution Block');
-                handlegenotpIntent(request, callback);
+                handlegenotpIntent(request, resp,auditModel);
                 break;
 
             case 'GetBalIntentnew':
@@ -810,7 +810,7 @@ function saveAudit(request,auditModel){
       callback(null, close(sessionAttributes, 'Fulfilled', response));
   }
 
-  function handlegenotpIntent(request, callback) {
+  function handlegenotpIntent(request,  resp,auditModel) {
       console.log('Start handlegenotpIntent');
 //      var sessionAttributes = request.sessionAttributes;
       var requestAttributes = request.body.input.requestAttributes;
