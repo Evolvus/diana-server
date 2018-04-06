@@ -214,7 +214,7 @@ console.log(`request ${auditid}`);
 var val = `HI This is response from handleLambdaNewIntent server`
 var responeData = {"callbackMessage": val};
 audit.responseData =responeData;
-saveAudit(audit);
+saveAudit(request,audit);
 res.json(responeData);
 
 // });
@@ -223,7 +223,7 @@ res.json(responeData);
 
 
 
-function saveAudit(audit){
+function saveAudit(request,audit){
   audit.requestData=request.body;
   audit.userName = request.body.input.userId;
   audit.lastUpdatedDate = new Date();
