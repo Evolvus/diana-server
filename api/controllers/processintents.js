@@ -132,17 +132,16 @@ console.log(typeof(request.body.input.requestAttributes));
               //     console.log(d);
                 //   request.body.input.sessionAttributes.userFirstName = JSON.parse(d).first_name;
                    request.body.input.sessionAttributes= {userFirstName :"Aditya"};
-                  //console.log(request.body.input.requestAttributes.userFirstName);
 
                   console.log(typeof(request.body.input.sessionAttributes));
                   console.log(typeof(request.body.input.requestAttributes));
                  console.log(request.body.input.sessionAttributes.userFirstName);
-//                   request.sessionAttributes.custuserid=request.userId
+                  request.body.input.sessionAttributes.custuserid=2157056904312202;
 
                    // request.sessionAttributes.custuserid=request.body.input.userId;
                    //
 
-                  var custuserid1=2157056904312202;
+                  var custuserid1=request.body.input.sessionAttributes.custuserid;
                   //console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
 
                 //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
