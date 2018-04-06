@@ -498,7 +498,7 @@ function saveAudit(request,auditModel){
 
     var cifofuser= 123452 ;
     console.log(cifofuser);
-console.log(typeof(parseInt(otp11));
+console.log(typeof(parseInt(otp11)));
 console.log(typeof(otpGen));
       if (otpGen === otp11) {
 
