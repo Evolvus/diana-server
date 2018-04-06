@@ -906,7 +906,7 @@ resp.json(responeData);
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
       request.body.input.sessionAttributes= {cifidd :123452};
-
+request.body.input.sessionAttributes.userFirstName="Anitha";
      console.log(typeof(request.body.input.sessionAttributes));
      console.log(typeof(request.body.input.requestAttributes));
     //  var cifofuser= 123452 ;
@@ -938,8 +938,8 @@ resp.json(responeData);
       }).then((docs) => {
               console.log('Data got fetched from the database' + docs.length);
               console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
-              //var userFirstName = request.body.input.requestAttributes.userFirstName;
-              var userFirstName = "Anitha";
+              var userFirstName = request.body.input.sessionAttributes.userFirstName;
+              //var userFirstName = "Anitha";
               console.log(`userFirstName:${userFirstName}`);
 
               if (docs.length === 0) {
@@ -961,8 +961,8 @@ resp.json(responeData);
                 }).then((doc) => {
                     console.log('in for balance');
                     var nameofuser = `${doc[0].customer_Name}`;
-                    request.body.input.requestAttributes.coreusername = `${nameofuser}`;
-                    console.log(request.body.input.requestAttributes.coreusername);
+                    request.body.input.sessionAttributes.coreusername = `${nameofuser}`;
+                    console.log(request.body.input.sessionAttributes.coreusername);
 
                   console.log(docs);
                   console.log(docs[0].cifid);
@@ -970,7 +970,7 @@ resp.json(responeData);
                   var otpGen = random(999999, 111111);
                   console.log(otpGen);
 
-                  request.body.input.requestAttributes.otp = `${otpGen}`;
+                  request.body.input.sessionAttributes.otp = `${otpGen}`;
                   console.log(docs);
 
                   var mobileofuser = `${docs[0].RegisterMobile}`;
@@ -1004,7 +1004,7 @@ resp.json(responeData);
                   //               console.log("updated successfully");
 ///////////////
 console.log("Inside e block");
-var val = `Hi ${request.body.input.requestAttributes.coreusername},${msg1} otp has shared please type the same..`
+var val = `Hi ${request.body.input.sessionAttributes.coreusername},${msg1} otp has shared please type the same..`
 var responeData = {"callbackMessage": val};
 auditModel.responseData =responeData;
 console.log("auditModel>>",auditModel);
