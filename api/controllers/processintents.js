@@ -7,7 +7,7 @@ ciservice = mongoose.model('ciservice'),
 channel = mongoose.model('channel');
 
 
-exports.handleintents = function(req, callback) {
+exports.handleintents = function(req, res) {
   console.log(req.body);
   //var val = req.body.input;
   //res.json({"intentname": val});
@@ -45,10 +45,7 @@ exports.handleintents = function(req, callback) {
       var input = request.body.input;
       console.log("input :>>>>>>>",input);
       var requestAttributes = request.body.input.requestAttributes;
-      var sessionAttributes = "sessionAttributes";
-
       console.log("requestAttributes :>>>>>>>",requestAttributes);
-      console.log("sessionAttributes :>>>>>>>",sessionAttributes);
 
       var auditid = request.body.input.requestAttributes.auditid;
       console.log("auditid :>>>>>>>",auditid);
@@ -62,7 +59,7 @@ exports.handleintents = function(req, callback) {
 
               case 'LambdaNew':
                   console.log('Entered GreetIntent Execution Block');
-                  handleLambdaNewIntent(request, callback);
+                  handleLambdaNewIntent(request, res);
                   break;
 
 
@@ -203,9 +200,7 @@ res.json({"callbackMessage": val});
   }
 
 ///////////
-//function handleLambdaNewIntent(request, res) {
-  function handleLambdaNewIntent(request, callback) {
-
+function handleLambdaNewIntent(request, res) {
       console.log('Start handleLambdaNewIntent');
       console.log("request.body>>>>>>>>>",request.body);
       var auditid = request.body.input.requestAttributes.auditid;
@@ -221,18 +216,8 @@ audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" ,requestData :reques
     console.log('Could not update channel req count'+ err);
   }
   else{
-  // var val = `HI This is response from handleLambdaNewIntent server`
-  // res.json({"callbackMessage": val});
-console.log("inside else bock");
-  var response = {
-      'contentType': 'PlainText',
-      'content': `HI This is response from handleLambdaNewIntent server`
-  };
-  console.log("call back start");
-  callback(null, close(sessionAttributes, 'Fulfilled', response));
-
-  console.log("call back end");
-
+  var val = `HI This is response from handleLambdaNewIntent server`
+  res.json({"callbackMessage": val});
   }
 // });
 
