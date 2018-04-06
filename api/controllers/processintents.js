@@ -500,7 +500,7 @@ function saveAudit(request,auditModel){
     console.log(cifofuser);
 console.log(typeof(parseInt(otp11)));
 console.log(typeof(otpGen));
-      if (otpGen === otp11) {
+      if (otpGen === parseInt(otp11)) {
 
           CustomerAuthDetails.find({
               cifid: cifofuser}).then((docs) => {
