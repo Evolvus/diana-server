@@ -231,6 +231,7 @@ res.json(responeData);
 
 
 function saveAudit(request,auditModel){
+  console.log(" start saving data");
   var auditid = request.body.input.requestAttributes.auditid;
   auditModel.requestData=request.body;
   auditModel.userName = request.body.input.userId;
