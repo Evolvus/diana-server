@@ -136,7 +136,7 @@ console.log("request>>>>>",request);
                    // request.sessionAttributes.custuserid=request.body.input.userId;
                    //
 
-                  var custuserid1=2157056904312201;
+                  var custuserid1=215705690431220;
                   //console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
 
                 //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
