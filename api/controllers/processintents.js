@@ -50,7 +50,7 @@ exports.handleintents = function(req, res) {
       var auditid = request.body.input.requestAttributes.auditid;
       var auditModel;
       audit.find({_id : auditid},function(err,data){
-        auditModel = data;
+          auditModel = data;
         switch (intentName) {
           //// required
 
@@ -61,7 +61,7 @@ exports.handleintents = function(req, res) {
 
                 case 'LambdaNew':
                     console.log('Entered GreetIntent Execution Block');
-                    handleLambdaNewIntent(request, res);
+                    handleLambdaNewIntent(request, res,auditModel);
                     break;
 
 
@@ -207,7 +207,7 @@ res.json({"callbackMessage": val});
   }
 
 ///////////
-function handleLambdaNewIntent(request, res) {
+function handleLambdaNewIntent(request, res,auditModel) {
       console.log('Start handleLambdaNewIntent');
       console.log("request.body>>>>>>>>>",request.body);
       var auditid = request.body.input.requestAttributes.auditid;
@@ -220,7 +220,7 @@ console.log(`request ${auditid}`);
 //   }else{
 var val = `HI This is response from handleLambdaNewIntent server`
 var responeData = {"callbackMessage": val};
-audit.responseData =responeData;
+auditModel.responseData =responeData;
 console.log("auditModel>>",auditModel);
 saveAudit(request,auditModel);
 res.json(responeData);
