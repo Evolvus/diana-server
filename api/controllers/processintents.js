@@ -228,7 +228,7 @@ function saveAudit(request,auditModel){
   console.log(" start saving data");
   var auditid = request.body.input.requestAttributes.auditid;
   auditModel.requestData=request.body;
-
+  auditModel.ciserviceName="Lex";
   auditModel.userName = request.body.input.userId;
   auditModel.lastUpdatedDate = new Date();
 
@@ -861,13 +861,6 @@ console.log("auditModel>>",auditModel);
 saveAudit(request,auditModel);
 resp.json(responeData);
 //////////
-
-                  // var response = {
-                  //     'contentType': 'PlainText',
-                  //     'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
-                  // };
-                  // console.log(`Response :${JSON.stringify(response)}`);
-                  // callback(null, close(sessionAttributes, 'Fulfilled', response));
               } else {
                 var cifofuser = `${docs[0].cifid}`;
 
@@ -879,28 +872,7 @@ resp.json(responeData);
                     var nameofuser = `${doc[0].customer_Name}`;
                     request.body.input.requestAttributes.coreusername = `${nameofuser}`;
                     console.log(request.body.input.requestAttributes.coreusername);
-    },
-    (e) => {
-//////////
-console.log("Inside e block");
-var val = `Something went wrong `
-var responeData = {"callbackMessage": val};
-auditModel.responseData =responeData;
-console.log("auditModel>>",auditModel);
-saveAudit(request,auditModel);
-resp.json(responeData);
 
-///////
-
-
-        // var response = {
-        //     'contentType': 'PlainText',
-        //     'content': `Something went wrong `
-        // };
-        // console.log('Unable to fetch Data from database', e);
-        // console.log(`Response :${JSON.stringify(response)}`);
-        // callback(null, close(sessionAttributes, 'Fulfilled', response));
-    });
                   console.log(docs);
                   console.log(docs[0].cifid);
                   console.log('in for otp');
@@ -956,10 +928,32 @@ resp.json(responeData);
                           // };
                           // console.log(`Response :${JSON.stringify(response)}`);
                           // callback(null, close(sessionAttributes, 'Fulfilled', response));
-                        }
+                        },
+                      (e) => {
+                  //////////
+                  console.log("Inside e block");
+                  var val = `Something went wrong `
+                  var responeData = {"callbackMessage": val};
+                  auditModel.responseData =responeData;
+                  console.log("auditModel>>",auditModel);
+                  saveAudit(request,auditModel);
+                  resp.json(responeData);
 
-                                      })
-                      }
+                  ///////
+
+
+                          // var response = {
+                          //     'contentType': 'PlainText',
+                          //     'content': `Something went wrong `
+                          // };
+                          // console.log('Unable to fetch Data from database', e);
+                          // console.log(`Response :${JSON.stringify(response)}`);
+                          // callback(null, close(sessionAttributes, 'Fulfilled', response));
+                      });
+
+                    }
+                  })
+                }
   //                 });
   //
   //                 console.log(params);
