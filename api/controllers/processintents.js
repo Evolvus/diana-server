@@ -9,6 +9,8 @@ audit = mongoose.model('audit'),
 ciservice = mongoose.model('ciservice'),
 channel = mongoose.model('channel');
 
+var {CustomerAccDetails} = require('../models/customer_Acc');
+var {CustomerAuthDetails} = require('../models/Customer_auth');
 
 exports.handleintents = function(req, resp) {
   console.log(req.body);
