@@ -50,7 +50,7 @@ exports.handleintents = function(req, res) {
       var auditid = request.body.input.requestAttributes.auditid;
       var auditModel;
       audit.find({_id : auditid},function(err,data){
-          auditModel = data;
+          auditModel = data[0];
         switch (intentName) {
           //// required
 
