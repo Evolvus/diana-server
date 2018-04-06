@@ -898,16 +898,17 @@ resp.json(responeData);
 
   function handlegenotpIntent(request,  resp,auditModel) {
       console.log('Start handlegenotpIntent');
-//      var sessionAttributes = request.sessionAttributes;
-      var requestAttributes = request.body.input.requestAttributes;
+      var sessionAttributes = request.body.input.sessionAttributes;
+//      var requestAttributes = request.body.input.requestAttributes;
 
-      console.log(`Session Attr:${JSON.stringify(requestAttributes)}`);
+      console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
 
-//  var cifofuser= `${request.body.input.requestAttributes.cifidd}` ;
-    var cifofuser= 123452 ;
+  var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
+  console.log("cifofuser>>>>",cifofuser);
+//    var cifofuser= 123452 ;
     //  console.log('Token:', PAGE_ACCESS_TOKEN);
       // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
       //
