@@ -211,18 +211,27 @@ console.log(`request ${auditid}`);
 //   if (err){
 //     res.send(err);
 //   }else{
-audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" ,requestData :request.body,responseData : "responseData1",userName :request.body.input.userId,lastUpdatedDate : new Date()}},  {upsert: true}, function(err,task){
-  if (err){
-    console.log('Could not update channel req count'+ err);
-  }
-  else{
-  var val = `HI This is response from handleLambdaNewIntent server`
-  res.json({"callbackMessage": val});
-  }
+var val = `HI This is response from handleLambdaNewIntent server`
+var responeData = {"callbackMessage": val};
+audit.responseData =responeData;
+saveAudit(audit);
+res.json(responeData);
+
 // });
 
-});
+}
 
+
+
+function saveAudit(audit){
+  audit.requestData=request.body;
+  audit.userName = request.body.input.userId;
+  audit.lastUpdatedDate = new Date();
+
+  audit.update({_id : auditid}, {$set:audit},  {upsert: true}, function(err,task){
+    if (err){
+      console.log('Could not update channel req count'+ err);
+    }
 }
 
 
