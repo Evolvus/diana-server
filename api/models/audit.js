@@ -14,7 +14,7 @@ var audit = new Schema({
     type: Object
     },
   responseData: {
-    type: String
+    type: Object
   },
   userName: {
     type: String
