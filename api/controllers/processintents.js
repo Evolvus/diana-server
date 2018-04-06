@@ -497,7 +497,9 @@ function saveAudit(request,auditModel){
 //  var cifofuser= `${request.sessionAttributes.cifidd}` ;
 
     var cifofuser= 123452 ;
-
+    console.log(cifofuser);
+console.log(typeof(otp11));
+console.log(typeof(otpGen));
       if (otpGen === otp11) {
 
           CustomerAuthDetails.find({
