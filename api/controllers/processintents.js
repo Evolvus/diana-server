@@ -115,7 +115,7 @@ exports.handleintents = function(req, resp) {
 
 function handleGreetIntent(request, resp,auditModel) {
       console.log('Start handleGreetIntent');
-
+console.log("request>>>>>",request);
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       console.log('connect to Mongo Db server');
 
