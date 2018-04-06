@@ -221,6 +221,7 @@ console.log(`request ${auditid}`);
 var val = `HI This is response from handleLambdaNewIntent server`
 var responeData = {"callbackMessage": val};
 audit.responseData =responeData;
+console.log("auditModel>>",auditModel);
 saveAudit(request,auditModel);
 res.json(responeData);
 
