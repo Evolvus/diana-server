@@ -172,14 +172,14 @@ function handleGreetIntent(request, resp,auditModel) {
               } else {
                 var cifofuser = `${docs[0].cifid}`;
                 console.log(docs);
-                request.sessionAttributes.cifidd = `${cifofuser}`;
-                var nameofuser = `${docs[0].customer_Name}`;
-                request.sessionAttributes.coreusername = `${nameofuser}`;
-                console.log(request.sessionAttributes.coreusername);
+                // request.sessionAttributes.cifidd = `${cifofuser}`;
+                // var nameofuser = `${docs[0].customer_Name}`;
+                // request.sessionAttributes.coreusername = `${nameofuser}`;
+                // console.log(request.sessionAttributes.coreusername);
 
                 ///////////
                 console.log("Inside else block");
-                var val = `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
+                var val = `Hi Aditya ,${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
                 var responeData = {"callbackMessage": val};
                 auditModel.responseData =responeData;
                 console.log("auditModel>>",auditModel);
