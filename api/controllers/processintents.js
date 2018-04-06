@@ -723,12 +723,12 @@ resp.json(responeData);
       var cnt = 0;
       console.log('connect to Mongo Db server');
       var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
-      var inputTranscript =request.body.input.inputTranscript;
+      //var inputTranscript =request.body.input.inputTranscript;
       //var faceid = `${request.sessionAttributes.fid}`;
       //var faceid = `${request.sessionAttributes.fbid1}`;
       // var faceid = `abcd@gmail.com`;
       //console.log('facebook id is ' + faceid);
-      console.log(inputTranscript);
+      //console.log(inputTranscript);
       console.log(`inputTranscript:${request.body.input.inputTranscript}`);
 
       CustomerAuthDetails.find({
@@ -747,6 +747,7 @@ resp.json(responeData);
                   cifid: cifofuser
               }).then((doc) => {
                   console.log('in for balance');
+                  var inputTranscript =request.body.input.inputTranscript;
                   console.log(inputTranscript);
                   console.log(`inputTranscript:${request.body.input.inputTranscript}`);
 
