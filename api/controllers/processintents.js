@@ -17,7 +17,7 @@ exports.handleintents = function(req, resp) {
       var request = req;
 
       console.log(request);
-      request.sessionAttributes = request.sessionAttributes === null ? {} : request.sessionAttributes;
+      request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
 
 
       console.log(typeof(JSON.stringify(req.body.input)));
@@ -129,7 +129,7 @@ console.log("request>>>>>",request);
               // res.on('data', (d) => {
               //     console.log(d);
               //     request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-              //      request.sessionAttributes.userFirstName ="Aditya";
+                    request.body.input.sessionAttributes.userFirstName ="Aditya";
 
 //                   request.sessionAttributes.custuserid=request.userId
 
@@ -137,7 +137,7 @@ console.log("request>>>>>",request);
                    //
 
                   var custuserid1=2157056904312202;
-                //  console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
+                  console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
 
                 //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
                   console.log(custuserid1);
