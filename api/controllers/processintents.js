@@ -905,11 +905,11 @@ resp.json(responeData);
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
-    //  request.body.input.sessionAttributes= {userFirstName :"Aditya"};
+      request.body.input.sessionAttributes= {cifidd :123452};
 
      console.log(typeof(request.body.input.sessionAttributes));
      console.log(typeof(request.body.input.requestAttributes));
-      var cifofuser= 123452 ;
+    //  var cifofuser= 123452 ;
   var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
   console.log("cifofuser>>>>",cifofuser);
