@@ -767,8 +767,9 @@ resp.json(responeData);
                   console.log(balofuser);
                   console.log(`${doc[0].AccountBal}`);
                   console.log(inputTranscript);
-                  console.log(`inputTranscript:${request.body.input}`);
-
+                //  console.log(`inputTranscript:${request.body.input}`);
+console.log(accounttype);
+console.log(inputTranscript);
                   if (`${accounttype}` === inputTranscript) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
