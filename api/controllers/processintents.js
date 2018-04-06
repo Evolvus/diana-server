@@ -136,8 +136,8 @@ function handleGreetIntent(request, resp,auditModel) {
 console.log("request>>>>>",request);
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       console.log('connect to Mongo Db server');
-console.log(typeof(request.body.input.sessionAttributes));
-console.log(typeof(request.body.input.requestAttributes));
+// console.log(typeof(request.body.input.sessionAttributes));
+// console.log(typeof(request.body.input.requestAttributes));
     //  console.log('Token:', PAGE_ACCESS_TOKEN);
     //  https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
 
