@@ -232,8 +232,8 @@ function saveAudit(audit){
     if (err){
       console.log('Could not update channel req count'+ err);
     }
+})
 }
-
 
 
 //////////
