@@ -819,7 +819,9 @@ function saveAudit(request,auditModel){
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
-  var cifofuser= `${request.body.input.requestAttributes.cifidd}` ;
+
+//  var cifofuser= `${request.body.input.requestAttributes.cifidd}` ;
+    var cifofuser= 123452 ;
     //  console.log('Token:', PAGE_ACCESS_TOKEN);
       // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
       //
@@ -844,7 +846,8 @@ function saveAudit(request,auditModel){
       }).then((docs) => {
               console.log('Data got fetched from the database' + docs.length);
               console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
-              var userFirstName = request.body.input.requestAttributes.userFirstName;
+              //var userFirstName = request.body.input.requestAttributes.userFirstName;
+              var userFirstName = "Anitha";
               console.log(`userFirstName:${userFirstName}`);
 
               if (docs.length === 0) {
