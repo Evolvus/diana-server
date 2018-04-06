@@ -216,22 +216,12 @@ audit.update({_id : auditid}, {$set: { ciserviceName: "Lex" }},  {upsert: true},
     console.log('Could not update channel req count'+ err);
   }
   else{
-    console.log('inside else');
-    if (ctask.length ===0){
-        res.json({response :'The channel is not registered with Diana Server or the Token is Incorrect'});
-    }else{
-      console.log(ctask[0].enabled);
-      if( ctask[0].enabled === 1){
-        res.status(200)
-      }else{
-      //  res.json({response :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
-      //  console.log('Data got fetched from the database' + docs.length);
-      var val = `HI This is response from handleLambdaNewIntent server`
-      res.json({"callbackMessage": val});
-      }
-    }
-
-  };
+  //  res.json({response :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
+  //  console.log('Data got fetched from the database' + docs.length);
+  var val = `HI This is response from handleLambdaNewIntent server`
+  res.json({"callbackMessage": val});
+  }
+// });
 
 });
 
