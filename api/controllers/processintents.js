@@ -484,8 +484,15 @@ function saveAudit(request,auditModel){
       //console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
     //  const slots = request.currentIntent.slots;
       var cnt = 0;
-    //  var otpGen = request.sessionAttributes.otp;
-    var otpGen = 111111;
+      console.log(typeof(request.body.input.sessionAttributes));
+      console.log(typeof(request.body.input.requestAttributes));
+      request.body.input.sessionAttributes= {cifidd :123452};
+      request.body.input.sessionAttributes.userFirstName="Anitha";
+     console.log(typeof(request.body.input.sessionAttributes));
+     console.log(typeof(request.body.input.requestAttributes));
+      request.body.input.sessionAttributes.otp=111111;
+      var otpGen = request.body.input.sessionAttributes.otp;
+    //var otpGen = 111111;
 
       //var faceid = `${request.sessionAttributes.fbid1}`;
       //var faceid = `abcd@gmail.com`;
@@ -498,9 +505,9 @@ function saveAudit(request,auditModel){
       console.log(`Gen OTP:${otpGen}`);
   ////////////
 
-//  var cifofuser= `${request.sessionAttributes.cifidd}` ;
+  var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
-    var cifofuser= 123452 ;
+  //  var cifofuser= 123452 ;
     console.log(cifofuser);
 console.log(typeof(parseInt(otp11)));
 console.log(typeof(otpGen));
