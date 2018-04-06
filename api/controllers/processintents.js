@@ -7,39 +7,13 @@ ciservice = mongoose.model('ciservice'),
 channel = mongoose.model('channel');
 
 
-exports.handleintents = function(req, res) {
+exports.handleintents = function(req, resp) {
   console.log(req.body);
-  //var val = req.body.input;
-  //res.json({"intentname": val});
-  ///////////
-
-
-
-
-
-  //exports.handler = (event, context, callback) => {
-      // console.log(event);
-      //
-      // context.callbackWaitsForEmptyEventLoop = false;
-
-      // var request = event;
-      var request = req;//JSON.stringify(req.body);
+      var request = req;
 
       console.log(request);
 
-      // ciservice.update({name:req.body.channel.name}, {$inc: { failCount: 1 }},{upsert: true}, function(err){
-      //   if(err){
-      //     console.log('Could not update channel fail count' + err);
-      //   }
-      //   else {
-      //
-      //   }
-      // })
-
       console.log(typeof(JSON.stringify(req.body.input)));
-      //request.sessionAttributes = request.sessionAttributes === null ? {} : request.sessionAttributes;
-
-      //request.userId ='Evolvus';
       var intentName = request.body.input.currentIntent.name;
       console.log(`You Intent is :${intentName}`);
       var input = request.body.input;
@@ -59,9 +33,9 @@ exports.handleintents = function(req, res) {
                 handleGreetIntent(request, res);
                 break;
 
-                case 'LambdaNew':
+          case 'LambdaNew':
                     console.log('Entered GreetIntent Execution Block');
-                    handleLambdaNewIntent(request, res,auditModel);
+                    handleLambdaNewIntent(request, resp,auditModel);
                     break;
 
 
@@ -129,103 +103,96 @@ exports.handleintents = function(req, res) {
 
 
   ////////////////
-  function handleGreetIntent(request, res) {
-        console.log('Start handleGreetIntent');
-  console.log(`request ${request}`);
 
-        //var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
-        // console.log('connect to Mongo Db server');
-        //
-        //
-        // console.log('Token:', PAGE_ACCESS_TOKEN);
-        // // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
-        //
-        //
-        //     (res) => {
-        //       //  console.log('res:', res);
-        //         console.log('headers:', res.headers);
-        //         res.on('data', (d) => {
-        //             //console.log(d);
-        //             request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-        //             request.sessionAttributes.custuserid=request.userId;
-        //
-        //             var custuserid1=request.sessionAttributes.custuserid;
-        //             console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
-        //
-        //             console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
-        //             console.log(custuserid1);
-        //
-        // CustomerAccDetails.find({
-        //     userid:custuserid1
-        // }).then((docs) => {
-        //         console.log('Data got fetched from the database' + docs.length);
-        //         console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
-        //         var userFirstName = request.sessionAttributes.userFirstName;
-        //         console.log(`userFirstName:${userFirstName}`);
-        //
-        //         if (docs.length === 0) {
-        //             var response = {
-        //                 'contentType': 'PlainText',
-        //                 'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Diana customer. to validate Facebook Banking registeration details please type Register or Reg.`
-        //             };
-        //             console.log(`Response :${JSON.stringify(response)}`);
-        //             callback(null, close(sessionAttributes, 'Fulfilled', response));
-        //         } else {
-        //           var cifofuser = `${docs[0].cifid}`;
-        //           console.log(docs);
-        //           request.sessionAttributes.cifidd = `${cifofuser}`;
-        //           var nameofuser = `${docs[0].customer_Name}`;
-        //           request.sessionAttributes.coreusername = `${nameofuser}`;
-        //           console.log(request.sessionAttributes.coreusername);
-        //
-        //                     var response = {
-        //                         'contentType': 'PlainText',
-        //                         'content': `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
-        //                     };
-        //                     console.log(`Response :${JSON.stringify(response)}`);
-        //                     callback(null, close(sessionAttributes, 'Fulfilled', response));
-        //                   }
-        //
-        //                                 },
-        //                                 (e) => {
-        //                                     var response = {
-        //                                         'contentType': 'PlainText',
-        //                                         'content': `Something went wrong `
-        //                                     };
-        //                                     console.log('Unable to fetch Data from database', e);
-        //                                     console.log(`Response :${JSON.stringify(response)}`);
-        //                                     callback(null, close(sessionAttributes, 'Fulfilled', response));
-        //                                 });
-        //                          });
-        //
-        //     }).on('error', (e) => {
-        //     console.error(e);
-        // });
+//////////////
 
-var val = `HI This is response from diana server`
-res.json({"callbackMessage": val});
-  }
+function handleGreetIntent(request, resp,auditModel) {
+      console.log('Start handleGreetIntent');
 
+      var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
+      console.log('connect to Mongo Db server');
+
+      console.log('Token:', PAGE_ACCESS_TOKEN);
+      https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
+
+
+          (res) => {
+              console.log('res:', res);
+              console.log('headers:', res.headers);
+              res.on('data', (d) => {
+                  console.log(d);
+                  request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
+                  request.sessionAttributes.custuserid=request.userId;
+
+                  var custuserid1=request.sessionAttributes.custuserid;
+                  console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
+
+                  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
+                  console.log(custuserid1);
+
+      CustomerAccDetails.find({
+          userid:custuserid1
+      }).then((docs) => {
+              console.log('Data got fetched from the database' + docs.length);
+              console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
+              var userFirstName = request.sessionAttributes.userFirstName;
+              console.log(`userFirstName:${userFirstName}`);
+
+              if (docs.length === 0) {
+                  var response = {
+                      'contentType': 'PlainText',
+                      'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Diana customer. to validate Facebook Banking registeration details please type Register or Reg.`
+                  };
+                  console.log(`Response :${JSON.stringify(response)}`);
+                  callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+              } else {
+                var cifofuser = `${docs[0].cifid}`;
+                console.log(docs);
+                request.sessionAttributes.cifidd = `${cifofuser}`;
+                var nameofuser = `${docs[0].customer_Name}`;
+                request.sessionAttributes.coreusername = `${nameofuser}`;
+                console.log(request.sessionAttributes.coreusername);
+
+                          var response = {
+                              'contentType': 'PlainText',
+                              'content': `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
+                          };
+                          console.log(`Response :${JSON.stringify(response)}`);
+                          callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+                        }
+
+                                      },
+                                      (e) => {
+                                          var response = {
+                                              'contentType': 'PlainText',
+                                              'content': `Something went wrong `
+                                          };
+                                          console.log('Unable to fetch Data from database', e);
+                                          console.log(`Response :${JSON.stringify(response)}`);
+                                          callback(null, close(request.sessionAttributes, 'Fulfilled', response));
+                                      });
+                               });
+
+          }).on('error', (e) => {
+          console.error(e);
+      });
+
+
+}
+
+////////
 ///////////
-function handleLambdaNewIntent(request, res,auditModel) {
+function handleLambdaNewIntent(request, resp,auditModel) {
       console.log('Start handleLambdaNewIntent');
       console.log("request.body>>>>>>>>>",request.body);
       var auditid = request.body.input.requestAttributes.auditid;
 console.log(`request ${auditid}`);
-// audit.find({_id : auditid}, function(err, ctask) {
-//   console.log('inside find');
-//   console.log(ctask);
-//   if (err){
-//     res.send(err);
-//   }else{
 var val = `HI This is response from handleLambdaNewIntent server`
 var responeData = {"callbackMessage": val};
 auditModel.responseData =responeData;
 console.log("auditModel>>",auditModel);
 saveAudit(request,auditModel);
-res.json(responeData);
-
-// });
+resp.json(responeData);
 
 }
 
