@@ -748,7 +748,7 @@ resp.json(responeData);
               }).then((doc) => {
                   console.log('in for balance');
                   console.log(inputTranscript);
-                  console.log(`inputTranscript:${request.body.input}`);
+                  console.log(`inputTranscript:${request.body.input.inputTranscript}`);
 
                   var nameofuser = `${doc[0].customer_Name}`;
                   var salofuser = `${doc[0].salutation}`;
