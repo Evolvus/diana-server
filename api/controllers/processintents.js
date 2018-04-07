@@ -358,7 +358,7 @@ function saveAudit(request,auditModel){
   // // ////////////
 
   //check cust registration details
-  function handlegetCustAccIntent(request, resp,auditModel) {
+  function handlegetCustAccIntent(request, resp,auditModel)  {
       console.log('Start handlegetCustAccIntent');
       var sessionAttributes = request.sessionAttributes;
       console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
@@ -446,7 +446,7 @@ function saveAudit(request,auditModel){
     });
                   console.log(docs);
                   console.log(docs[0].cifid);
-                          console.log(data);
+                          //console.log(data);
                           var custuserid1=request.sessionAttributes.custuserid;
                           console.log(custuserid1);
                         // successful response
