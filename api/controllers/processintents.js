@@ -447,7 +447,7 @@ function saveAudit(request,auditModel){
                   console.log(docs);
                   console.log(docs[0].cifid);
                           //console.log(data);
-                          var custuserid1=request.body.input.sessionAttributescustuserid;
+                          var custuserid1=request.body.input.sessionAttributes.custuserid;
                           console.log(custuserid1);
                         // successful response
                         CustomerAccDetails.update({cifid: cifofuser},{userid:custuserid1},{multi:true},(err)=> {
@@ -475,8 +475,8 @@ function saveAudit(request,auditModel){
                           // callback(null, close(sessionAttributes, 'Fulfilled', response));
                         }
                                       })
-                  console.log(params);
-                  console.log(params.PhoneNumber);
+                  // console.log(params);
+                  // console.log(params.PhoneNumber);
               }
           },
           (e) => {
