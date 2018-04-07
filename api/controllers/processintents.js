@@ -91,7 +91,7 @@ exports.handleintents = function(req, resp) {
 
             case 'getCustAccIntentnew':
                 console.log('Entered getCustAccIntent Execution Block');
-                handlegetCustAccIntent(request, callback);
+                handlegetCustAccIntent(request, resp,auditModel);
                 break;
 
             case 'disconnectIntentnew':
@@ -358,53 +358,70 @@ function saveAudit(request,auditModel){
   // // ////////////
 
   //check cust registration details
-  function handlegetCustAccIntent(request, callback) {
+  function handlegetCustAccIntent(request, resp,auditModel) {
       console.log('Start handlegetCustAccIntent');
       var sessionAttributes = request.sessionAttributes;
       console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
-    var faceid = `${request.currentIntent.slots.facebookid}`;
+    //var faceid = `${request.currentIntent.slots.facebookid}`;
+
+  var faceid = `${request.body.input.currentIntent.slots.facebookid}`;
   //var faceid = `abcd@gmail.com`;
       //request.sessionAttributes.fid = faceid;
-      request.sessionAttributes.fbid1 = `${request.currentIntent.slots.facebookid}`;
+      //request.sessionAttributes.fbid1 = `${request.currentIntent.slots.facebookid}`;
+      request.body.input.sessionAttributes.fbid1 = `${request.body.input.currentIntent.slots.facebookid}`;
+
       console.log('facebook id is ' + faceid);
 
-      console.log('Token:', PAGE_ACCESS_TOKEN);
-      https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
-
-
-          (res) => {
-              console.log('res:', res);
-              console.log('headers:', res.headers);
-              res.on('data', (d) => {
-                  console.log(d);
-                  request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                  console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
-                  // use below code to resend the reply
-                  //callSendAPI(messageData);
-              });
-
-          }).on('error', (e) => {
-          console.error(e);
-      });
+//      console.log('Token:', PAGE_ACCESS_TOKEN);
+      // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
+      //
+      //
+      //     (res) => {
+      //         console.log('res:', res);
+      //         console.log('headers:', res.headers);
+      //         res.on('data', (d) => {
+      //             console.log(d);
+      //             request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
+      //             console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
+      //             // use below code to resend the reply
+      //             //callSendAPI(messageData);
+      //         });
+      //
+      //     }).on('error', (e) => {
+      //     console.error(e);
+      // });
 
       CustomerAuthDetails.find({
           facebookid: faceid
       }).then((docs) => {
               console.log('Data got fetched from the database' + docs.length);
               console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
-              var userFirstName = request.sessionAttributes.userFirstName;
+//              var userFirstName = request.sessionAttributes.userFirstName;
+              var userFirstName =request.body.input.sessionAttributes.userFirstName;
               console.log(`userFirstName:${userFirstName}`);
 
               if (docs.length === 0) {
-                  var response = {
-                      'contentType': 'PlainText',
-                      'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
-                  };
-                  console.log(`Response :${JSON.stringify(response)}`);
-                  callback(null, close(sessionAttributes, 'Fulfilled', response));
+
+                console.log("Inside if block");
+                var val =  `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
+                var responeData = {"callbackMessage": val};
+                auditModel.responseData =responeData;
+                console.log("auditModel>>",auditModel);
+                saveAudit(request,auditModel);
+                resp.json(responeData);
+
+
+
+
+                  // var response = {
+                  //     'contentType': 'PlainText',
+                  //     'content': `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
+                  // };
+                  // console.log(`Response :${JSON.stringify(response)}`);
+                  // callback(null, close(sessionAttributes, 'Fulfilled', response));
               } else {
                 var cifofuser = `${docs[0].cifid}`;
 
@@ -414,47 +431,21 @@ function saveAudit(request,auditModel){
                 }).then((doc) => {
                     console.log('in for balance');
                     var nameofuser = `${doc[0].customer_Name}`;
-                    request.sessionAttributes.coreusername = `${nameofuser}`;
-                    console.log(request.sessionAttributes.coreusername);
+//                    request.sessionAttribute.coreusername = `${nameofuser}`;
+                      request.body.input.sessionAttributes.coreusername = `${nameofuser}`;
+                    console.log(request.body.input.sessionAttributes.coreusername);
     },
     (e) => {
-        var response = {
-            'contentType': 'PlainText',
-            'content': `Something went wrong `
-        };
-        console.log('Unable to fetch Data from database', e);
-        console.log(`Response :${JSON.stringify(response)}`);
-        callback(null, close(sessionAttributes, 'Fulfilled', response));
+        // var response = {
+        //     'contentType': 'PlainText',
+        //     'content': `Something went wrong `
+        // };
+        // console.log('Unable to fetch Data from database', e);
+        // console.log(`Response :${JSON.stringify(response)}`);
+        // callback(null, close(sessionAttributes, 'Fulfilled', response));
     });
                   console.log(docs);
                   console.log(docs[0].cifid);
-                  console.log('in for otp');
-                  var otpGen = random(999999, 111111);
-                  console.log(otpGen);
-
-                  request.sessionAttributes.otp = `${otpGen}`;
-                  console.log(docs);
-
-                  var mobileofuser = `${docs[0].RegisterMobile}`;
-                  var otpofuser = `${docs[0].otp}`;
-                  console.log(mobileofuser);
-                  console.log(`${docs[0].RegisterMobile}`);
-                  console.log(`otp is :${otpGen}`);
-                  console.log(`${docs[0].otp}`);
-
-                  var sns = new AWS.SNS();
-                  var params = {
-                      Message: `Dear ${userFirstName}, you details is updated with DIANA Server for ABC Bank facebook banking services.`,
-                      MessageStructure: 'string',
-                      PhoneNumber: `${mobileofuser}`,
-                      Subject: 'Reference'
-                  };
-
-                  sns.publish(params, function(err, data) {
-                      if (err) {
-                          console.log(err, err.stack);
-                      } // an error occurred
-                      else {
                           console.log(data);
                           var custuserid1=request.sessionAttributes.custuserid;
                           console.log(custuserid1);
@@ -464,32 +455,48 @@ function saveAudit(request,auditModel){
                               console.log(err);
                             } else {
                                 console.log("updated successfully");
+                                console.log("Inside else block");
+                                var val =  `Hi ${request.body.input.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking . We have updated your details with diana, I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
+                                var responeData = {"callbackMessage": val};
+                                auditModel.responseData =responeData;
+                                console.log("auditModel>>",auditModel);
+                                saveAudit(request,auditModel);
+                                resp.json(responeData);
 
 
-                          var response = {
-                              'contentType': 'PlainText',
-                              'content': `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking . We have updated your details with diana, I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
-                          };
-                          console.log(`Response :${JSON.stringify(response)}`);
-                          callback(null, close(sessionAttributes, 'Fulfilled', response));
+
+
+
+                          // var response = {
+                          //     'contentType': 'PlainText',
+                          //     'content': `Hi ${request.sessionAttributes.coreusername},${msg1} You are already registered for facebook banking . We have updated your details with diana, I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
+                          // };
+                          // console.log(`Response :${JSON.stringify(response)}`);
+                          // callback(null, close(sessionAttributes, 'Fulfilled', response));
                         }
-
                                       })
-                      }
-                  });
-
                   console.log(params);
                   console.log(params.PhoneNumber);
               }
           },
           (e) => {
-              var response = {
-                  'contentType': 'PlainText',
-                  'content': `Something went wrong `
-              };
-              console.log('Unable to fetch Data from database', e);
-              console.log(`Response :${JSON.stringify(response)}`);
-              callback(null, close(sessionAttributes, 'Fulfilled', response));
+
+            console.log("Inside if block");
+            var val =  `Something went wrong `
+            var responeData = {"callbackMessage": val};
+            auditModel.responseData =responeData;
+            console.log("auditModel>>",auditModel);
+            saveAudit(request,auditModel);
+            resp.json(responeData);
+
+
+              // var response = {
+              //     'contentType': 'PlainText',
+              //     'content': `Something went wrong `
+              // };
+              // console.log('Unable to fetch Data from database', e);
+              // console.log(`Response :${JSON.stringify(response)}`);
+              // callback(null, close(sessionAttributes, 'Fulfilled', response));
           });
   }
 
@@ -716,19 +723,9 @@ resp.json(responeData);
       var sessionAttributes = request.sessionAttributes;
       console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
       const slots = request.body.input.currentIntent.slots;
-     //  request.body.input.sessionAttributes= {cifidd :123450};
-     //  request.body.input.sessionAttributes.userFirstName="Adi";
-     // console.log(typeof(request.body.input.sessionAttributes));
-     // console.log(typeof(request.body.input.requestAttributes));
       var cnt = 0;
       console.log('connect to Mongo Db server');
       var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
-      //var inputTranscript =request.body.input.inputTranscript;
-      //var faceid = `${request.sessionAttributes.fid}`;
-      //var faceid = `${request.sessionAttributes.fbid1}`;
-      // var faceid = `abcd@gmail.com`;
-      //console.log('facebook id is ' + faceid);
-      //console.log(inputTranscript);
       console.log(`inputTranscript:${request.body.input.inputTranscript}`);
 
       CustomerAuthDetails.find({
@@ -763,169 +760,94 @@ resp.json(responeData);
                   accountNumber = accountNumber.replace(accountNumber.substring(3, 4), "*****");
                   var accountNumber2 = `${doc[1].accounts}`;
                   accountNumber2 = accountNumber2.replace(accountNumber2.substring(3, 4), "*****");
-                  //var inputTranscript = '${request.inputTranscript}';
                   console.log(balofuser);
                   console.log(`${doc[0].AccountBal}`);
                   console.log(inputTranscript);
-                //  console.log(`inputTranscript:${request.body.input}`);
-console.log(accounttype);
-console.log(inputTranscript);
+                  console.log(accounttype);
+                  console.log(inputTranscript);
                   if (`${accounttype}` === inputTranscript) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
-/////
-console.log("Inside if block");
-var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
-var responeData = {"callbackMessage": val};
-auditModel.responseData =responeData;
-console.log("auditModel>>",auditModel);
-saveAudit(request,auditModel);
-resp.json(responeData);
+                  /////
+                                  console.log("Inside if block");
+                                  var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
 
-
-
-////
-                      // var response = {
-                      //     'contentType': 'PlainText',
-                      //     'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
-                      // };
-                      // console.log(`Response :${JSON.stringify(response)}`);
-                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
                   } else if (`${accounttype}` === inputTranscript) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
 
-
-/////////
-console.log("Inside if block");
-var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
-var responeData = {"callbackMessage": val};
-auditModel.responseData =responeData;
-console.log("auditModel>>",auditModel);
-saveAudit(request,auditModel);
-resp.json(responeData);
-
-
-
-/////////
-
-
-
-                      // var response = {
-                      //     'contentType': 'PlainText',
-                      //     'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
-                      // };
-                      // console.log(`Response :${JSON.stringify(response)}`);
-                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
+                                  console.log("Inside if block");
+                                  var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
                   } else if (`${accounttype2}` == inputTranscript) {
                       console.log('got rec' + doc);
-                      console.log("Inside if block");
-                      var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                      var responeData = {"callbackMessage": val};
-                      auditModel.responseData =responeData;
-                      console.log("auditModel>>",auditModel);
-                      saveAudit(request,auditModel);
-                      resp.json(responeData);
-
-                      //console.log(AccountBal}`;);
-                      // var response = {
-                      //     'contentType': 'PlainText',
-                      //     'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                      // };
-                      // console.log(`Response :${JSON.stringify(response)}`);
-                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
+                                  console.log("Inside if block");
+                                  var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
                   } else if (`${accounttype2}` == inputTranscript) {
                       console.log('got rec' + doc);
-                      console.log("Inside if block");
-                      var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                      var responeData = {"callbackMessage": val};
-                      auditModel.responseData =responeData;
-                      console.log("auditModel>>",auditModel);
-                      saveAudit(request,auditModel);
-                      resp.json(responeData);
-
-
-                      //console.log(AccountBal}`;);
-                      // var response = {
-                      //     'contentType': 'PlainText',
-                      //     'content': `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                      // };
-                      // console.log(`Response :${JSON.stringify(response)}`);
-                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
+                                  console.log("Inside if block");
+                                  var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
                   } else {
-                    console.log("Inside if block");
-                    var val =  `${salofuser} ${nameofuser},Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                    var responeData = {"callbackMessage": val};
-                    auditModel.responseData =responeData;
-                    console.log("auditModel>>",auditModel);
-                    saveAudit(request,auditModel);
-                    resp.json(responeData);
-
-
-
-                      // var response = {
-                      //     'contentType': 'PlainText',
-                      //     'content': `${salofuser} ${nameofuser},Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
-                      // };
-                      // console.log(`Response :${JSON.stringify(response)}`);
-                      // callback(null, close(sessionAttributes, 'Fulfilled', response));
+                                  console.log("Inside if block");
+                                  var val =  `${salofuser} ${nameofuser},Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
 
                   }
               }, (e) => {
-                console.log("Inside if block");
-                var val =  `Something went wrong in fetching account bal`
-                var responeData = {"callbackMessage": val};
-                auditModel.responseData =responeData;
-                console.log("auditModel>>",auditModel);
-                saveAudit(request,auditModel);
-                resp.json(responeData);
+                                    console.log("Inside if block");
+                                    var val =  `Something went wrong in fetching account bal`
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
 
-                  // var response = {
-                  //     'contentType': 'PlainText',
-                  //     'content': `Something went wrong in fetching account bal`
-                  // };
-                  // console.log('Unable to fetch Data from database', e);
-                  // console.log(`Response :${JSON.stringify(response)}`);
-                  // callback(null, close(sessionAttributes, 'Fulfilled', response));
-              })
-          } else {
+                                    })
+                } else {
 
-            console.log("Inside if block");
-            var val = `Something went wrong Thank You.`
-            var responeData = {"callbackMessage": val};
-            auditModel.responseData =responeData;
-            console.log("auditModel>>",auditModel);
-            saveAudit(request,auditModel);
-            resp.json(responeData);
-
-
-              // var response = {
-              //     'contentType': 'PlainText',
-              //     'content': `Something went wrong Thank You.`
-              // };
-              // console.log(`Response :${JSON.stringify(response)}`);
-              // callback(null, close(sessionAttributes, 'Fulfilled', response));
+                                    console.log("Inside if block");
+                                    var val = `Something went wrong Thank You.`
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
           }
       }, (e) => {
 
-        console.log("Inside if block");
-        var val = `Something went wrong `
-        var responeData = {"callbackMessage": val};
-        auditModel.responseData =responeData;
-        console.log("auditModel>>",auditModel);
-        saveAudit(request,auditModel);
-        resp.json(responeData);
+                                    console.log("Inside if block");
+                                    var val = `Something went wrong `
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
 
-
-          // var response = {
-          //     'contentType': 'PlainText',
-          //     'content': `Something went wrong `
-          // };
-          // console.log('Unable to fetch Data from database', e);
-          // console.log(`Response :${JSON.stringify(response)}`);
-          // callback(null, close(sessionAttributes, 'Fulfilled', response));
       })
   }
 
