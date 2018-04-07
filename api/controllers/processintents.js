@@ -447,7 +447,7 @@ function saveAudit(request,auditModel){
                   console.log(docs);
                   console.log(docs[0].cifid);
                           //console.log(data);
-                          var custuserid1=request.sessionAttributes.custuserid;
+                          var custuserid1=request.body.input.sessionAttributescustuserid;
                           console.log(custuserid1);
                         // successful response
                         CustomerAccDetails.update({cifid: cifofuser},{userid:custuserid1},{multi:true},(err)=> {
