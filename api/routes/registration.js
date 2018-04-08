@@ -6,6 +6,8 @@ module.exports = function(app) {
   var channel = require('../controllers/channel');
   var ciservice = require('../controllers/ciservice');
   var processintents = require('../controllers/processintents');
+  var audit = require('../controllers/audit');
+  var answer = require('../controllers/answers');
 
     app.route('/lexregistration')
       .get(todoList.list_all_regs_lex)
@@ -35,11 +37,26 @@ module.exports = function(app) {
       app.route('/channel/:channelName')
         .get(channel.stats)
 
+      app.route('/channel/:id')
+        .put(channel.updatechannel)
+
       app.route('/ciservice')
         .post(ciservice.regciservice)
         .get(ciservice.listciservice)
 
-        app.route('/ciservice/:ciserviceName')
-          .get(ciservice.listciservice)
+      app.route('/ciservice/:ciserviceName')
+        .get(ciservice.listciservice)
+
+      app.route('/ciservice/:id')
+        .put(ciservice.updateciservice)
+
+      app.route('/audit')
+        .get(audit.listaudits)
+
+      app.route('/answers')
+        .get(answer.listallanswers)
+
+      app.route('/answers/:status')
+        .get(answer.listunanswered)
 
 };

@@ -11,6 +11,11 @@ var ciservice = new Schema({
     type: String,
       required: 'Kindly enter the value to be blacklisted',
   },
+  enabled: {
+      type: Number,
+        required: 'Kindly enter the enabled flag',
+        default : 1
+    },
   secretKey: {
     type: String,
       required: 'Kindly enter the value to be blacklisted',

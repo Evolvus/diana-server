@@ -39,3 +39,13 @@ exports.stats = function(req, res) {
   });
 
 };
+
+
+exports.updatechannel = function(req, res) {
+  Task2.update({_id:req.params.id}, {$set: req.body},  function(err,task){
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+
+};
