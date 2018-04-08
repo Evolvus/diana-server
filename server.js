@@ -8,6 +8,7 @@ var express = require('express'),
   Task2 = require('./api/models/channel'),
   Task3 = require('./api/models/ciservice'),
   Task4 = require('./api/models/audit'),
+  Task5 = require('./api/models/answers'),
   bodyParser = require('body-parser');
 
   var cors = require('cors');
