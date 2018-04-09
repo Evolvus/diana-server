@@ -33,9 +33,10 @@ console.log("Reques.request>>>>>",request.body.input.request);
      // request.body.input.sessionAttributes= {cifidd :123452};
      // request.body.input.sessionAttributes.userFirstName="Anitha";
 
-request.body.input.requestAttributes= {channelName :"twitter"};
-request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
+// request.body.input.requestAttributes= {channelName :"twitter"};
+// request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
 
+//event.session.attributes = {auditid : '123', channelid : 'Alexa'};
 
    console.log(request.body.input.sessionAttributes.userFirstName);
 
@@ -61,26 +62,27 @@ console.log("Inside IF");
 
     console.log("Inside else IF");
         console.log("Reques.request>>>>>",request.body.input.request.intent.name);
-        var bodyintent=request.body.input.request.intent.name;
-        var intentName = bodyintent;
-        return intentName;
+        var intentName=request.body.input.request.intent.name;
+        var requestAttributes= request.session.attributes;
+        return [intentName,requestAttributes];
   } else  {
       var intentName = request.body.input.currentIntent.name;
-      return intentName;
+      var bodyAttribute= request.body.input.requestAttributes;
+      return [intentName,requestAttributes];
   }
 }
 
 console.log(intentNamefuntion(input));
 
 var intentName =intentNamefuntion(input);
-
+var requestAttributes =intentNamefuntion(input);
 ///
 
       //var intentName = request.body.input.currentIntent.name;
       console.log(`You Intent is :${intentName}`);
       var input = request.body.input;
       console.log("input :>>>>>>>",input);
-      var requestAttributes = request.body.input.requestAttributes;
+    //  var requestAttributes = request.body.input.requestAttributes;
       console.log("requestAttributes :>>>>>>>",requestAttributes);
 
       var auditid = request.body.input.requestAttributes.auditid;
