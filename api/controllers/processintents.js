@@ -19,6 +19,9 @@ exports.handleintents = function(req, resp) {
       var request = req;
 
       console.log("request>>>>>",request);
+console.log("Reques.context>>>>>",request.body.input.context);
+console.log("Reques.request>>>>>",request.body.input.request);  
+
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
 
       request.body.input.sessionAttributes= {cifidd :123450};
@@ -30,6 +33,8 @@ exports.handleintents = function(req, resp) {
      // request.body.input.sessionAttributes= {cifidd :123452};
      // request.body.input.sessionAttributes.userFirstName="Anitha";
 
+// request.body.input.requestAttributes= {channelName :"twitter"};
+// request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
 
 
    console.log(request.body.input.sessionAttributes.userFirstName);
