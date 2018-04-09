@@ -47,6 +47,9 @@ function intentNamefuntion(a) {
   if (typeof(a.body) === "string") {
 
     console.log("JSON.parse(a.body) >>>>>>",JSON.parse(a.body));
+    var bodydata = JSON.parse(a.body);
+    console.log(bodydata.originalRequest.result.metadata.intentName);
+    var bodyintent=bodydata.originalRequest.result.metadata.intentName;
     return "Inside IF";
   } else {
     return a;
