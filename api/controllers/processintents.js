@@ -45,8 +45,8 @@ var input = request.body.input;
 
 function intentNamefuntion(a) {
   if (typeof(a.body) === "string") {
-      JSON.parse(a.body)
     return "Inside IF";
+    console.log("JSON.parse(a.body) >>>>>>",JSON.parse(a.body));
   } else {
     return a;
   }
