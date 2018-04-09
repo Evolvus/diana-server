@@ -18,7 +18,7 @@ exports.handleintents = function(req, resp) {
   console.log(req.body);
       var request = req;
 
-      console.log("request>>>>>");
+      console.log("request>>>>>",request);
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
 
       request.body.input.sessionAttributes= {cifidd :123450};
@@ -45,8 +45,9 @@ var input = request.body.input;
 
 function intentNamefuntion(a) {
   if (typeof(a.body) === "string") {
-    return "Inside IF";
+
     console.log("JSON.parse(a.body) >>>>>>",JSON.parse(a.body));
+    return "Inside IF";
   } else {
     return a;
   }
