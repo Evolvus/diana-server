@@ -18,7 +18,7 @@ exports.handleintents = function(req, resp) {
   console.log(req.body);
       var request = req;
 
-  //    console.log(request);
+      console.log("request>>>>>");
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
 
       request.body.input.sessionAttributes= {cifidd :123450};
