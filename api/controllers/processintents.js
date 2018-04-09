@@ -43,8 +43,9 @@ exports.handleintents = function(req, resp) {
 var input = request.body.input;
 
 function intentNamefuntion(a) {
-  if (a.body > 0) {
-    return a.body;
+  if (typeof(a.body) === "string") {
+      JSON.parse(a.body)
+    return "Inside IF";
   } else {
     return a;
   }
