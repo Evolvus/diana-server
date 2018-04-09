@@ -39,6 +39,21 @@ exports.handleintents = function(req, resp) {
 //    var custuserid1=request.body.input.sessionAttributes.custuserid;
 
       console.log(typeof(JSON.stringify(req.body.input)));
+/////
+var input = request.body.input;
+
+function intentNamefuntion(a) {
+  if (a.body > 0) {
+    return a.body;
+  } else {
+    return a;
+  }
+}
+
+console.log(intentNamefuntion(input));
+
+///
+
       var intentName = request.body.input.currentIntent.name;
       console.log(`You Intent is :${intentName}`);
       var input = request.body.input;
