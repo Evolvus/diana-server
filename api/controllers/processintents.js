@@ -78,7 +78,7 @@ var intentName =intentNamefuntion(input);
         switch (intentName) {
           //// required
 
-            case 'LambdaTest':
+            case 'GreetIntent':
                 console.log('Entered GreetIntent Execution Block');
                 handleGreetIntent(request, resp,auditModel);
                 break;
