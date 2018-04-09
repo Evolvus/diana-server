@@ -63,12 +63,10 @@ console.log("Inside IF");
     console.log("Inside else IF");
         console.log("Reques.request>>>>>",request.body.input.request.intent.name);
         var intentName=request.body.input.request.intent.name;
-        var requestAttributes= request.session.attributes;
-        return [intentName,requestAttributes];
+        return (intentName);
   } else  {
       var intentName = request.body.input.currentIntent.name;
-      var bodyAttribute= request.body.input.requestAttributes;
-      return [intentName,requestAttributes];
+      return (intentName);
   }
 }
 
