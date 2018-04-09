@@ -45,14 +45,16 @@ var input = request.body.input;
 
 function intentNamefuntion(a) {
   if (typeof(a.body) === "string") {
-
+console.log("Inside IF");
     console.log("JSON.parse(a.body) >>>>>>",JSON.parse(a.body));
     var bodydata = JSON.parse(a.body);
     console.log(bodydata.result.metadata.intentName);
     var bodyintent=bodydata.result.metadata.intentName;
-    return "Inside IF";
+    var intentName = bodyintent;
+    return intentName;
   } else {
-    return a;
+    var intentName = request.body.input.currentIntent.name;
+    return intentName;
   }
 }
 
@@ -60,7 +62,7 @@ console.log(intentNamefuntion(input));
 
 ///
 
-      var intentName = request.body.input.currentIntent.name;
+      //var intentName = request.body.input.currentIntent.name;
       console.log(`You Intent is :${intentName}`);
       var input = request.body.input;
       console.log("input :>>>>>>>",input);
