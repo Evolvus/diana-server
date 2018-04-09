@@ -14,10 +14,11 @@ var {CustomerAccDetails} = require('../models/customer_Acc');
 var {CustomerAuthDetails} = require('../models/Customer_auth');
 
 exports.handleintents = function(req, resp) {
+  console.log("Process Intent Start");
   console.log(req.body);
       var request = req;
 
-      console.log(request);
+  //    console.log(request);
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
 
       request.body.input.sessionAttributes= {cifidd :123450};
