@@ -20,7 +20,7 @@ exports.handleintents = function(req, resp) {
 
       console.log("request>>>>>",request);
 console.log("Reques.context>>>>>",request.body.input.context);
-console.log("Reques.request>>>>>",request.body.input.request);  
+console.log("Reques.request>>>>>",request.body.input.request);
 
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
 
@@ -57,9 +57,16 @@ console.log("Inside IF");
     var bodyintent=bodydata.result.metadata.intentName;
     var intentName = bodyintent;
     return intentName;
-  } else {
-    var intentName = request.body.input.currentIntent.name;
-    return intentName;
+  } else if (request.body.input.request.intent.name!== undefined)  {
+
+    console.log("Inside else IF");
+        console.log("Reques.request>>>>>",request.body.input.request.intent.name);
+        var bodyintent=request.body.input.request.intent.name;
+        var intentName = bodyintent;
+        return intentName;
+  } else  {
+      var intentName = request.body.input.currentIntent.name;
+      return intentName;
   }
 }
 
