@@ -60,6 +60,8 @@ console.log("Inside IF");
 
 console.log(intentNamefuntion(input));
 
+var intentName =intentNamefuntion(input);
+
 ///
 
       //var intentName = request.body.input.currentIntent.name;
