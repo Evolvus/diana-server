@@ -52,9 +52,9 @@ var input = request.body.input;
       console.log(typeof(input));
 console.log("input>>>",input);
 console.log("input>>>",JSON.stringify(input,null, 4));
-
+var inputMetadata = JSON.stringify(input,null, 4);
+console.log(inputMetadata.metadata);
 console.log("input.parse>>>",JSON.parse(input));
-var va = 'body-json';
 console.log("input.params>>>",input.params);
 console.log("input.metadata>>>",input.result.metadata);
 console.log("input.fulfillment>>>",input.result.fulfillment);
