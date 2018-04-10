@@ -511,11 +511,8 @@ function saveAudit(request,auditModel){
       //console.log('facebook id is ' + faceid);
       //console.log('facebook id is ' + request.sessionAttributes.fbid1);
       console.log('connect to Mongo Db server');
-     // console.log("slot otp ", request.body.input.currentIntent.slots.otp);
-     // var otp11 = `${request.body.input.currentIntent.slots.otp}`;
-	 
-	   var otp11 = request.body.input.currentIntent?request.body.input.currentIntent.slots.otp:request.body.input.intent.slots.otp.value;
-	 
+      console.log("slot otp ", request.body.input.currentIntent.slots.otp);
+      var otp11 = `${request.body.input.currentIntent.slots.otp}`;
       console.log(`Slot OTP: ${otp11}`);
       console.log(`Gen OTP:${otpGen}`);
   ////////////
