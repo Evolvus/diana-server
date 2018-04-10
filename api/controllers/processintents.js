@@ -514,7 +514,7 @@ function saveAudit(request,auditModel){
      // console.log("slot otp ", request.body.input.currentIntent.slots.otp);
      // var otp11 = `${request.body.input.currentIntent.slots.otp}`;
 	 
-		console.log(request.body.input);
+		console.log(request.body.input.intent.slots);
 	 
 	   var otp11 = request.body.input.currentIntent?request.body.input.currentIntent.slots.otp:request.body.input.intent.slots.otp.value;
 	 
