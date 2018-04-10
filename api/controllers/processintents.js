@@ -49,6 +49,7 @@ request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
 /////
 var input = request.body.input;
 
+console.log("input>>>",input);
 function intentNamefuntion(a) {
   if (typeof(a.body) === "string") {
 console.log("Inside IF");
