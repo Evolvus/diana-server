@@ -69,10 +69,10 @@ console.log("Inside IF");
     var bodyintent=bodydata.result.metadata.intentName;
     var intentName = bodyintent;
     return intentName;
-  } else if (request.body.input.request!== undefined)  {
+  } else if (input.bodyjson.result.metadata!== undefined)  {
     console.log("Inside else IF");
-        console.log("Reques.request>>>>>",request.body.input.request.intent.name);
-        var intentName=request.body.input.request.intent.name;
+        console.log("Reques.request>>>>>",input.bodyjson.result.metadata.intentName);
+        var intentName=input.bodyjson.result.metadata.intentName;
         return (intentName);
   } else  {
       var intentName = request.body.input.currentIntent.name;
