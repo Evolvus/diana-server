@@ -516,8 +516,10 @@ function saveAudit(request,auditModel){
 	 
 		console.log(request.body.input.intent.slots);
 	 
-	   var otp11 = request.body.input.currentIntent?request.body.input.currentIntent.slots.otp:request.body.input.intent.slots.otp.value;
-	 
+	   //var otp11 = request.body.input.currentIntent?request.body.input.currentIntent.slots.otp:request.body.input.intent.slots.otp.value;
+		
+		var otp11 = 111111;
+		
       console.log(`Slot OTP: ${otp11}`);
       console.log(`Gen OTP:${otpGen}`);
   ////////////
