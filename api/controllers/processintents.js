@@ -49,6 +49,7 @@ request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
 /////
 var input = request.body.input;
 
+      console.log(typeof(input));
 console.log("input>>>",input);
 console.log("input.result>>>",input.result);
 console.log("input.metadata>>>",input.result.metadata);
