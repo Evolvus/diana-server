@@ -125,6 +125,16 @@ var intentName =intentNamefuntion(input);
                 handleGetBalIntent(request, resp,auditModel);
                 break;
 
+		   case 'GetBalIntentnewS':
+                console.log('Entered GetBalIntent Execution Block');
+                handleGetBalIntentS(request, resp,auditModel);
+                break;
+
+		   case 'GetBalIntentnewC':
+                console.log('Entered GetBalIntent Execution Block');
+                handleGetBalIntentC(request, resp,auditModel);
+                break;
+
             case 'getCustAccIntentnew':
                 console.log('Entered getCustAccIntent Execution Block');
                 handlegetCustAccIntent(request, resp,auditModel);
@@ -513,13 +523,13 @@ function saveAudit(request,auditModel){
       console.log('connect to Mongo Db server for getotp');
      // console.log("slot otp ", request.body.input.currentIntent.slots.otp);
      // var otp11 = `${request.body.input.currentIntent.slots.otp}`;
-	 
+
 	//	console.log(request.body.input.intent.slots);
-	 
+
 	   //var otp11 = request.body.input.currentIntent?request.body.input.currentIntent.slots.otp:request.body.input.intent.slots.otp.value;
-		
+
 		var otp11 = 111111;
-		
+
       console.log(`Slot OTP: ${otp11}`);
       console.log(`Gen OTP:${otpGen}`);
   ////////////
@@ -744,6 +754,253 @@ console.log(typeof(otpGen));
                                   console.log("auditModel>>",auditModel);
                                   saveAudit(request,auditModel);
                                   resp.json(responeData);
+
+                //  }
+              }, (e) => {
+                                    console.log("Inside if block");
+                                    var val =  `Something went wrong in fetching account bal`
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
+
+                                    })
+                } else {
+
+                                    console.log("Inside if block");
+                                    var val = `Something went wrong Thank You.`
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
+          }
+      }, (e) => {
+
+                                    console.log("Inside if block");
+                                    var val = `Something went wrong `
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
+
+      })
+  }
+
+   function handleGetBalIntentS(request, resp,auditModel) {
+      console.log('Start handleGetBalIntent');
+     // console.log(request);
+     // var sessionAttributes = request.sessionAttributes;
+     // console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
+      //const slots = request.body.input.currentIntent.slots;
+      var cnt = 0;
+      console.log('connect to Mongo Db server');
+      //var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
+	  var cifofuser= 123450 ;
+      //console.log(`inputTranscript:${request.body.input.inputTranscript}`);
+
+      CustomerAuthDetails.find({
+          cifid: cifofuser
+      }).then((docs) => {
+          console.log('Data got fetched from the database ' + docs.length);
+          console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
+
+          if (docs.length !== 0) {
+
+              cnt = cnt + 1;
+              var cifofuser = `${docs[0].cifid}`;
+
+              console.log(cifofuser);
+              CustomerAccDetails.find({
+                  cifid: cifofuser
+              }).then((doc) => {
+                  console.log('in for balance');
+           //       var inputTranscript =request.body.input.inputTranscript;
+                 // console.log(inputTranscript);
+             //     console.log(`inputTranscript:${request.body.input.inputTranscript}`);
+
+                  var nameofuser = `${doc[0].customer_Name}`;
+                  var salofuser = `${doc[0].salutation}`;
+                  var accounttype = `${doc[0].accounttype}`;
+                  var accounttype2 = `${doc[1].accounttype}`;
+                  var accountcurrency = `${doc[0].accountcurrency}`
+                  var accountcurrency2 =`${doc[1].accountcurrency}`
+                  var balofuser = `${doc[0].AccoutBal}`;
+                  var balofuser2 = `${doc[1].AccoutBal}`;
+                  var accountNumber = `${doc[0].accounts}`;
+                  accountNumber = accountNumber.replace(accountNumber.substring(3, 4), "*****");
+                  var accountNumber2 = `${doc[1].accounts}`;
+                  accountNumber2 = accountNumber2.replace(accountNumber2.substring(3, 4), "*****");
+          //        console.log(balofuser);
+          //        console.log(`${doc[0].AccountBal}`);
+          //        console.log(inputTranscript);
+          //        console.log(accounttype);
+          //        console.log(inputTranscript);
+                  if (`${accounttype}` === 'saving') {
+                      console.log('got rec' + doc);
+                      console.log(balofuser);
+                      console.log(`${doc[0].AccountBal}`);
+                                  console.log("Inside if block");
+                                  var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
+
+                 } else if (`${accounttype2}` == 'saving') {
+                      console.log('got rec' + doc);
+                                  console.log("Inside if block");
+                                  var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
+                  }
+			  //else if (`${accounttype2}` == inputTranscript) {
+              //        console.log('got rec' + doc);
+              //                    console.log("Inside if block");
+              //                    var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+              //                    var responeData = {"callbackMessage": val};
+              //                    auditModel.responseData =responeData;
+              //                    console.log("auditModel>>",auditModel);
+              //                    saveAudit(request,auditModel);
+              //                    resp.json(responeData);
+              //    } else {
+       //                           console.log("Inside if block");
+       //                           var val =  `${salofuser} ${nameofuser},Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+       //                           var responeData = {"callbackMessage": val};
+       //                           auditModel.responseData =responeData;
+       //                           console.log("auditModel>>",auditModel);
+       //                           saveAudit(request,auditModel);
+       //                           resp.json(responeData);
+
+                //  }
+              }, (e) => {
+                                    console.log("Inside if block");
+                                    var val =  `Something went wrong in fetching account bal`
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
+
+                                    })
+                } else {
+
+                                    console.log("Inside if block");
+                                    var val = `Something went wrong Thank You.`
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
+          }
+      }, (e) => {
+
+                                    console.log("Inside if block");
+                                    var val = `Something went wrong `
+                                    var responeData = {"callbackMessage": val};
+                                    auditModel.responseData =responeData;
+                                    console.log("auditModel>>",auditModel);
+                                    saveAudit(request,auditModel);
+                                    resp.json(responeData);
+
+      })
+  }
+
+   function handleGetBalIntentC(request, resp,auditModel) {
+      console.log('Start handleGetBalIntent');
+     // console.log(request);
+     // var sessionAttributes = request.sessionAttributes;
+     // console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
+      //const slots = request.body.input.currentIntent.slots;
+      var cnt = 0;
+      console.log('connect to Mongo Db server');
+      //var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
+	  var cifofuser= 123450 ;
+      //console.log(`inputTranscript:${request.body.input.inputTranscript}`);
+
+      CustomerAuthDetails.find({
+          cifid: cifofuser
+      }).then((docs) => {
+          console.log('Data got fetched from the database ' + docs.length);
+          console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
+
+          if (docs.length !== 0) {
+
+              cnt = cnt + 1;
+              var cifofuser = `${docs[0].cifid}`;
+
+              console.log(cifofuser);
+              CustomerAccDetails.find({
+                  cifid: cifofuser
+              }).then((doc) => {
+                  console.log('in for balance');
+           //       var inputTranscript =request.body.input.inputTranscript;
+                 // console.log(inputTranscript);
+             //     console.log(`inputTranscript:${request.body.input.inputTranscript}`);
+
+                  var nameofuser = `${doc[0].customer_Name}`;
+                  var salofuser = `${doc[0].salutation}`;
+                  var accounttype = `${doc[0].accounttype}`;
+                  var accounttype2 = `${doc[1].accounttype}`;
+                  var accountcurrency = `${doc[0].accountcurrency}`
+                  var accountcurrency2 =`${doc[1].accountcurrency}`
+                  var balofuser = `${doc[0].AccoutBal}`;
+                  var balofuser2 = `${doc[1].AccoutBal}`;
+                  var accountNumber = `${doc[0].accounts}`;
+                  accountNumber = accountNumber.replace(accountNumber.substring(3, 4), "*****");
+                  var accountNumber2 = `${doc[1].accounts}`;
+                  accountNumber2 = accountNumber2.replace(accountNumber2.substring(3, 4), "*****");
+          //        console.log(balofuser);
+          //        console.log(`${doc[0].AccountBal}`);
+          //        console.log(inputTranscript);
+          //        console.log(accounttype);
+          //        console.log(inputTranscript);
+                  if (`${accounttype}` === 'current') {
+                      console.log('got rec' + doc);
+                      console.log(balofuser);
+                      console.log(`${doc[0].AccountBal}`);
+                  /////
+                                  console.log("Inside if block");
+                                  var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
+
+                  }  else if (`${accounttype2}` == 'current') {
+                      console.log('got rec' + doc);
+                                  console.log("Inside if block");
+                                  var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
+                  }
+			  //	  else if (`${accounttype2}` == inputTranscript) {
+              //        console.log('got rec' + doc);
+              //                    console.log("Inside if block");
+              //                    var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+              //                    var responeData = {"callbackMessage": val};
+              //                    auditModel.responseData =responeData;
+              //                    console.log("auditModel>>",auditModel);
+              //                    saveAudit(request,auditModel);
+              //                    resp.json(responeData);
+              //    } else {
+               //                   console.log("Inside if block");
+               //                   var val =  `${salofuser} ${nameofuser},Your Balance in the ${accounttype} account ${accountNumber} is ${balofuser} ${accountcurrency}.Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
+               //                   var responeData = {"callbackMessage": val};
+               //                   auditModel.responseData =responeData;
+               //                   console.log("auditModel>>",auditModel);
+               //                   saveAudit(request,auditModel);
+               //                   resp.json(responeData);
 
                 //  }
               }, (e) => {
