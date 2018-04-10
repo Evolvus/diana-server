@@ -18,7 +18,7 @@ exports.handleintents = function(req, resp) {
   console.log(req.body);
       var request = req;
 
-      console.log("request>>>>>",request);
+    //  console.log("request>>>>>",request);
 console.log("Reques.context>>>>>",request.body.input.context);
 console.log("Reques.request>>>>>",request.body.input.request);
 
@@ -49,17 +49,17 @@ request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
 /////
 var input = request.body.input;
 
-      console.log(typeof(input));
+console.log(typeof(input));
 console.log("input>>>",input);
 console.log("input_stringyfy>>>",JSON.stringify(input,null, 4));
 console.log("request_body>>>",request.body);
 var inputMetadata = JSON.stringify(input,null, 4);
 //console.log(inputMetadata.'body-json');
-console.log("input.parse>>>",JSON.parse(input));
-console.log("input.params>>>",input.params);
-console.log("input.metadata>>>",input.result.metadata);
-console.log("input.fulfillment>>>",input.result.fulfillment);
-
+// console.log("input.parse>>>",JSON.parse(input));
+// console.log("input.params>>>",input.params);
+// console.log("input.metadata>>>",input.result.metadata);
+// console.log("input.fulfillment>>>",input.result.fulfillment);
+//
 
 function intentNamefuntion(a) {
   if (typeof(a.body) === "string") {
