@@ -54,7 +54,7 @@ console.log("input>>>",input);
 console.log("input_stringyfy>>>",JSON.stringify(input,null, 4));
 console.log("request_body>>>",request.body);
 var inputMetadata = JSON.stringify(input,null, 4);
- console.log("input.body-json",input.body-json);
+ console.log("input.body-json",input.body_json);
 // console.log("input.params>>>",input.params);
 // console.log("input.metadata>>>",input.result.metadata);
 // console.log("input.fulfillment>>>",input.result.fulfillment);
