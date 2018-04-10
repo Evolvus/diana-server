@@ -673,7 +673,7 @@ console.log(typeof(otpGen));
               }).then((doc) => {
                   console.log('in for balance');
            //       var inputTranscript =request.body.input.inputTranscript;
-                  console.log(inputTranscript);
+                 // console.log(inputTranscript);
              //     console.log(`inputTranscript:${request.body.input.inputTranscript}`);
 
                   var nameofuser = `${doc[0].customer_Name}`;
