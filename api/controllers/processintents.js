@@ -514,7 +514,7 @@ function saveAudit(request,auditModel){
      // console.log("slot otp ", request.body.input.currentIntent.slots.otp);
      // var otp11 = `${request.body.input.currentIntent.slots.otp}`;
 	 
-		console.log(request.body.input.intent.slots);
+	//	console.log(request.body.input.intent.slots);
 	 
 	   //var otp11 = request.body.input.currentIntent?request.body.input.currentIntent.slots.otp:request.body.input.intent.slots.otp.value;
 		
@@ -524,9 +524,9 @@ function saveAudit(request,auditModel){
       console.log(`Gen OTP:${otpGen}`);
   ////////////
 
-  var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
+  //var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
-  //  var cifofuser= 123452 ;
+    var cifofuser= 123450 ;
     console.log(cifofuser);
 console.log(typeof(parseInt(otp11)));
 console.log(typeof(otpGen));
