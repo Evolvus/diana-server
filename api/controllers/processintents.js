@@ -51,6 +51,7 @@ var input = request.body.input;
 
       console.log(typeof(input));
 console.log("input>>>",input);
+console.log("input.parse>>>",JSON.parse(input));
 var va = 'body-json';
 console.log("input.params>>>",input.params);
 console.log("input.metadata>>>",input.result.metadata);
