@@ -51,9 +51,10 @@ var input = request.body.input;
 
       console.log(typeof(input));
 console.log("input>>>",input);
-console.log("input>>>",JSON.stringify(input,null, 4));
+console.log("input_stringyfy>>>",JSON.stringify(input,null, 4));
+console.log("request_body>>>",request.body);
 var inputMetadata = JSON.stringify(input,null, 4);
-console.log(inputMetadata.metadata);
+//console.log(inputMetadata.'body-json');
 console.log("input.parse>>>",JSON.parse(input));
 console.log("input.params>>>",input.params);
 console.log("input.metadata>>>",input.result.metadata);
