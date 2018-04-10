@@ -48,7 +48,7 @@ request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
       console.log(typeof(JSON.stringify(req.body.input)));
 /////
 var input = request.body.input;
-
+const input = new input({'Content-Type': 'application/json'});
       console.log(typeof(input));
 console.log("input>>>",input);
 console.log("input.parse>>>",JSON.parse(input));
