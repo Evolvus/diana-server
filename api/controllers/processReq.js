@@ -64,7 +64,7 @@ exports.handlegetrequest = function(req, res) {
 
 function registerrequest(req,res) {
 
-  //console.log(JSON.stringify(req.body));
+  console.log(JSON.stringify(req.body));
   var token = req.body.verify_token;
   console.log(token);
 
