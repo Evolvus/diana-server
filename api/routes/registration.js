@@ -7,6 +7,7 @@ module.exports = function(app) {
   var channel = require('../controllers/channel');
   var ciservice = require('../controllers/ciservice');
   var processintents = require('../controllers/processintents');
+  var dfprocessintents = require('../controllers/dfprocessintents');
   var processalexaintents = require('../controllers/processalexaintents');
   var audit = require('../controllers/audit');
   var answer = require('../controllers/answers');
@@ -30,6 +31,10 @@ module.exports = function(app) {
 
     app.route('/handleintents')
       .post(processintents.handleintents)
+
+      app.route('/handledfintents')
+        .post(dfprocessintents.handleintents)
+
 
 	app.route('/handlealexaintents')
       .post(processalexaintents.handleintents)
