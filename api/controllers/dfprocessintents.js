@@ -16,7 +16,7 @@ var {CustomerAuthDetails} = require('../models/Customer_auth');
 
 exports.handleintents = function(req, resp) {
   console.log("Process DFIntent Start");
-  console.log("request.body.input.sessionAttributes>>>>>",request.body.input.sessionAttributes);
+  console.log("request.body.input.sessionAttributes>>>>>",req.body.input.sessionAttributes);
   console.log(req.body);
       var request = req;
 
