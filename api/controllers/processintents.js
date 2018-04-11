@@ -61,29 +61,29 @@ console.log("input.params>>>",input.params);
 // console.log("input.metadata>>>",input.bodyjson.result.parameters.otp);
 
 
-function intentNamefuntion(a) {
-  if (typeof(a.body) === "string") {
-console.log("Inside IF");
-    console.log("JSON.parse(a.body) >>>>>>",JSON.parse(a.body));
-    var bodydata = JSON.parse(a.body);
-    console.log(bodydata.result.metadata.intentName);
-    var bodyintent=bodydata.result.metadata.intentName;
-    var intentName = bodyintent;
-    return intentName;
-  } else if (input.bodyjson.result.metadata!== undefined)  {
-    console.log("Inside else IF");
-        console.log("Reques.request>>>>>",input.bodyjson.result.metadata.intentName);
-        var intentName=input.bodyjson.result.metadata.intentName;
-        return (intentName);
-  } else  {
+// function intentNamefuntion(a) {
+//   if (typeof(a.body) === "string") {
+// console.log("Inside IF");
+//     console.log("JSON.parse(a.body) >>>>>>",JSON.parse(a.body));
+//     var bodydata = JSON.parse(a.body);
+//     console.log(bodydata.result.metadata.intentName);
+//     var bodyintent=bodydata.result.metadata.intentName;
+//     var intentName = bodyintent;
+//     return intentName;
+//   } else if (input.bodyjson.result.metadata!== undefined)  {
+//     console.log("Inside else IF");
+//         console.log("Reques.request>>>>>",input.bodyjson.result.metadata.intentName);
+//         var intentName=input.bodyjson.result.metadata.intentName;
+//         return (intentName);
+//   } else  {
       var intentName = request.body.input.currentIntent.name;
-      return (intentName);
-  }
-}
-
-console.log(intentNamefuntion(input));
-
-var intentName =intentNamefuntion(input);
+//       return (intentName);
+//   }
+// }
+// 
+// console.log(intentNamefuntion(input));
+//
+// var intentName =intentNamefuntion(input);
 //var requestAttributes =intentNamefuntion(input);
 ///
 
