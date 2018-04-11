@@ -15,7 +15,7 @@ var {CustomerAccDetails} = require('../models/customer_Acc');
 var {CustomerAuthDetails} = require('../models/Customer_auth');
 
 exports.handleintents = function(req, resp) {
-  console.log("Process Intent Start");
+  console.log("Process DFIntent Start");
   console.log(req.body);
       var request = req;
 
@@ -517,14 +517,15 @@ function saveAudit(request,auditModel){
       console.log('Start handleGetCustAuthIntent');
       var cnt = 0;
       var otpGen = request.body.input.sessionAttributes.otp;
+      console.log("input.metadata.otp>>>",input.bodyjson.result.parameters.otp);
 
       //var faceid = `${request.sessionAttributes.fbid1}`;
       //var faceid = `abcd@gmail.com`;
       //console.log('facebook id is ' + faceid);
       //console.log('facebook id is ' + request.sessionAttributes.fbid1);
       console.log('connect to Mongo Db server');
-      console.log("slot otp ", request.body.input.currentIntent.slots.otp);
-      var otp11 = `${request.body.input.currentIntent.slots.otp}`;
+      console.log("slot otp ", input.bodyjson.result.parameters.otp);
+      var otp11 = `${input.bodyjson.result.parameters.otp}`;
       console.log(`Slot OTP: ${otp11}`);
       console.log(`Gen OTP:${otpGen}`);
   ////////////
