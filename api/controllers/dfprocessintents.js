@@ -517,6 +517,10 @@ function saveAudit(request,auditModel){
       console.log('Start handleGetCustAuthIntent');
       var cnt = 0;
       var otpGen = request.body.input.sessionAttributes.otp;
+      console.log(typeof(input.bodyjson.result.parameters));
+
+      console.log(typeof(input.bodyjson.result.parameters.otp));
+
       console.log("input.metadata.otp>>>",input.bodyjson.result.parameters.otp);
 
       //var faceid = `${request.sessionAttributes.fbid1}`;
