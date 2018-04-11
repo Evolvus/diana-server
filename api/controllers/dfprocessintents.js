@@ -661,8 +661,8 @@ console.log(typeof(otpGen));
   function handleGetBalIntent(request, resp,auditModel) {
       console.log('Start handleGetBalIntent');
       console.log(request);
-      var sessionAttributes = request.sessionAttributes;
-      console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
+      //var sessionAttributes = request.sessionAttributes;
+      //console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
       const slots = request.body.input.currentIntent.slots;
       var cnt = 0;
       console.log('connect to Mongo Db server');
