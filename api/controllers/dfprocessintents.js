@@ -25,11 +25,11 @@ console.log("Reques.context>>>>>",request.body.input.context);
 console.log("Reques.request>>>>>",request.body.input.request);
 
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
-
-      request.body.input.sessionAttributes= {cifidd :123450};
-      request.body.input.sessionAttributes.userFirstName="Aditya";
-     console.log(typeof(request.body.input.sessionAttributes));
-     console.log(typeof(request.body.input.requestAttributes));
+     //
+     //  request.body.input.sessionAttributes= {cifidd :123450};
+       request.body.input.sessionAttributes.userFirstName="Aditya";
+     // console.log(typeof(request.body.input.sessionAttributes));
+     // console.log(typeof(request.body.input.requestAttributes));
      request.body.input.sessionAttributes.custuserid=2157056904312201;
      request.body.input.sessionAttributes.otp=111111;
      // request.body.input.sessionAttributes= {cifidd :123452};
@@ -253,7 +253,7 @@ console.log("request>>>>>",request);
                 console.log("auditModel>>",auditModel);
                 saveAudit(request,auditModel);
                 resp.json(responeData);
-////////////////
+                ////////////////
                                       }},
                                       (e) => {
                                         ///////////
