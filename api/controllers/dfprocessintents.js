@@ -64,10 +64,8 @@ console.log(typeof(input.bodyjson.result.parameters));
 console.log(typeof(input.bodyjson.result.parameters.otp));
 
 console.log("input.metadata.otp>>>",input.bodyjson.result.parameters.otp);
-var otp11 = input.bodyjson.result.parameters.otp;
-console.log(typeof(otp11));
-var otp12 = toString(otp11);
-console.log(otp12);
+var otp11 = input.bodyjson.result.parameters.otp[0];
+console.log(otp11);
 console.log("otp is",otp11 );
 function intentNamefuntion(a) {
   if (typeof(a.body) === "string") {
