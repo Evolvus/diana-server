@@ -517,13 +517,13 @@ function saveAudit(request,auditModel){
       var cnt = 0;
       var otpGen = request.body.input.sessionAttributes.otp;
 
-      console.log(typeof(input.bodyjson.result.parameters.otp));
-      console.log(typeof(input.bodyjson.result.parameters));
+      console.log(typeof(request.body.input.bodyjson.result.parameters.otp));
+      console.log(typeof(request.body.input.bodyjson.result.parameters));
 
-      console.log(typeof(input.bodyjson.result.parameters.otp));
+      console.log(typeof(request.body.input.bodyjson.result.parameters.otp));
 
-      console.log("input.metadata.otp>>>",input.bodyjson.result.parameters.otp);
-      var otp11 = input.bodyjson.result.parameters.otp[0];
+      console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters.otp);
+      var otp11 = request.body.input.bodyjson.result.parameters.otp[0];
       console.log(otp11);
       console.log("otp is",otp11 );
 
