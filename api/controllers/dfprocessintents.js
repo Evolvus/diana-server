@@ -660,11 +660,11 @@ console.log(typeof(otpGen));
 
   function handleGetBalIntent(request, resp,auditModel) {
       console.log('Start handleGetBalIntent');
-      console.log(request);
+      //console.log(request);
       //var sessionAttributes = request.sessionAttributes;
       //console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
-      const slots = request.body.input.currentIntent.slots;
-      var cnt = 0;
+      //const slots = request.body.input.currentIntent.slots;
+      //var cnt = 0;
       console.log('connect to Mongo Db server');
       var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
       console.log(`inputTranscript:${request.body.input.inputTranscript}`);
