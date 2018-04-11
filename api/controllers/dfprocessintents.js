@@ -664,10 +664,10 @@ console.log(typeof(otpGen));
       //var sessionAttributes = request.sessionAttributes;
       //console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
       //const slots = request.body.input.currentIntent.slots;
-      //var cnt = 0;
+      var cnt = 0;
       console.log('connect to Mongo Db server');
       var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
-      console.log(`inputTranscript:${request.body.input.inputTranscript}`);
+      console.log(`inputTranscript:${request.body.input.bodyjson.result.resolvedQuery}`);
 
       CustomerAuthDetails.find({
           cifid: cifofuser
@@ -676,18 +676,17 @@ console.log(typeof(otpGen));
           console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
 
           if (docs.length !== 0) {
-
               cnt = cnt + 1;
               var cifofuser = `${docs[0].cifid}`;
-
               console.log(cifofuser);
               CustomerAccDetails.find({
                   cifid: cifofuser
               }).then((doc) => {
                   console.log('in for balance');
-                  var inputTranscript =request.body.input.inputTranscript;
+                  var inputTranscript= request.body.input.bodyjson.result.resolvedQuery;
+                  //var inputTranscript =request.body.input.inputTranscript;
                   console.log(inputTranscript);
-                  console.log(`inputTranscript:${request.body.input.inputTranscript}`);
+                  console.log(`inputTranscript:${request.body.input.bodyjson.result.resolvedQuery}`);
 
                   var nameofuser = `${doc[0].customer_Name}`;
                   var salofuser = `${doc[0].salutation}`;
@@ -703,7 +702,6 @@ console.log(typeof(otpGen));
                   accountNumber2 = accountNumber2.replace(accountNumber2.substring(3, 4), "*****");
                   console.log(balofuser);
                   console.log(`${doc[0].AccountBal}`);
-                  console.log(inputTranscript);
                   console.log(accounttype);
                   console.log(inputTranscript);
                   if (`${accounttype}` === inputTranscript) {
