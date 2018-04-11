@@ -3,6 +3,7 @@ module.exports = function(app) {
   var todoList = require('../controllers/registration');
   var blackList = require('../controllers/blacklist');
   var processReq = require('../controllers/processReq');
+  var dfprocessReq = require('../controllers/dfprocessReq');
   var channel = require('../controllers/channel');
   var ciservice = require('../controllers/ciservice');
   var processintents = require('../controllers/processintents');
@@ -22,6 +23,10 @@ module.exports = function(app) {
       .post(processReq.handlerequest)
       .get(processReq.handlegetrequest)
       //.post(todoList.register_a_channel_diag);
+
+      app.route('/dfwebhook')
+        .post(dfprocessReq.handlerequest)
+        .get(dfprocessReq.handlegetrequest)
 
     app.route('/handleintents')
       .post(processintents.handleintents)

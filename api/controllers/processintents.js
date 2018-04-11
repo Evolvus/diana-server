@@ -58,6 +58,7 @@ var inputMetadata = JSON.stringify(input,null, 4);
  console.log("input.body-json",input.bodyjson);
 console.log("input.params>>>",input.params);
 console.log("input.metadata>>>",input.bodyjson.result.metadata);
+console.log("input.metadata>>>",input.bodyjson.result.parameters.otp);
 
 
 function intentNamefuntion(a) {
