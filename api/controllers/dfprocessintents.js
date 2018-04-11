@@ -59,14 +59,7 @@ var inputMetadata = JSON.stringify(input,null, 4);
 console.log("input.params>>>",input.params);
 console.log("input.metadata>>>",input.bodyjson.result.metadata);
 //console.log("input.metadata>>>",input.bodyjson.result.parameters.otp);
-console.log(typeof(input.bodyjson.result.parameters));
 
-console.log(typeof(input.bodyjson.result.parameters.otp));
-
-console.log("input.metadata.otp>>>",input.bodyjson.result.parameters.otp);
-var otp11 = input.bodyjson.result.parameters.otp[0];
-console.log(otp11);
-console.log("otp is",otp11 );
 function intentNamefuntion(a) {
   if (typeof(a.body) === "string") {
 console.log("Inside IF");
@@ -523,19 +516,24 @@ function saveAudit(request,auditModel){
       console.log('Start handleGetCustAuthIntent');
       var cnt = 0;
       var otpGen = request.body.input.sessionAttributes.otp;
+
+      console.log(typeof(input.bodyjson.result.parameters.otp));
       console.log(typeof(input.bodyjson.result.parameters));
 
       console.log(typeof(input.bodyjson.result.parameters.otp));
 
       console.log("input.metadata.otp>>>",input.bodyjson.result.parameters.otp);
+      var otp11 = input.bodyjson.result.parameters.otp[0];
+      console.log(otp11);
+      console.log("otp is",otp11 );
 
       //var faceid = `${request.sessionAttributes.fbid1}`;
       //var faceid = `abcd@gmail.com`;
       //console.log('facebook id is ' + faceid);
       //console.log('facebook id is ' + request.sessionAttributes.fbid1);
       console.log('connect to Mongo Db server');
-      console.log("slot otp ", input.bodyjson.result.parameters.otp);
-      var otp11 = `${input.bodyjson.result.parameters.otp}`;
+      // console.log("slot otp ", input.bodyjson.result.parameters.otp);
+      // var otp11 = `${input.bodyjson.result.parameters.otp}`;
       console.log(`Slot OTP: ${otp11}`);
       console.log(`Gen OTP:${otpGen}`);
   ////////////
