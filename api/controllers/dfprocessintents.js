@@ -98,6 +98,7 @@ var intentName =intentNamefuntion(input);
       var auditModel;
       audit.find({_id : auditid},function(err,data){
           auditModel = data[0];
+          console.log("auditModel>>>>>",auditModel);
         switch (intentName) {
           //// required
 
