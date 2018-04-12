@@ -100,6 +100,8 @@ var intentName =intentNamefuntion(input);
        if (err){
             console.log('inside err>>>'+ err);
           } else {
+            console.log("in for data");
+            console.log(data);
           auditModel = data[0];
           console.log("auditModel>>>>>",auditModel);
         switch (intentName) {
