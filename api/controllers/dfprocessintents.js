@@ -97,6 +97,9 @@ var intentName =intentNamefuntion(input);
       var auditid = request.body.input.requestAttributes.auditid;
       var auditModel;
       audit.find({_id : auditid},function(err,data){
+       if (err){
+            console.log('inside err>>>'+ err);
+          } else {
           auditModel = data[0];
           console.log("auditModel>>>>>",auditModel);
         switch (intentName) {
@@ -167,7 +170,7 @@ var intentName =intentNamefuntion(input);
         }
 
 
-      })
+      }})
       console.log("auditid :>>>>>>>",auditid);
 
 
