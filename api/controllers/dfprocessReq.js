@@ -43,6 +43,58 @@ params = {
 
 };
 
+var stream = bot.stream('user');
+stream.on('direct_message', function (eventMsg) {
+    console.log("EVENT MESSAGE >>",eventMsg);
+    console.log("eventMsg.direct_message.sender.screen_name",eventMsg.direct_message.sender.screen_name);
+    params.screen_name = eventMsg.direct_message.sender.screen_name;
+    console.log("Req_params>>",params);
+    if (eventMsg.direct_message.sender.screen_name==="aditya_368"){
+      console.log("should not call post method as msg coming from ",eventMsg.direct_message.sender.screen_name);
+    } else {
+      console.log("eventMsg.direct_message.text>>>",eventMsg.direct_message.text);
+      var inputext =eventMsg.direct_message.text
+      console.log("inputext",inputext);
+// Set the headers
+var headers = {
+    'Authorization':       'Bearer '+ clientAccessToken,
+    'Content-Type':     'application/json'
+}
+
+// Configure the request//https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=hi&sessionId=12345
+var options = {
+    url: `https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=${inputext}&sessionId=12345`,
+    headers: headers
+    //qs: {'key1': 'xxx', 'key2': 'yyy'}
+}
+
+// Start the request
+request.get(options, function (error, response, body) {
+  console.log("options>>>",options);
+    if (!error && response.statusCode == 200) {
+        // Print out the response body
+        console.log("body>>",body);
+        var body1 = JSON.parse(body);
+        console.log("JSON_parse_body",JSON.parse(body));
+        //console.log("response>>",response);
+        console.log("response_body",body1);
+         console.log("response_result>>>",body1.result);
+         console.log("response_fulfilment>>>",body1.result.fulfillment);
+         console.log("response_displayText>>>",body1.result.fulfillment.displayText);
+         params.text =body1.result.fulfillment.displayText;
+        console.log("should call post method");
+        console.log("Sent Response params >>",params);
+        postMessage(params);
+    } else {
+      console.log("error>>",error);
+    }
+})
+      // console.log("should call post method");
+      // console.log("Sent Response >>",params);
+      // //postMessage(params);
+    }
+  });
+
 
 exports.handlerequest = function(req, res) {
   console.log("inside handlerequest");
