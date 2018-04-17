@@ -237,18 +237,18 @@ console.log("channelid>>",channelid);
           //        body : bodytext,
           //        diana : req.body
           //        };
-          //    ciservice.find({name : "Lex"}, function(err, task) {
-          //      if (err){
-          //        res.send(err);
-          //      }else{
-          //        var accessKeyId  = task[0].accessKey;
-          //        var secretAccessKey = task[0].secretKey;
-          //
-          //    aws4.sign(opts, {
-          //      accessKeyId: accessKeyId,
-          //      secretAccessKey: secretAccessKey
-          //
-          //    });
+             ciservice.find({name : "Lex"}, function(err, task) {
+               if (err){
+                 res.send(err);
+               }else{
+                 var accessKeyId  = task[0].accessKey;
+                 var secretAccessKey = task[0].secretKey;
+             //
+             // aws4.sign(opts, {
+             //   accessKeyId: accessKeyId,
+             //   secretAccessKey: secretAccessKey
+             //
+             // });
 
              console.log("Opts after sign");
              console.log("params>>>",params);
