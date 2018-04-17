@@ -53,10 +53,9 @@ stream.on('direct_message', function (eventMsg,res) {
     if (eventMsg.direct_message.sender.screen_name==="aditya_368"){
       console.log("should not call post method as msg coming from ",eventMsg.direct_message.sender.screen_name);
     } else {
-registerrequest(eventMsg);
+registerrequest(eventMsg,res);
     }
   }
-
 );
 
   var postMessage = function(pm){
@@ -73,10 +72,7 @@ registerrequest(eventMsg);
     }
    });
   };
-// 
-// function callregisterrequest(req) {
-//   registerrequest(req);
-// };
+
 
 
 exports.handlerequest = function(req, res) {
@@ -106,7 +102,7 @@ exports.handlegetrequest = function(req, res) {
 });
 };
 
-function registerrequest(req) {
+function registerrequest(req,res) {
 console.log("Inside registerrequest");
 console.log("Req",req);
   console.log("Req_body_stringyfy",JSON.stringify(req));
