@@ -249,6 +249,21 @@ if (!error && response.statusCode == 200) {
 
   // registerrequest(body,response);
   postMessage(params);
+  
+  var options1 = {
+  url: `https://api.dialogflow.com/v1/contexts/${req.body.auditid}?sessionId=12345`,
+  headers: headers,
+  }
+  request.get(options1, function (error, response, body) {
+  console.log("options1>>>",options1);
+  if (!error && response.statusCode == 200) {
+    console.log("body1>>",body);
+  }else {
+    console.log("error>>",error);
+  }
+}
+);
+
 } else {
 console.log("error>>",error);
 }
