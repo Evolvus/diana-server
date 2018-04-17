@@ -139,8 +139,10 @@ function registerrequest(req,res) {
 console.log("Inside registerrequest");
 console.log("Req",req);
   console.log("Req_body_stringyfy",JSON.stringify(req.body));
-  var token = req.body.verify_token;
+  //var token = req.body.verify_token;
+  var token = "5ac60b6a0499fd0b76a2ecb6"
   console.log(token);
+      req.body.channel.name='twitter'
 
   channel.find({verificationToken : token}, function(err, ctask) {
     if (err){
