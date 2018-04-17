@@ -43,6 +43,7 @@ params = {
 
 };
 
+
 exports.handlerequest = function(req, res) {
   console.log("inside handlerequest");
 registerrequest(req,res);
