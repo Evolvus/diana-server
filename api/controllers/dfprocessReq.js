@@ -1,4 +1,7 @@
 'use strict';
+var express = require('express');
+var twit = require('twit');
+var request = require('request');
 
 var http  = require('http'),
     https = require('https'),
@@ -23,20 +26,29 @@ var randomItem = require('random-item');
 
 var request = require('request');
 
-exports.handlerequest = function(req, res) {
-registerrequest(req,res);
+var clientAccessToken=process.env.clientAccessToken;
+
+var bot = new twit({
+    consumer_key:         process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret:      process.env.TWITTER_CONSUMER_SECRET,
+    access_token:         process.env.TWITTER_ACCESS_TOKEN,
+    access_token_secret:  process.env.TWITTER_ACCESS_TOKEN_SECRET,
+});
+
+var params = {};
+var count =0;
+params = {
+  screen_name: 'jensonjms',
+  text: `Hello World!!! ${count++}`
 
 };
 
+exports.handlerequest = function(req, res) {
+  console.log("inside handlerequest");
+registerrequest(req,res);
+};
 exports.handlegetrequest = function(req, res) {
-  // if (req.query["hub.verify_token"] === process.env.VERIFICATION_TOKEN) {
-  //     console.log("Verified webhook");
-  //     res.status(200).send(req.query["hub.challenge"]);
-  // } else {
-  //     console.error("Verification failed. The tokens do not match.");
-  //     res.sendStatus(403);
-  // }
-
+  console.log("inside handlegetrequest");
   var token = req.body.token;
   console.log(token);
 
@@ -54,12 +66,8 @@ exports.handlegetrequest = function(req, res) {
           res.json({message :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
         }
       }
-
     };
-
 });
-
-
 };
 
 function registerrequest(req,res) {
@@ -99,35 +107,20 @@ console.log("Req",req);
               console.log(task);
               req.body.auditid = task._id;
               console.log(req.body.auditid);
-
-
-              //var answersinfo = new answers(answersdata);
-
-
               handlelexrequest(req, res);
             }
-
             });
           }
         });
-
-
-
-
-
         }else{
           res.json({message :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
         }
       }
-
     };
-
 });
-
 };
 
 function handlelexrequest(req,res) {
-
   req.body.ciservicename = "Lex";
   //console.log(req.body);
   var val = req.body.input;
@@ -135,53 +128,23 @@ function handlelexrequest(req,res) {
 
   var inputarray = val.split(' ');
   console.log(inputarray);
-
-
-
-
          blacklistcheck.find({}, function(err, task) {
            if (err){
              res.send(err);
            }else{
-
              for (let word in inputarray){
-
              for (var i=0 ; i < task.length ; i++){
                  var checkval = new RegExp(task[i].pattern.toString());
                  if (checkval.test(inputarray[word])) {
                   inputarray[word] = crypto.createHmac('md5', key).update(inputarray[word]).digest('hex');
                 console.log(inputarray[word]);
-
- // var mykey = crypto.createCipher('aes-128-cbc', 'mypassword');
- // console.log( mykey);
-// var mystr = mykey.update('abc', 'utf8', 'hex')
-// mystr += mykey.update.final('hex');
-//
-// console.log(mystr); //34feb914c099df25794bf9ccb85bea72
-
-
-// var mykey = crypto.createDecipher('aes-128-cbc', 'mypassword');
-// var mystr = mykey.update('34feb914c099df25794bf9ccb85bea72', 'hex', 'utf8')
-// mystr += mykey.update.final('utf8');
-//
-// console.log(mystr); //abc
-            //  res.json({message :'You have entered something blacklisted - ' +task[i].name });
                 }
               };
             };
             val = inputarray.join(" ");
-
-              // var hash = crypto.createHmac('md5', key).update(val).digest('hex');
-              // var resp = hash;
-
-
-
-
               console.log('in');
             var    bodytext = '{"inputText" : "'+val+'" , "requestAttributes":{"auditid" : "'+ req.body.auditid +'", "channelid" : "'+ channelid +'"}}';
             console.log(bodytext);
-
-
            var nameofuser = randomItem(['jensonj', 'adityas', 'shrimank', 'anitha']);
            req.body.nameofuser = nameofuser;
 
@@ -194,9 +157,6 @@ function handlelexrequest(req,res) {
                  body : bodytext,
                  diana : req.body
                  };
-                 //console.log(opts);
-
-
              ciservice.find({name : "Lex"}, function(err, task) {
                if (err){
                  res.send(err);
@@ -211,9 +171,6 @@ function handlelexrequest(req,res) {
              });
 
              console.log("Opts after sign");
-
-
-
              rp(opts)
              .then( (html)=>{
                 console.log(typeof(html))
@@ -223,11 +180,7 @@ function handlelexrequest(req,res) {
                     console.log('Could not update channel success count' + err);
                   }
                 });
-
-
                 console.log(JSON.parse(html).message);
-
-
                 var answersdata = {
                   channelName:req.body.channel.name,
                   ciservice:req.body.ciservicename,
@@ -269,8 +222,6 @@ function handlelexrequest(req,res) {
                  requestDate: new Date(),
                  status: 2
                };
-
-
                var answerinfo = new answers(answersdata);
                answerinfo.save(function(err, task) {
                  if (err){
@@ -280,14 +231,10 @@ function handlelexrequest(req,res) {
                    console.log('Answers2 saved');
                  };
                });
-
                res.json({message : e.message})
            });
            };
          });
            }
          });
-
-
-
 }

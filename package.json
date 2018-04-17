@@ -21,7 +21,8 @@
     "random-number-generator": "^1.0.2",
     "regex": "^0.1.1",
     "request": "^2.85.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "twit": "^2.2.9"
   },
   "repository": {
     "type": "git",
