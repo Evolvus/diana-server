@@ -75,6 +75,7 @@ registerrequest(eventMsg,res);
 
 
 
+
 exports.handlerequest = function(req, res) {
   console.log("inside handlerequest");
 registerrequest(req,res);
@@ -142,7 +143,7 @@ console.log("Req",req);
               console.log(task);
               req.body.auditid = task._id;
               console.log(req.body.auditid);
-              handlelexrequest(req);
+              handlelexrequest(req,res);
             }
             });
           }
@@ -155,7 +156,7 @@ console.log("Req",req);
 });
 };
 
-function handlelexrequest(req) {
+function handlelexrequest(req,res) {
   req.body.ciservicename = "GoogleDialogFlow";
   //console.log(req.body);
   var val = req.direct_message.text;
