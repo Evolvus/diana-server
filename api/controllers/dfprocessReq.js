@@ -184,7 +184,7 @@ console.log("Req",req);
               console.log(task);
               req.body.auditid = task._id;
               console.log(req.body.auditid);
-              handlelexrequest(req, res);
+              handlelexrequest(req);
             }
             });
           }
