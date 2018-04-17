@@ -92,8 +92,9 @@ request.get(options, function (error, response, body) {
 })
 
     }
+callregisterrequest(eventMsg,res);
   }
-  registerrequest(eventMsg,params);
+
 );
 
   var postMessage = function(pm){
@@ -110,6 +111,10 @@ request.get(options, function (error, response, body) {
     }
    });
   };
+
+function callregisterrequest(req,res) {
+  registerrequest(req,res);
+};
 
 //
 // exports.handlerequest = function(req, res) {
