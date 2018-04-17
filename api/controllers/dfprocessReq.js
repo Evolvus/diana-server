@@ -86,6 +86,10 @@ request.get(options, function (error, response, body) {
          params.text =body1.result.fulfillment.displayText;
         console.log("should call post method");
         console.log("Sent Response params >>",params);
+        function callpostMessage(params) {
+          postMessage(params);
+        };
+
         // registerrequest(body,response);
       //  postMessage(params);
     } else {
