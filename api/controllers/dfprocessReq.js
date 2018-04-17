@@ -47,8 +47,8 @@ stream.on('direct_message', function (eventMsg,res) {
     console.log("EVENT MESSAGE >>",eventMsg);
     console.log("eventMsg.direct_message.sender.screen_name",eventMsg.direct_message.sender.screen_name);
     //params.screen_name = eventMsg.direct_message.sender.screen_name;
-    eventMsg.body= {screen_name : eventMsg.direct_message.sender.screen_name};
-    console.log("eventMsg.body.screen_name>>>",eventMsg.body.screen_name);
+    eventMsg.messager= {screen_name : eventMsg.direct_message.sender.screen_name};
+    console.log("eventMsg.body.screen_name>>>",eventMsg.messager.screen_name);
     console.log("Req_params>>",params);
     if (eventMsg.direct_message.sender.screen_name==="aditya_368"){
       console.log("should not call post method as msg coming from ",eventMsg.direct_message.sender.screen_name);
@@ -253,7 +253,7 @@ console.log("channelid>>",channelid);
              // });
 /////////
 console.log("req.body.screen_name>>>",req.body);
-console.log(eventMsg.body.screen_name);
+console.log(eventMsg.messager.screen_name);
 console.log("req.direct_message.text>>>",req.direct_message.text);
 var inputext =req.direct_message.text
 console.log("inputext",inputext);
