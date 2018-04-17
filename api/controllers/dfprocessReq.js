@@ -144,7 +144,7 @@ exports.handlegetrequest = function(req, res) {
 });
 };
 
-function registerrequest(req,res) {
+function registerrequest(req) {
 console.log("Inside registerrequest");
 console.log("Req",req);
   console.log("Req_body_stringyfy",JSON.stringify(req.body));
