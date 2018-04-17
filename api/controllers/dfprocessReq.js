@@ -55,6 +55,7 @@ stream.on('direct_message', function (eventMsg) {
       console.log("eventMsg.direct_message.text>>>",eventMsg.direct_message.text);
       var inputext =eventMsg.direct_message.text
       console.log("inputext",inputext);
+      registerrequest(body,response);
 // Set the headers
 var headers = {
     'Authorization':       'Bearer '+ clientAccessToken,
@@ -84,7 +85,7 @@ request.get(options, function (error, response, body) {
          params.text =body1.result.fulfillment.displayText;
         console.log("should call post method");
         console.log("Sent Response params >>",params);
-        registerrequest(body,response);
+        // registerrequest(body,response);
         postMessage(params);
     } else {
       console.log("error>>",error);
@@ -109,11 +110,11 @@ request.get(options, function (error, response, body) {
    });
   };
 
-
-exports.handlerequest = function(req, res) {
-  console.log("inside handlerequest");
-registerrequest(req,res);
-};
+//
+// exports.handlerequest = function(req, res) {
+//   console.log("inside handlerequest");
+// registerrequest(req,res);
+// };
 exports.handlegetrequest = function(req, res) {
   console.log("inside handlegetrequest");
   var token = req.body.token;
