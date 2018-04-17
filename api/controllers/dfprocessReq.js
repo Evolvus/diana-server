@@ -21,9 +21,6 @@ answers = mongoose.model('answers');
 
 var randomItem = require('random-item');
 
-// var mongoose = require('mongoose'),
-// audit = mongoose.model('audit');
-
 var request = require('request');
 
 var clientAccessToken=process.env.clientAccessToken;
