@@ -85,7 +85,7 @@ request.get(options, function (error, response, body) {
         console.log("should call post method");
         console.log("Sent Response params >>",params);
         // registerrequest(body,response);
-        postMessage(params);
+      //  postMessage(params);
     } else {
       console.log("error>>",error);
     }
