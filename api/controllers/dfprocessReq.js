@@ -51,7 +51,7 @@ stream.on('direct_message', function (eventMsg,res) {
     console.log("eventMsg.direct_message.sender.screen_name",eventMsg.direct_message.sender.screen_name);
     //params.screen_name = eventMsg.direct_message.sender.screen_name;
     eventMsg.body= {screen_name : eventMsg.direct_message.sender.screen_name};
-    console.log("eventMsg.body.screen_name>>>"eventMsg.body.screen_name);
+    console.log("eventMsg.body.screen_name>>>",eventMsg.body.screen_name);
     console.log("Req_params>>",params);
     if (eventMsg.direct_message.sender.screen_name==="aditya_368"){
       console.log("should not call post method as msg coming from ",eventMsg.direct_message.sender.screen_name);
@@ -88,13 +88,9 @@ request.get(options, function (error, response, body) {
          params.text =body1.result.fulfillment.displayText;
         console.log("should call post method");
         console.log("Sent Response params >>",params);
-        function callpostMessage(oldparams) {
-          var updatedparams =params;
-          postMessage(updatedparams);
-        };
 
         // registerrequest(body,response);
-      //  postMessage(params);
+        postMessage(params);
     } else {
       console.log("error>>",error);
     }
