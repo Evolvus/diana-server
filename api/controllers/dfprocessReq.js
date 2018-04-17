@@ -228,29 +228,31 @@ console.log("channelid>>",channelid);
            var nameofuser = randomItem(['jensonj', 'adityas', 'shrimank', 'anitha']);
            req.body.nameofuser = nameofuser;
 
-          var opts = {
-                 host: 'runtime.lex.us-east-1.amazonaws.com',
-                 service: 'lex',
-                 region: 'us-east-1',
-                 uri: `https://runtime.lex.us-east-1.amazonaws.com/bot/dianaBot/alias/dianaServer/user/${nameofuser}/text`,
-                 path: `bot/dianaBot/alias/dianaServer/user/${nameofuser}/text`,
-                 body : bodytext,
-                 diana : req.body
-                 };
-             ciservice.find({name : "Lex"}, function(err, task) {
-               if (err){
-                 res.send(err);
-               }else{
-                 var accessKeyId  = task[0].accessKey;
-                 var secretAccessKey = task[0].secretKey;
-
-             aws4.sign(opts, {
-               accessKeyId: accessKeyId,
-               secretAccessKey: secretAccessKey
-
-             });
+          // var opts = {
+          //        host: 'runtime.lex.us-east-1.amazonaws.com',
+          //        service: 'lex',
+          //        region: 'us-east-1',
+          //        uri: `https://runtime.lex.us-east-1.amazonaws.com/bot/dianaBot/alias/dianaServer/user/${nameofuser}/text`,
+          //        path: `bot/dianaBot/alias/dianaServer/user/${nameofuser}/text`,
+          //        body : bodytext,
+          //        diana : req.body
+          //        };
+          //    ciservice.find({name : "Lex"}, function(err, task) {
+          //      if (err){
+          //        res.send(err);
+          //      }else{
+          //        var accessKeyId  = task[0].accessKey;
+          //        var secretAccessKey = task[0].secretKey;
+          //
+          //    aws4.sign(opts, {
+          //      accessKeyId: accessKeyId,
+          //      secretAccessKey: secretAccessKey
+          //
+          //    });
 
              console.log("Opts after sign");
+             console.log("params>>>",params);
+              postMessage(params);
              rp(opts)
              .then( (html)=>{
                 console.log(typeof(html))
