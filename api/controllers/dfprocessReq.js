@@ -86,8 +86,9 @@ request.get(options, function (error, response, body) {
          params.text =body1.result.fulfillment.displayText;
         console.log("should call post method");
         console.log("Sent Response params >>",params);
-        function callpostMessage(params) {
-          postMessage(params);
+        function callpostMessage(oldparams) {
+          var updatedparams =params;
+          postMessage(updatedparams);
         };
 
         // registerrequest(body,response);
@@ -258,7 +259,7 @@ console.log("channelid>>",channelid);
 
              console.log("Opts after sign");
              console.log("params>>>",params);
-              postMessage(params);
+              callpostMessage(params);
              rp(opts)
              .then( (html)=>{
                 console.log(typeof(html))
