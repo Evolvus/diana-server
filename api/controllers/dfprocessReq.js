@@ -92,7 +92,7 @@ request.get(options, function (error, response, body) {
 })
 
     }
-callregisterrequest(eventMsg,res);
+callregisterrequest(eventMsg);
   }
 
 );
@@ -112,8 +112,8 @@ callregisterrequest(eventMsg,res);
    });
   };
 
-function callregisterrequest(req,res) {
-  registerrequest(req,res);
+function callregisterrequest(req) {
+  registerrequest(req);
 };
 
 //
