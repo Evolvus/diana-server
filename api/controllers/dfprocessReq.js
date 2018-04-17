@@ -151,8 +151,8 @@ console.log("Req",req);
   //var token = req.body.verify_token;
   var token = "5ac60b6a0499fd0b76a2ecb6"
   console.log(token);
-      req.channelname='twitter'
-      console.log(req.channelname);
+      req.body={channel :'twitter'};
+      console.log(req.body.channel);
 
   channel.find({verificationToken : token}, function(err, ctask) {
     if (err){
