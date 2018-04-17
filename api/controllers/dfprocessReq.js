@@ -225,7 +225,8 @@ var headers = {
 var options = {
 url: `https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=${inputext}&sessionId=12345`,
 headers: headers,
-qs: {'key1': 'xxx', 'key2': 'yyy'}
+contexts:req.body.auditid
+//qs: {'key1': 'xxx', 'key2': 'yyy'}
 }
 
 // Start the request
