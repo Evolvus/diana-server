@@ -254,6 +254,7 @@ console.log("channelid>>",channelid);
 /////////
 console.log("req.body.screen_name>>>",req.body);
 console.log(req.messager.screen_name);
+params.screen_name=req.messager.screen_name;
 console.log("req.direct_message.text>>>",req.direct_message.text);
 var inputext =req.direct_message.text
 console.log("inputext",inputext);
