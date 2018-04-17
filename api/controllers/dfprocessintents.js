@@ -36,7 +36,8 @@ console.log("Reques.request>>>>>",request.body.input.request);
      // request.body.input.sessionAttributes.userFirstName="Anitha";
 
 request.body.input.requestAttributes= {channelName :"twitter"};
-request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
+//request.body.input.bodyjson.result.contexts[0].name
+request.body.input.requestAttributes.auditid=request.body.input.bodyjson.result.contexts[0].name;
 
 //event.session.attributes = {auditid : '123', channelid : 'Alexa'};
 
