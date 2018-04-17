@@ -116,11 +116,11 @@ function callregisterrequest(req) {
   registerrequest(req);
 };
 
-//
-// exports.handlerequest = function(req, res) {
-//   console.log("inside handlerequest");
-// registerrequest(req,res);
-// };
+
+exports.handlerequest = function(req, res) {
+  console.log("inside handlerequest");
+registerrequest(req,res);
+};
 exports.handlegetrequest = function(req, res) {
   console.log("inside handlegetrequest");
   var token = req.body.token;
