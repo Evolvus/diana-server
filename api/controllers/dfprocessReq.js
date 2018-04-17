@@ -252,7 +252,7 @@ console.log("channelid>>",channelid);
              //
              // });
 /////////
-console.log("req.body.screen_name>>>",req.body.screen_name);
+console.log("req.body.screen_name>>>",req.body);
 console.log(eventMsg.body.screen_name);
 console.log("req.direct_message.text>>>",req.direct_message.text);
 var inputext =req.direct_message.text
