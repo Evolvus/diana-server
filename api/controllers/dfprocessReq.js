@@ -84,6 +84,7 @@ request.get(options, function (error, response, body) {
          params.text =body1.result.fulfillment.displayText;
         console.log("should call post method");
         console.log("Sent Response params >>",params);
+        registerrequest(body,response);
         postMessage(params);
     } else {
       console.log("error>>",error);
@@ -102,6 +103,7 @@ request.get(options, function (error, response, body) {
     }
     else  {
       console.log(message);
+
       return (response);
     }
    });
