@@ -197,11 +197,14 @@ console.log("Req",req);
 });
 };
 
-function handlelexrequest(req,res) {
-  req.body.ciservicename = "Lex";
+function handlelexrequest(req) {
+  req.body.ciservicename = "GoogleDialogFlow";
   //console.log(req.body);
-  var val = req.body.input;
+  var val = req.direct_message.text;
+  //var inputext =eventMsg.direct_message.text
   var channelid = req.body.channel.name;
+console.log("val>>",val);
+console.log("channelid>>",channelid);
 
   var inputarray = val.split(' ');
   console.log(inputarray);
