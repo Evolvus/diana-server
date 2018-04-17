@@ -147,11 +147,12 @@ exports.handlegetrequest = function(req, res) {
 function registerrequest(req) {
 console.log("Inside registerrequest");
 console.log("Req",req);
-  console.log("Req_body_stringyfy",JSON.stringify(req.body));
+  console.log("Req_body_stringyfy",JSON.stringify(req));
   //var token = req.body.verify_token;
   var token = "5ac60b6a0499fd0b76a2ecb6"
   console.log(token);
-      req.body.channel.name='twitter'
+      req.channelname='twitter'
+      console.log(req.channelname);
 
   channel.find({verificationToken : token}, function(err, ctask) {
     if (err){
