@@ -44,7 +44,7 @@ params = {
 };
 
 var stream = bot.stream('user');
-stream.on('direct_message', function (eventMsg,response) {
+stream.on('direct_message', function (eventMsg) {
     console.log("EVENT MESSAGE >>",eventMsg);
     console.log("eventMsg.direct_message.sender.screen_name",eventMsg.direct_message.sender.screen_name);
     params.screen_name = eventMsg.direct_message.sender.screen_name;
@@ -55,7 +55,6 @@ stream.on('direct_message', function (eventMsg,response) {
       console.log("eventMsg.direct_message.text>>>",eventMsg.direct_message.text);
       var inputext =eventMsg.direct_message.text
       console.log("inputext",inputext);
-      registerrequest(eventMsg,response);
 // Set the headers
 var headers = {
     'Authorization':       'Bearer '+ clientAccessToken,
