@@ -92,7 +92,7 @@ request.get(options, function (error, response, body) {
 })
 
     }
-callregisterrequest(eventMsg);
+//callregisterrequest(eventMsg);
   }
 
 );
