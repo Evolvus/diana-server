@@ -252,7 +252,8 @@ console.log("channelid>>",channelid);
              //
              // });
 /////////
-console.log("eventMsg.direct_message.text>>>",req.direct_message.text);
+console.log("req.body.screen_name>>>",req.body.screen_name);
+console.log("req.direct_message.text>>>",req.direct_message.text);
 var inputext =req.direct_message.text
 console.log("inputext",inputext);
 // Set the headers
@@ -281,6 +282,7 @@ if (!error && response.statusCode == 200) {
    console.log("response_result>>>",body1.result);
    console.log("response_fulfilment>>>",body1.result.fulfillment);
    console.log("response_displayText>>>",body1.result.fulfillment.displayText);
+   console.log();
    params.text =body1.result.fulfillment.displayText;
   console.log("should call post method");
   console.log("Sent Response params >>",params);
