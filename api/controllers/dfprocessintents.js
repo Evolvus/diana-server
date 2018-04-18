@@ -41,6 +41,8 @@ request.body.input.requestAttributes= {channelName :"twitter"};
 request.body.input.requestAttributes.auditid=request.body.input.bodyjson.result.contexts[0].name[0];
 console.log("contecxt inside df intent",request.body.input.bodyjson.result.contexts);
 console.log("contecxt inside df intentname",request.body.input.bodyjson.result.contexts[0].name);
+console.log("contecxt inside df intentname0",request.body.input.bodyjson.result.contexts[0].name[0]);
+console.log("contecxt inside df intentname1",request.body.input.bodyjson.result.contexts[0].name[1]);
 //event.session.attributes = {auditid : '123', channelid : 'Alexa'};
 
    console.log(request.body.input.sessionAttributes.userFirstName);
