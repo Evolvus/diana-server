@@ -226,7 +226,7 @@ console.log("request>>>>>",request);
               if (docs.length === 0) {
                 ////////////////
                 console.log("Inside if block");
-                var val = `Hi ${userFirstName},${msg1}, I see that you are not registered as a Diana customer. to validate Facebook Banking registeration details please type Register or Reg.`
+                var val = `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
                 var responeData = {"callbackMessage": val};
                 auditModel.responseData =responeData;
                 console.log("auditModel>>",auditModel);
@@ -415,30 +415,12 @@ function saveAudit(request,auditModel){
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
     //var faceid = `${request.currentIntent.slots.facebookid}`;
-  var faceid = `${request.body.input.currentIntent.slots.facebookid}`;
+  //var faceid = `${request.body.input.currentIntent.slots.facebookid}`;
   //var faceid = `abcd@gmail.com`;
       //request.sessionAttributes.fid = faceid;
       //request.sessionAttributes.fbid1 = `${request.currentIntent.slots.facebookid}`;
       request.body.input.sessionAttributes.fbid1 = `${request.body.input.currentIntent.slots.facebookid}`;
       console.log('facebook id is ' + faceid);
-//      console.log('Token:', PAGE_ACCESS_TOKEN);
-      // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
-      //
-      //
-      //     (res) => {
-      //         console.log('res:', res);
-      //         console.log('headers:', res.headers);
-      //         res.on('data', (d) => {
-      //             console.log(d);
-      //             request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-      //             console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
-      //             // use below code to resend the reply
-      //             //callSendAPI(messageData);
-      //         });
-      //
-      //     }).on('error', (e) => {
-      //     console.error(e);
-      // });
 
       CustomerAuthDetails.find({
           facebookid: faceid
