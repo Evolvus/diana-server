@@ -28,7 +28,7 @@ console.log("Reques.request>>>>>",request.body.input.request);
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
      //
      request.body.input.sessionAttributes= {cifidd :123450};
-     request.body.input.sessionAttributes.userFirstName="Aditya";
+     //request.body.input.sessionAttributes.userFirstName="Aditya";
      console.log(typeof(request.body.input.sessionAttributes));
      console.log(typeof(request.body.input.requestAttributes));
      request.body.input.sessionAttributes.custuserid=2157056904312201;
@@ -38,10 +38,9 @@ console.log("Reques.request>>>>>",request.body.input.request);
 
 request.body.input.requestAttributes= {channelName :"twitter"};
 //request.body.input.bodyjson.result.contexts[0].name
-request.body.input.requestAttributes.auditid=request.body.input.bodyjson.result.contexts[0].name[0];
+//request.body.input.requestAttributes.auditid=request.body.input.bodyjson.result.contexts[0].name[0];
 console.log("contecxt inside df intent",request.body.input.bodyjson.result.contexts);
 console.log("contecxt inside df intentname",request.body.input.bodyjson.result.contexts[0].name);
-console.log("contecxt inside df intentname",request.body.input.bodyjson.result.contexts[0].name[0]);
 console.log(typeof(request.body.input.bodyjson.result.contexts[0].name));
 var stringname = request.body.input.bodyjson.result.contexts[0].name;
 var arrayname = stringname.split(',');
@@ -50,6 +49,8 @@ console.log(typeof(arrayname));
 console.log("contecxt inside df intentname0",arrayname[0]);
 console.log("contecxt inside df intentname1",arrayname[1]);
 //event.session.attributes = {auditid : '123', channelid : 'Alexa'};
+request.body.input.sessionAttributes.userFirstName=arrayname[1];
+request.body.input.requestAttributes.auditid=arrayname[0];
 
    console.log(request.body.input.sessionAttributes.userFirstName);
 
