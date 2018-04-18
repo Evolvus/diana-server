@@ -46,8 +46,8 @@ var stringname = request.body.input.bodyjson.result.contexts[0].name;
 var arrayname = stringname.split(', ');
 console.log(arrayname);
 console.log(typeof(arrayname));
-console.log("contecxt inside df intentname0",request.body.input.bodyjson.result.contexts[0].name[0]);
-console.log("contecxt inside df intentname1",request.body.input.bodyjson.result.contexts[0].name[1]);
+console.log("contecxt inside df intentname0",arrayname[0]);
+console.log("contecxt inside df intentname1",arrayname[1]);
 //event.session.attributes = {auditid : '123', channelid : 'Alexa'};
 
    console.log(request.body.input.sessionAttributes.userFirstName);
