@@ -261,20 +261,20 @@ if (!error && response.statusCode == 200) {
   // registerrequest(body,response);
   postMessage(params);
 
-//   var options1 = {
-//   url: `https://api.dialogflow.com/v1/contexts/${req.body.auditid},${username},${screen_name}?sessionId=12345`,
-//   headers: headers,
-//   }
-//   request.delete(options1, function (error, response, body) {
-//   console.log("options1>>>",options1);
-//   if (!error && response.statusCode == 200) {
-//     console.log("body1>>",body);
-//   //  console.log("response1>>",response);
-//   }else {
-//     console.log("error>>",error);
-//   }
-// }
-// );
+  var options1 = {
+  url: `https://api.dialogflow.com/v1/contexts/${req.body.auditid},${username},${screen_name}?sessionId=12345`,
+  headers: headers,
+  }
+  request.delete(options1, function (error, response, body) {
+  console.log("options1>>>",options1);
+  if (!error && response.statusCode == 200) {
+    console.log("body1>>",body);
+  //  console.log("response1>>",response);
+  }else {
+    console.log("error>>",error);
+  }
+}
+);
 
 } else {
 console.log("error>>",error);
