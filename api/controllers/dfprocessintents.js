@@ -51,6 +51,7 @@ console.log("contecxt inside df intentname1",arrayname[1]);
 //event.session.attributes = {auditid : '123', channelid : 'Alexa'};
 request.body.input.sessionAttributes.userFirstName=arrayname[1];
 request.body.input.requestAttributes.auditid=arrayname[0];
+request.body.input.requestAttributes.twitterid=arrayname[2];
 
    console.log(request.body.input.sessionAttributes.userFirstName);
 

@@ -46,9 +46,14 @@ var stream = bot.stream('user');
 stream.on('direct_message', function (eventMsg,res) {
     console.log("EVENT MESSAGE >>",eventMsg);
     console.log("eventMsg.direct_message.sender.screen_name",eventMsg.direct_message.sender.screen_name);
+    console.log("eventMsg.direct_message.sender.name",eventMsg.direct_message.sender.name);
+
     //params.screen_name = eventMsg.direct_message.sender.screen_name;
     eventMsg.messager= {screen_name : eventMsg.direct_message.sender.screen_name};
+    eventMsg.messager.name=eventMsg.direct_message.sender.name;
     console.log("eventMsg.body.screen_name>>>",eventMsg.messager.screen_name);
+    console.log("eventMsg.messager>>>",eventMsg.messager);
+
     console.log("Req_params>>",params);
     if (eventMsg.direct_message.sender.screen_name==="aditya_368"){
       console.log("should not call post method as msg coming from ",eventMsg.direct_message.sender.screen_name);
@@ -209,9 +214,12 @@ console.log("channelid>>",channelid);
              //
              // });
 /////////
-console.log("req.body.screen_name>>>",req.body);
+console.log("req.body>>>",req.body);
 console.log(req.messager.screen_name);
 params.screen_name=req.messager.screen_name;
+var username=req.messager.name;
+var screen_name=req.messager.screen_name;
+console.log("username>>>>",username);
 console.log("req.direct_message.text>>>",req.direct_message.text);
 var inputext =req.direct_message.text
 console.log("inputext",inputext);
@@ -223,7 +231,7 @@ var headers = {
 
 // Configure the request//https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=hi&sessionId=12345
 var options = {
-url: `https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=${inputext}&sessionId=12345&contexts=${req.body.auditid},gopal`,
+url: `https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=${inputext}&sessionId=12345&contexts=${req.body.auditid},${username},${screen_name}`,
 headers: headers
 //contexts:req.body.auditid
 //&contexts=${req.body.auditid}
@@ -254,7 +262,7 @@ if (!error && response.statusCode == 200) {
   postMessage(params);
 
   var options1 = {
-  url: `https://api.dialogflow.com/v1/contexts/${req.body.auditid}?sessionId=12345`,
+  url: `https://api.dialogflow.com/v1/contexts/${req.body.auditid},${username},${screen_name}?sessionId=12345`,
   headers: headers,
   }
   request.delete(options1, function (error, response, body) {
