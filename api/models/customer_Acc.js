@@ -66,8 +66,14 @@ userid :{
   required: true,
   trim: true,
   minlength: 1
+},
+usertwitterid:
+{
+  type : String,
+  required: true,
+  trim: true,
+  minlength: 1
 }
-
 
 
       });

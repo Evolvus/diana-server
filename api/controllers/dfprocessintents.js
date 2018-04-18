@@ -53,7 +53,9 @@ request.body.input.sessionAttributes.userFirstName=arrayname[1];
 request.body.input.requestAttributes.auditid=arrayname[0];
 request.body.input.requestAttributes.twitterid=arrayname[2];
 
-   console.log(request.body.input.sessionAttributes.userFirstName);
+  console.log(request.body.input.sessionAttributes.userFirstName);
+
+  console.log("twitterid",request.body.input.sessionAttributes.twitterid);
 
      // request.sessionAttributes.custuserid=request.body.input.userId;
      //
@@ -203,36 +205,15 @@ function handleGreetIntent(request, resp,auditModel) {
 console.log("request>>>>>",request);
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       console.log('connect to Mongo Db server');
-// console.log(typeof(request.body.input.sessionAttributes));
-// console.log(typeof(request.body.input.requestAttributes));
-    //  console.log('Token:', PAGE_ACCESS_TOKEN);
-    //  https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
 
-
-        //  (res) => {
-              // console.log('res:', res);
-              // console.log('headers:', res.headers);
-              // res.on('data', (d) => {
-              //     console.log(d);
-                //   request.body.input.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-                 //   request.body.input.sessionAttributes= {userFirstName :"Aditya"};
-                 //
-                 //  console.log(typeof(request.body.input.sessionAttributes));
-                 //  console.log(typeof(request.body.input.requestAttributes));
-                 // console.log(request.body.input.sessionAttributes.userFirstName);
-                 //  request.body.input.sessionAttributes.custuserid=2157056904312202;
-                 //
-                 //   // request.sessionAttributes.custuserid=request.body.input.userId;
-                 //   //
-                 //
-                   var custuserid1=request.body.input.sessionAttributes.custuserid;
-                  //console.log(`sessionAttributes:${request.body.input.sessionAttributes.userFirstName}`);
-
-                //  console.log(`sessionAttributes:${request.sessionAttributes.custuserid}`);
-                  console.log(custuserid1);
+                   //var custuserid1=request.body.input.sessionAttributes.custuserid;
+                    var twitterid=request.body.input.sessionAttributes.twitterid
+                  //console.log(custuserid1);
+                  console.log(twitterid);
 
       CustomerAccDetails.find({
-          userid:custuserid1
+          //userid:custuserid1
+          usertwitterid:twitterid
       }).then((docs) => {
               console.log('Data got fetched from the database' + docs.length);
               console.log(JSON.stringify(CustomerAuthDetails, undefined, 2));
