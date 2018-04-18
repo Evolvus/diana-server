@@ -241,9 +241,11 @@ if (!error && response.statusCode == 200) {
   console.log("response_body",body1);
    console.log("response_result>>>",body1.result);
    console.log("response_fulfilment>>>",body1.result.fulfillment);
-   console.log("response_displayText>>>",body1.result.fulfillment.displayText);
+   //console.log("response_displayText>>>",body1.result.fulfillment.displayText);
+   console.log("response_displayText>>>",body1.result.fulfillment.speech);
+
    console.log();
-   params.text =body1.result.fulfillment.displayText;
+   params.text =body1.result.fulfillment.speech;
   console.log("should call post method");
   console.log("Sent Response params >>",params);
 
