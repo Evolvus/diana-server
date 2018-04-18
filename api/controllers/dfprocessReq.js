@@ -262,7 +262,7 @@ if (!error && response.statusCode == 200) {
   postMessage(params);
 
   var options1 = {
-  url: `https://api.dialogflow.com/v1/contexts/${req.body.auditid},${username},${screen_name}?sessionId=12345`,
+  url: `https://api.dialogflow.com/v1/contexts/?sessionId=123456`,
   headers: headers,
   }
   request.delete(options1, function (error, response, body) {
