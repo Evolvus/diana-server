@@ -44,7 +44,7 @@ console.log("contecxt inside df intentname",request.body.input.bodyjson.result.c
 console.log("contecxt inside df intentname",request.body.input.bodyjson.result.contexts[0].name[0]);
 console.log(typeof(request.body.input.bodyjson.result.contexts[0].name));
 var stringname = request.body.input.bodyjson.result.contexts[0].name;
-var arrayname = stringname.split(', ');
+var arrayname = stringname.split(',');
 console.log(arrayname);
 console.log(typeof(arrayname));
 console.log("contecxt inside df intentname0",arrayname[0]);
