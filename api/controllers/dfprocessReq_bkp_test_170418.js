@@ -275,10 +275,12 @@ console.log("error>>",error);
              console.log("params>>>",params);
               //callpostMessage(params);
 
-             rp(opts)
-             .then( (html)=>{
-                console.log(typeof(html))
-                console.log(req.body);
+function updatesuccesscount (req,res) {
+             //
+             // rp(opts)
+             // .then( (html)=>{
+             //    console.log(typeof(html))
+             //    console.log(req.body);
 
                 channel.update({name:req.body.channel.name}, {$inc: { successCount:  1 }},{upsert: true},  function(err){
                   if(err){
@@ -306,12 +308,17 @@ console.log("error>>",error);
                      console.log('Answers1 saved');
                    };
                  });
-                //JSON.parse(html).timestamp = new Date();
-                res.json(JSON.parse(html));
-                var out = html;
-              }
-               )
-             .catch( (e)=> {
+
+               }
+
+              //   //JSON.parse(html).timestamp = new Date();
+              //   res.json(JSON.parse(html));
+              //   var out = html;
+              // }
+              //  )
+            // .catch( (e)=> {
+
+               function updatefailedcount (req,res) {
                console.log('failed:'+e)
                channel.update({name:req.body.channel.name}, {$inc: { failCount: 1 }},{upsert: true}, function(err){
                  if(err){
@@ -336,8 +343,9 @@ console.log("error>>",error);
                    console.log('Answers2 saved');
                  };
                });
-               res.json({message : e.message})
-           });
+             }
+               //res.json({message : e.message})
+           //});
            };
          });
            }
