@@ -223,7 +223,7 @@ var headers = {
 
 // Configure the request//https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=hi&sessionId=12345
 var options = {
-url: `https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=${inputext}&sessionId=12345&contexts=${req.body.auditid}`,
+url: `https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=${inputext}&sessionId=12345&contexts=[${req.body.auditid},"gopal"]`,
 headers: headers
 //contexts:req.body.auditid
 //&contexts=${req.body.auditid}
