@@ -243,7 +243,7 @@ console.log("request>>>>>",request);
                  request.body.input.sessionAttributes.cifidd=`${cifofuser}`;
                 // request.sessionAttributes.coreusername = `${nameofuser}`;
                 request.body.input.sessionAttributes.coreusername=`${nameofuser}`;
-                console.log("sessionAttributes inside GreetIntent",);
+                console.log("sessionAttributes inside GreetIntent",request.body.input.sessionAttributes);
                 // console.log(request.sessionAttributes.coreusername);
 
                 ///////////
