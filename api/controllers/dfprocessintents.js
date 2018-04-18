@@ -243,7 +243,7 @@ console.log("request>>>>>",request);
                  request.body.input.sessionAttributes.cifidd=`${cifofuser}`;
                 // request.sessionAttributes.coreusername = `${nameofuser}`;
                 request.body.input.sessionAttributes.coreusername=`${nameofuser}`;
-
+                console.log("sessionAttributes inside GreetIntent",);
                 // console.log(request.sessionAttributes.coreusername);
 
                 ///////////
@@ -883,34 +883,9 @@ console.log(typeof(otpGen));
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
-     //  request.body.input.sessionAttributes= {cifidd :123452};
-     //  request.body.input.sessionAttributes.userFirstName="Anitha";
-     // console.log(typeof(request.body.input.sessionAttributes));
-     // console.log(typeof(request.body.input.requestAttributes));
-    //  var cifofuser= 123452 ;
   var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
   console.log("cifofuser>>>>",cifofuser);
-
-    //  console.log('Token:', PAGE_ACCESS_TOKEN);
-      // https.get('https://graph.facebook.com/v2.6/' + request.userId + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN,
-      //
-      //
-      //     (res) => {
-      //         console.log('res:', res);
-      //         console.log('headers:', res.headers);
-      //         res.on('data', (d) => {
-      //             console.log(d);
-      //             request.sessionAttributes.userFirstName = JSON.parse(d).first_name;
-      //             console.log(`sessionAttributes:${request.sessionAttributes.userFirstName}`);
-      //             // use below code to resend the reply
-      //             //callSendAPI(messageData);
-      //         });
-      //
-      //     }).on('error', (e) => {
-      //     console.error(e);
-      // });
-
       CustomerAuthDetails.find({
           cifid: cifofuser
       }).then((docs) => {
