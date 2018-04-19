@@ -874,9 +874,12 @@ console.log(typeof(otpGen));
       console.log('connect to Mongo Db server');
   //var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
+  var twitterid=request.body.input.sessionAttributes.twitterid
+console.log(twitterid);
+
+
   CustomerAccDetails.find({
     usertwitterid:twitterid
-      //cifid: cifofuser
   }).then((doc) => {
     console.log("inside acc docs", doc.length);
     var cifofuser = `${doc[0].cifid}`;
