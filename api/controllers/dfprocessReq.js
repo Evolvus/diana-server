@@ -72,7 +72,11 @@ registerrequest(eventMsg,res);
     }
     else  {
       console.log(message);
-
+      channel.update({name:req.body.channel.name}, {$inc: { successCount:  1 }},{upsert: true},  function(err){
+        if(err){
+          console.log('Could not update channel success count' + err);
+        }
+      });
       return (response);
     }
    });
@@ -124,12 +128,17 @@ console.log("Req",req);
     }else{
       console.log('checking token');
       if (ctask.length ===0){
-          res.json({message :'The channel is not registered with Diana Server or the Token is Incorrect'});
+          //res.json({message :'The channel is not registered Please contact to bank.'});
+          var message = 'The channel is not registered Please contact to bank.'
+                    console.log("message :",message);
+                    params.text =message;
+                    console.log(params);
+                    postMessage(params);
       } else if ( ctask[0].enabled === 0) {
-        var message = 'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'
+        var message = 'The '+ctask[0].name+' channel is not enabled. Please contact to bank.'
                   console.log("message :",message);
                   params.text =message;
-console.log(params);
+                  console.log(params);
                   postMessage(params);
       }
       else{
@@ -150,7 +159,14 @@ console.log(params);
             auditinfo.save(function(err, task) {
               if (err){
                 console.log('Audit information could not be saved' + err);
-                res.json({message :'Audit information could not be saved. Not forwarding to CI Service'});
+                //res.json({message :'Audit information could not be saved. Not forwarding to CI Service'});
+
+                  var message = 'Audit information could not be saved. Not forwarding to CI Service'
+                            console.log("message :",message);
+                            params.text =message;
+                            console.log(params);
+                            postMessage(params);
+
               }else{
               console.log(task);
               req.body.auditid = task._id;
@@ -161,7 +177,14 @@ console.log(params);
           }
         });
         }else{
-          res.json({message :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
+          //res.json({message :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
+          var message = 'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'
+                    console.log("message :",message);
+                    params.text =message;
+                    console.log(params);
+                    postMessage(params);
+
+
         }
       }
     };
@@ -196,8 +219,8 @@ console.log("channelid>>",channelid);
               console.log('in');
             var    bodytext = '{"inputText" : "'+val+'" , "requestAttributes":{"auditid" : "'+ req.body.auditid +'", "channelid" : "'+ channelid +'"}}';
             console.log(bodytext);
-           var nameofuser = randomItem(['jensonj', 'adityas', 'shrimank', 'anitha']);
-           req.body.nameofuser = nameofuser;
+          // var nameofuser = randomItem(['jensonj', 'adityas', 'shrimank', 'anitha']);
+           req.body.nameofuser = req.messager.name;
 
           // var opts = {
           //        host: 'runtime.lex.us-east-1.amazonaws.com',
@@ -208,12 +231,13 @@ console.log("channelid>>",channelid);
           //        body : bodytext,
           //        diana : req.body
           //        };
-             ciservice.find({name : "Lex"}, function(err, task) {
+             ciservice.find({name : "GoogleDialogFlow"}, function(err, task) {
+            //ciservice.find({name : "Lex"}, function(err, task) {
                if (err){
                  res.send(err);
                }else{
-                 var accessKeyId  = task[0].accessKey;
-                 var secretAccessKey = task[0].secretKey;
+                 // var accessKeyId  = task[0].accessKey;
+                 // var secretAccessKey = task[0].secretKey;
              //
              // aws4.sign(opts, {
              //   accessKeyId: accessKeyId,
@@ -298,11 +322,11 @@ console.log("error>>",error);
                 console.log(typeof(html))
                 console.log(req.body);
 
-                channel.update({name:req.body.channel.name}, {$inc: { successCount:  1 }},{upsert: true},  function(err){
-                  if(err){
-                    console.log('Could not update channel success count' + err);
-                  }
-                });
+                // channel.update({name:req.body.channel.name}, {$inc: { successCount:  1 }},{upsert: true},  function(err){
+                //   if(err){
+                //     console.log('Could not update channel success count' + err);
+                //   }
+                // });
                 console.log(JSON.parse(html).message);
                 var answersdata = {
                   channelName:req.body.channel.name,
