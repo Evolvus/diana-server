@@ -307,9 +307,68 @@ if (!error && response.statusCode == 200) {
   }
 }
 );
+////
+console.log("Inside to update the answer1");
+var answersdata = {
+  channelName:"twitter",
+  ciservice:"GoogleDialogFlow",
+  query:  options ,
+  answerByCi: body1.result.fulfillment.speech,
+  userName:username ,
+  requestDate: new Date(),
+  status: 1
+};
+//console.log(answersdata);
+
+ var answerinfo = new answers(answersdata);
+ answerinfo.save(function(err, task) {
+   if (err){
+     console.log('Could not save answers' + err);
+   }
+   else{
+     console.log('Answers1 saved');
+   };
+ });
+
+////
+
 
 } else {
 console.log("error>>",error);
+channel.update({name:"twitter"}, {$inc: { failCount: 1 }},{upsert: true}, function(err){
+  if(err){
+    console.log('Could not update channel fail count' + err);
+  }
+})
+var message = 'Something Went wrong Please try again!!'
+          console.log("message :",message);
+          params.text =message;
+          console.log(params);
+
+console.log("Inside to update the answer2");
+var answersdata = {
+  channelName:"twitter",
+  ciservice:"GoogleDialogFlow",
+  query:  options ,
+  answerByCi: message,
+  userName:username ,
+  requestDate: new Date(),
+  status: 2
+};
+//console.log(answersdata);
+
+ var answerinfo = new answers(answersdata);
+ answerinfo.save(function(err, task) {
+   if (err){
+     console.log('Could not save answers' + err);
+   }
+   else{
+     console.log('Answers2 saved');
+   };
+ });
+
+ postMessage(params);
+
 }
 })
 
@@ -318,69 +377,6 @@ console.log("error>>",error);
              console.log("params>>>",params);
               //callpostMessage(params);
 
-             rp(opts)
-             .then( (html)=>{
-                console.log(typeof(html))
-                console.log(req.body);
-
-                // channel.update({name:req.body.channel.name}, {$inc: { successCount:  1 }},{upsert: true},  function(err){
-                //   if(err){
-                //     console.log('Could not update channel success count' + err);
-                //   }
-                // });
-                console.log(JSON.parse(html).message);
-                var answersdata = {
-                  channelName:req.body.channel.name,
-                  ciservice:req.body.ciservicename,
-                  query:  req.body.input ,
-                  answerByCi: JSON.parse(html).message,
-                  userName:req.body.nameofuser ,
-                  requestDate: new Date(),
-                  status: JSON.parse(html).intentName === null ? 0 : 1
-                };
-                //console.log(answersdata);
-
-                 var answerinfo = new answers(answersdata);
-                 answerinfo.save(function(err, task) {
-                   if (err){
-                     console.log('Could not save answers' + err);
-                   }
-                   else{
-                     console.log('Answers1 saved');
-                   };
-                 });
-                //JSON.parse(html).timestamp = new Date();
-                res.json(JSON.parse(html));
-                var out = html;
-              }
-               )
-             .catch( (e)=> {
-               console.log('failed:'+e)
-               channel.update({name:req.body.channel.name}, {$inc: { failCount: 1 }},{upsert: true}, function(err){
-                 if(err){
-                   console.log('Could not update channel fail count' + err);
-                 }
-               })
-               var answersdata = {
-                 channelName:req.body.channel.name,
-                 ciservice:req.body.ciservicename,
-                 query:  req.body.input,
-                 answerByCi:'',
-                 userName:req.body.nameofuser ,
-                 requestDate: new Date(),
-                 status: 2
-               };
-               var answerinfo = new answers(answersdata);
-               answerinfo.save(function(err, task) {
-                 if (err){
-                   console.log('Could not save answers' + err);
-                 }
-                 else{
-                   console.log('Answers2 saved');
-                 };
-               });
-               res.json({message : e.message})
-           });
            };
          });
            }
