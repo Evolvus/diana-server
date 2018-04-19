@@ -502,6 +502,20 @@ function saveAudit(request,auditModel){
 
   function handleGetCustAuthIntent(request, resp,auditModel) {
       console.log('Start handleGetCustAuthIntent');
+
+      var twitterid=request.body.input.sessionAttributes.twitterid
+    console.log(twitterid);
+
+
+      CustomerAccDetails.find({
+        usertwitterid:twitterid
+      }).then((doc) => {
+        console.log("inside acc docs", doc.length);
+        var cifofuser = `${doc[0].cifid}`;
+    console.log(cifofuser);
+    request.body.input.sessionAttributes.cifidd=cifofuser;
+
+
       var cnt = 0;
       var otpGen = request.body.input.sessionAttributes.otp;
 
@@ -526,7 +540,7 @@ function saveAudit(request,auditModel){
       console.log(`Gen OTP:${otpGen}`);
   ////////////
 
-  var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
+//  var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
   //  var cifofuser= 123452 ;
     console.log(cifofuser);
@@ -642,6 +656,7 @@ console.log(typeof(otpGen));
         resp.json(responeData);
 
       }
+    })
   }
 
 
