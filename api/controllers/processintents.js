@@ -34,8 +34,8 @@ console.log("Reques.request>>>>>",request.body.input.request);
      // request.body.input.sessionAttributes= {cifidd :123452};
      // request.body.input.sessionAttributes.userFirstName="Anitha";
 
-// request.body.input.requestAttributes= {channelName :"twitter"};
-// request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
+ request.body.input.requestAttributes= {channelName :"facebook"};
+ request.body.input.requestAttributes.auditid="5acaf13f9628f025a81de981";
 
 //event.session.attributes = {auditid : '123', channelid : 'Alexa'};
 
