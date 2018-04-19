@@ -1,5 +1,6 @@
 'use strict';
 
+
 const date = new Date().getHours();
 var random = require('random-number-generator')
 var bodyParser = require('body-parser');
@@ -17,7 +18,7 @@ var {CustomerAuthDetails} = require('../models/Customer_auth');
 
 exports.handleintents = function(req, resp) {
   console.log("Process DFIntent Start");
-  
+
   console.log("request.body.input.sessionAttributes>>>>>",req.body.input);
   console.log(req.body);
       var request = req;
