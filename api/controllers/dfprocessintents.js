@@ -446,7 +446,8 @@ function saveAudit(request,auditModel){
 
                 console.log(cifofuser);
                 CustomerAccDetails.find({
-                    cifid: cifofuser
+                  usertwitterid:twitterid
+                    //cifid: cifofuser
                 }).then((doc) => {
                     console.log('in for balance');
                     var nameofuser = `${doc[0].customer_Name}`;
@@ -542,7 +543,8 @@ console.log(typeof(otpGen));
                   var cifofuser = `${docs[0].cifid}`;
                   console.log(cifofuser);
                   CustomerAccDetails.find({
-                      cifid: cifofuser
+                    usertwitterid:twitterid
+                      //cifid: cifofuser
                   }).then((doc) => {
                       console.log('in for balance');
                       var nameofuser = `${doc[0].customer_Name}`;
@@ -667,7 +669,8 @@ console.log(typeof(otpGen));
               var cifofuser = `${docs[0].cifid}`;
               console.log(cifofuser);
               CustomerAccDetails.find({
-                  cifid: cifofuser
+                usertwitterid:twitterid
+                  //cifid: cifofuser
               }).then((doc) => {
                   console.log('in for balance');
                   var inputTranscript= request.body.input.bodyjson.result.resolvedQuery;
@@ -799,7 +802,8 @@ console.log(typeof(otpGen));
               var cifofuser = `${docs[0].cifid}`;
               console.log(cifofuser);
               CustomerAccDetails.find({
-                  cifid: cifofuser
+                usertwitterid:twitterid
+                  //cifid: cifofuser
               }).then((doc) => {
                   console.log('in for details');
                   if (doc.length !== 0) {
@@ -895,7 +899,8 @@ resp.json(responeData);
 
                 console.log(cifofuser);
                 CustomerAccDetails.find({
-                    cifid: cifofuser
+                  usertwitterid:twitterid
+                    //cifid: cifofuser
                 }).then((doc) => {
                     console.log('in for balance');
                     var nameofuser = `${doc[0].customer_Name}`;
