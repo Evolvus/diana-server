@@ -811,7 +811,7 @@ console.log(typeof(otpGen));
   ///////////
 
   function handledisconnectIntent(request, callback) {
-
+console.log("enter handledisconnectIntent block");
     var twitterid=request.body.input.sessionAttributes.twitterid
   console.log(twitterid);
 
