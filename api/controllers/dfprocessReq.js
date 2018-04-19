@@ -309,6 +309,7 @@ if (!error && response.statusCode == 200) {
 );
 ////
 console.log("Inside to update the answer1");
+console.log(typeof(options));
 var answersdata = {
   channelName:"twitter",
   ciservice:"GoogleDialogFlow",
