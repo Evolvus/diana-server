@@ -26,6 +26,7 @@ console.log("Reques.request>>>>>",request.body.input.request);
       request.body.input.sessionAttributes = request.body.input.sessionAttributes === null ? {} : request.body.input.sessionAttributes;
 
       request.body.input.sessionAttributes= {cifidd :123450};
+      //newly commented aditya and custid
       /////request.body.input.sessionAttributes.userFirstName="Aditya";
      console.log(typeof(request.body.input.sessionAttributes));
      console.log(typeof(request.body.input.requestAttributes));
