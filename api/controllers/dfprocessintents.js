@@ -34,7 +34,7 @@ console.log("Reques.request>>>>>",request.body.input.request);
      console.log(typeof(request.body.input.sessionAttributes));
      console.log(typeof(request.body.input.requestAttributes));
      request.body.input.sessionAttributes.custuserid=2157056904312201;
-     request.body.input.sessionAttributes.otp=111111;
+     request.body.input.sessionAttributes.otp=11111;
      // request.body.input.sessionAttributes= {cifidd :123452};
      // request.body.input.sessionAttributes.userFirstName="Anitha";
 

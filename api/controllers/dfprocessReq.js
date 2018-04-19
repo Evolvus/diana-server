@@ -198,9 +198,11 @@ function handlelexrequest(req, res) {
  var inputarray = val.split(' ');
  console.log(inputarray);
  blacklistcheck.find({}, function(err, task) {
+   console.log("In for blacklist");
   if (err) {
    res.send(err);
   } else {
+    console.log("In for blacklist else block");
    for (let word in inputarray) {
     for (var i = 0; i < task.length; i++) {
      var checkval = new RegExp(task[i].pattern.toString());
