@@ -39,6 +39,7 @@ console.log("Reques.request>>>>>",request.body.input.request);
 
 //event.session.attributes = {auditid : '123', channelid : 'Alexa'};
 
+
    console.log(request.body.input.sessionAttributes.userFirstName);
 
      // request.sessionAttributes.custuserid=request.body.input.userId;
