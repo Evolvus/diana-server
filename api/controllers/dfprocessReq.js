@@ -73,7 +73,7 @@ registerrequest(eventMsg,res);
     else  {
       console.log("inside postMessage else block");
       console.log(message);
-      channel.update({name:req.body.channel.name}, {$inc: { successCount:  1 }},{upsert: true},  function(err){
+      channel.update({name:"twitter"}, {$inc: { successCount:  1 }},{upsert: true},  function(err){
         if(err){
           console.log('Could not update channel success count' + err);
         }
