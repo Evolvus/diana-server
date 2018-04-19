@@ -71,6 +71,7 @@ registerrequest(eventMsg,res);
       return (error);
     }
     else  {
+      console.log("inside postMessage else block");
       console.log(message);
       channel.update({name:req.body.channel.name}, {$inc: { successCount:  1 }},{upsert: true},  function(err){
         if(err){
