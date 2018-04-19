@@ -126,7 +126,10 @@ console.log("Req",req);
       if (ctask.length ===0){
           res.json({message :'The channel is not registered with Diana Server or the Token is Incorrect'});
       } else if ( ctask[0].enabled === 0) {
-                  res.json({message :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
+        params.text =body1.result.fulfillment.speech
+        var message = 'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'
+                  console.log("message :",message);
+                  postMessage(params);
       }
       else{
       console.log('is verified');
