@@ -194,7 +194,7 @@ function handlelexrequest(req,res) {
                  "sessionAttributes": {"auditid":"123",
                  "userFirstName": "Aditya",
                  "custuserid": "2157056904312201"
-                                            }
+               },
                  diana : req.body
                  };
                  //console.log(opts);
