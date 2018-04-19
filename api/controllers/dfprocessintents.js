@@ -878,6 +878,7 @@ console.log(typeof(otpGen));
     usertwitterid:twitterid
       //cifid: cifofuser
   }).then((doc) => {
+    console.log("inside acc docs", doc.length);
     var cifofuser = `${doc[0].cifid}`;
 console.log(cifofuser);
 request.body.input.sessionAttributes.cifidd=cifofuser;
