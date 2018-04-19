@@ -191,6 +191,10 @@ function handlelexrequest(req,res) {
                  uri: `https://runtime.lex.us-east-1.amazonaws.com/bot/dianaBot/alias/dianaServer/user/${nameofuser}/text`,
                  path: `bot/dianaBot/alias/dianaServer/user/${nameofuser}/text`,
                  body : bodytext,
+                 "sessionAttributes": {"auditid":"123",
+                 "userFirstName": "Aditya",
+                 "custuserid": "2157056904312201"
+                                            }
                  diana : req.body
                  };
                  //console.log(opts);
