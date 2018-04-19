@@ -872,7 +872,7 @@ console.log(typeof(otpGen));
       var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
       var msg = `Your Registration has been added successfully`;
       console.log('connect to Mongo Db server');
-  var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
+  //var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
 
   CustomerAccDetails.find({
     usertwitterid:twitterid
