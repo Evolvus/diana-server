@@ -87,25 +87,25 @@ registerrequest(req,res);
 };
 exports.handlegetrequest = function(req, res) {
   console.log("inside handlegetrequest");
-  var token = req.body.token;
-  console.log(token);
-
-  channel.find({verificationToken : token}, function(err, ctask) {
-    if (err){
-      res.send(err);
-    }else{
-      if (ctask.length ===0){
-          res.json({message :'The channel is not registered with Diana Server or the Token is Incorrect'});
-      }else{
-        console.log(ctask[0].enabled);
-        if( ctask[0].enabled === 1){
-          res.status(200)
-        }else{
-          res.json({message :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
-        }
-      }
-    };
-});
+//   var token = req.body.token;
+//   console.log(token);
+//
+//   channel.find({verificationToken : token}, function(err, ctask) {
+//     if (err){
+//       res.send(err);
+//     }else{
+//       if (ctask.length ===0){
+//           res.json({message :'The channel is not registered with Diana Server or the Token is Incorrect'});
+//       }else{
+//         console.log(ctask[0].enabled);
+//         if( ctask[0].enabled === 1){
+//           res.status(200)
+//         }else{
+//           res.json({message :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
+//         }
+//       }
+//     };
+// });
 };
 
 function registerrequest(req,res) {
@@ -125,7 +125,10 @@ console.log("Req",req);
       console.log('checking token');
       if (ctask.length ===0){
           res.json({message :'The channel is not registered with Diana Server or the Token is Incorrect'});
-      }else{
+      } else if ( ctask[0].enabled === 0) {
+                  res.json({message :'The '+ctask[0].name+' channel is not enabled. Please enable at Diana Server.'});
+      }
+      else{
       console.log('is verified');
 
         if( ctask[0].enabled === 1){
