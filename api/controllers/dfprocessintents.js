@@ -446,8 +446,7 @@ function saveAudit(request,auditModel){
 
                 console.log(cifofuser);
                 CustomerAccDetails.find({
-                  usertwitterid:twitterid
-                    //cifid: cifofuser
+                  cifid: cifofuser
                 }).then((doc) => {
                     console.log('in for balance');
                     var nameofuser = `${doc[0].customer_Name}`;
@@ -557,8 +556,8 @@ console.log(typeof(otpGen));
                   var cifofuser = `${docs[0].cifid}`;
                   console.log(cifofuser);
                   CustomerAccDetails.find({
-                    usertwitterid:twitterid
-                      //cifid: cifofuser
+
+                      cifid: cifofuser
                   }).then((doc) => {
                       console.log('in for balance');
                       var nameofuser = `${doc[0].customer_Name}`;
@@ -670,7 +669,19 @@ console.log(typeof(otpGen));
       //const slots = request.body.input.currentIntent.slots;
       var cnt = 0;
       console.log('connect to Mongo Db server');
-      var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
+      var twitterid=request.body.input.sessionAttributes.twitterid
+    console.log(twitterid);
+
+    CustomerAccDetails.find({
+      usertwitterid:twitterid
+    }).then((doc) => {
+      console.log("inside acc docs", doc.length);
+      var cifofuser = `${doc[0].cifid}`;
+  console.log(cifofuser);
+  request.body.input.sessionAttributes.cifidd=cifofuser;
+
+
+      //var cifofuser= `${request.body.input.sessionAttributes.cifidd}` ;
       console.log(`inputTranscript:${request.body.input.bodyjson.result.resolvedQuery}`);
 
       CustomerAuthDetails.find({
@@ -684,8 +695,8 @@ console.log(typeof(otpGen));
               var cifofuser = `${docs[0].cifid}`;
               console.log(cifofuser);
               CustomerAccDetails.find({
-                usertwitterid:twitterid
-                  //cifid: cifofuser
+
+                  cifid: cifofuser
               }).then((doc) => {
                   console.log('in for balance');
                   var inputTranscript= request.body.input.bodyjson.result.resolvedQuery;
@@ -792,7 +803,8 @@ console.log(typeof(otpGen));
                                     saveAudit(request,auditModel);
                                     resp.json(responeData);
 
-      })
+      });
+    });
   }
 
 
@@ -800,10 +812,21 @@ console.log(typeof(otpGen));
 
   function handledisconnectIntent(request, callback) {
 
+    var twitterid=request.body.input.sessionAttributes.twitterid
+  console.log(twitterid);
+
+  CustomerAccDetails.find({
+    usertwitterid:twitterid
+  }).then((doc) => {
+    console.log("inside acc docs", doc.length);
+    var cifofuser = `${doc[0].cifid}`;
+console.log(cifofuser);
+request.body.input.sessionAttributes.cifidd=cifofuser;
+
       console.log('Start handledisconnectIntent');
       var sessionAttributes = request.sessionAttributes;
       console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
-      var cifofuser= `${request.sessionAttributes.cifidd}` ;
+      //var cifofuser= `${request.sessionAttributes.cifidd}` ;
 
       //var faceid = `${request.sessionAttributes.fbid1}`;
       console.log('cifofuser id is ' + cifofuser);
@@ -817,8 +840,7 @@ console.log(typeof(otpGen));
               var cifofuser = `${docs[0].cifid}`;
               console.log(cifofuser);
               CustomerAccDetails.find({
-                usertwitterid:twitterid
-                  //cifid: cifofuser
+                  cifid: cifofuser
               }).then((doc) => {
                   console.log('in for details');
                   if (doc.length !== 0) {
@@ -866,7 +888,8 @@ console.log(typeof(otpGen));
           console.log(`Response :${JSON.stringify(response)}`);
           callback(null, close(sessionAttributes, 'Fulfilled', response));
       })
-  }
+  })
+}
 
   //Default or Error Handling for invalid intent
   function handleDefault(request, callback) {
@@ -926,8 +949,7 @@ resp.json(responeData);
 
                 console.log(cifofuser);
                 CustomerAccDetails.find({
-                  usertwitterid:twitterid
-                    //cifid: cifofuser
+                cifid: cifofuser
                 }).then((doc) => {
                     console.log('in for balance');
                     var nameofuser = `${doc[0].customer_Name}`;
