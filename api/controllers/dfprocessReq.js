@@ -310,10 +310,11 @@ if (!error && response.statusCode == 200) {
 ////
 console.log("Inside to update the answer1");
 console.log(typeof(options));
+var optionsstring = JSON.stringify(options,null, 4);
 var answersdata = {
   channelName:"twitter",
   ciservice:"GoogleDialogFlow",
-  query:  options ,
+  query:  optionsstring ,
   answerByCi: body1.result.fulfillment.speech,
   userName:username ,
   requestDate: new Date(),
