@@ -15,6 +15,7 @@ channel = mongoose.model('channel');
 
 var {CustomerAccDetails} = require('../models/customer_Acc');
 var {CustomerAuthDetails} = require('../models/Customer_auth');
+var {beneficiaryDetails} = require ('../models/beneficiarydetails');
 
 exports.handleintents = function(req, resp) {
   console.log("Process DFIntent Start");
@@ -170,6 +171,14 @@ var intentName =intentNamefuntion(input);
                 console.log('Entered disconnectIntent Execution Block');
                 handledisconnectIntent(request, callback);
                 break;
+
+
+            case 'TransferIntent':
+                 console.log('Entered TransferIntent Execution Block');
+                 handleTransferIntent(request, resp,auditModel);
+                break;
+
+
 
 
         /////////Not required
@@ -1022,7 +1031,107 @@ resp.json(responeData);
                   });
                   });
                 }
+/////////////// transfers
+function handleTransferIntent(request, resp,auditModel) {
+    console.log('Start handleTransferIntent');
+    //console.log(request);
+    var cnt = 0;
+    console.log('connect to Mongo Db server');
+    var twitterid=request.body.input.sessionAttributes.twitterid
+            console.log(twitterid);
+            console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters);
+            console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters.otp);
+            var otp11 = request.body.input.bodyjson.result.parameters.otp[0];
+            console.log(otp11);
+            console.log("otp is",otp11 );
+            console.log(`Slot OTP: ${otp11}`);
+            console.log(`Gen OTP:${otpGen}`);
 
+
+if (otpGen === parseInt(otp11))
+{
+  console.log("OTP is correct");
+
+  CustomerAccDetails.find({
+    usertwitterid:twitterid
+  }).then((doc) => {
+    console.log("inside acc docs", doc.length);
+    var cifofuser = `${doc[0].cifid}`;
+console.log(cifofuser);
+request.body.input.sessionAttributes.cifidd=cifofuser;
+
+/// chnage auth to benificiary table
+
+    beneficiaryDetails.find({
+        SourceCif: cifofuser & BeneficiaryName="slot"
+    }).then((docs) => {
+        console.log('Data got fetched from the database ' + docs.length);
+        console.log(JSON.stringify(beneficiaryDetails, undefined, 2));
+
+        if (docs.length !== 0 ) {
+
+          //// benificiary registered now check available bal
+            cnt = cnt + 1;
+            var cifofuser = `${docs[0].cifid}`;
+            console.log(cifofuser);
+            CustomerAccDetails.find({
+                cifid: cifofuser
+            }).then((doc) => {
+                console.log('in for balance');
+                  /// if balance is more then transfer balance then if block// debit money from debotor acc and credit to benificiary
+                  var TransferAmount ={slot parameter}
+
+  if ( acctbal>TransferAmount)
+  {
+
+  } else {
+    console.log("ensufficient fund");
+  }
+          /// else say insufficient balance message
+
+
+
+                          }, (e) => {
+                                  console.log("Inside if block");
+                                  var val =  `Something went wrong in fetching account bal`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
+
+                                  })
+              } else {
+
+                                  console.log("Inside if block");
+                                  var val = `benificiary is not registerd please register first.`
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
+        }
+    }, (e) => {
+
+                                  console.log("Inside if block");
+                                  var val = `Something went wrong `
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
+
+    });
+  });
+
+}
+   else {
+    console.log("OTP is not correct");
+  }
+
+}
+
+//////////
 
   //Prepare Response
   function close(sessionAttributes, fulfillmentState, message) {
