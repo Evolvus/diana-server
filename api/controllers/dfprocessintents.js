@@ -1063,7 +1063,8 @@ request.body.input.sessionAttributes.cifidd=cifofuser;
 /// chnage auth to benificiary table
 
     beneficiaryDetails.find({
-        SourceCif: cifofuser & BeneficiaryName="slot"
+        SourceCif: cifofuser
+        //& BeneficiaryName="slot"
     }).then((docs) => {
         console.log('Data got fetched from the database ' + docs.length);
         console.log(JSON.stringify(beneficiaryDetails, undefined, 2));
