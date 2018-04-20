@@ -28,6 +28,8 @@ registerrequest(req,res);
 
 };
 
+
+
 exports.handlegetrequest = function(req, res) {
   // if (req.query["hub.verify_token"] === process.env.VERIFICATION_TOKEN) {
   //     console.log("Verified webhook");
