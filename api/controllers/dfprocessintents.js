@@ -1040,12 +1040,12 @@ function handleTransferIntent(request, resp,auditModel) {
     var twitterid=request.body.input.sessionAttributes.twitterid
             console.log(twitterid);
             console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters);
-            console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters.otp);
-            var otp11 = request.body.input.bodyjson.result.parameters.otp[0];
-            console.log(otp11);
-            console.log("otp is",otp11 );
-            console.log(`Slot OTP: ${otp11}`);
-            console.log(`Gen OTP:${otpGen}`);
+          //  console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters.otp);
+            // //var otp11 = request.body.input.bodyjson.result.parameters.otp[0];
+            // console.log(otp11);
+            // console.log("otp is",otp11 );
+            // console.log(`Slot OTP: ${otp11}`);
+            // console.log(`Gen OTP:${otpGen}`);
 
 //
 // if (otpGen === parseInt(otp11))
