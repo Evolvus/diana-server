@@ -58,7 +58,7 @@ stream.on('direct_message', function(eventMsg, res) {
  console.log("eventMsg.messager>>>", eventMsg.messager);
 
  console.log("Req_params>>", params);
- if (eventMsg.direct_message.sender.screen_name === "aditya_368") {
+ if (eventMsg.direct_message.sender.screen_name === "evolvusbank") {
   console.log("should not call post method as msg coming from ", eventMsg.direct_message.sender.screen_name);
  } else {
   registerrequest(eventMsg, res);
