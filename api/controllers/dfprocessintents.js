@@ -703,7 +703,8 @@ console.log(typeof(otpGen));
                   //var inputTranscript =request.body.input.inputTranscript;
                   console.log(inputTranscript);
                   console.log(`inputTranscript:${request.body.input.bodyjson.result.resolvedQuery}`);
-
+                  console.log("doc0",doc[0]);
+                  console.log("doc1",doc[1]);
                   var nameofuser = `${doc[0].customer_Name}`;
                   var salofuser = `${doc[0].salutation}`;
                   var accounttype = `${doc[0].accounttype}`;
@@ -719,8 +720,10 @@ console.log(typeof(otpGen));
                   console.log(balofuser);
                   console.log(`${doc[0].AccountBal}`);
                   console.log(accounttype);
-                  console.log(inputTranscript.toUpperCase());
-                  if (`${accounttype}` === inputTranscript.toUpperCase()) {
+                  var inputTranscript1 = inputTranscript.toUpperCase();
+                  console.log(inputTranscript1);
+
+                  if (`${accounttype}` === inputTranscript1) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
@@ -733,7 +736,7 @@ console.log(typeof(otpGen));
                                   saveAudit(request,auditModel);
                                   resp.json(responeData);
 
-                  } else if (`${accounttype}` === inputTranscript) {
+                  } else if (`${accounttype}` === inputTranscript1) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
@@ -745,7 +748,7 @@ console.log(typeof(otpGen));
                                   console.log("auditModel>>",auditModel);
                                   saveAudit(request,auditModel);
                                   resp.json(responeData);
-                  } else if (`${accounttype2}` == inputTranscript) {
+                  } else if (`${accounttype2}` == inputTranscript1) {
                       console.log('got rec' + doc);
                                   console.log("Inside if block");
                                   var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
@@ -754,7 +757,7 @@ console.log(typeof(otpGen));
                                   console.log("auditModel>>",auditModel);
                                   saveAudit(request,auditModel);
                                   resp.json(responeData);
-                  } else if (`${accounttype2}` == inputTranscript) {
+                  } else if (`${accounttype2}` == inputTranscript1) {
                       console.log('got rec' + doc);
                                   console.log("Inside if block");
                                   var val = `${salofuser} ${nameofuser}, Your Balance in the ${accounttype2} account ${accountNumber2} is ${balofuser2} ${accountcurrency2}.Is there anything else I can help you with`
