@@ -719,8 +719,8 @@ console.log(typeof(otpGen));
                   console.log(balofuser);
                   console.log(`${doc[0].AccountBal}`);
                   console.log(accounttype);
-                  console.log(inputTranscript);
-                  if (`${accounttype}` === inputTranscript) {
+                  console.log(inputTranscript.toUpperCase());
+                  if (`${accounttype}` === inputTranscript.toUpperCase()) {
                       console.log('got rec' + doc);
                       console.log(balofuser);
                       console.log(`${doc[0].AccountBal}`);
