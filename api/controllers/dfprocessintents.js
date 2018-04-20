@@ -229,7 +229,7 @@ console.log("request>>>>>",request);
               if (docs.length === 0) {
                 ////////////////
                 console.log("Inside if block");
-                var val = `Hi ${userFirstName},${msg1}, I see that you are not registered as a Facebook Chat customer with ABC Bank.For account specific details you need to register for Facebook Banking service – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
+                var val = `Hi ${userFirstName}, ${msg1}, I see that you are not registered as a Twitter Chat customer with ABC Bank. For account specific details you need to register for Twitter Banking services – By either visiting you internet Banking page https://s3.amazonaws.com/dianaci/index.html or visiting the nearest Branch.Thank You.`
                 var responeData = {"callbackMessage": val};
                 auditModel.responseData =responeData;
                 console.log("auditModel>>",auditModel);
@@ -251,7 +251,7 @@ console.log("request>>>>>",request);
 
                 ///////////
                 console.log("Inside else block");
-                var val = `Hi ${request.body.input.sessionAttributes.coreusername} ,${msg1} You are already registered for facebook banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, transfers for initiating a transfer or statement for knowing last 5 transactions.`
+                var val = `Hi ${request.body.input.sessionAttributes.coreusername} , ${msg1} You are already registered for Twitter Banking.I am here to help you on your Accounts services and other Banking information from ABC Bank.Please type in the following for me to understand the nature of your query. Type Balance for knowing your balance, Transfers for initiating a transfer or Statement for knowing last 5 transactions.`
                 var responeData = {"callbackMessage": val};
                 auditModel.responseData =responeData;
                 console.log("auditModel>>",auditModel);
@@ -996,7 +996,7 @@ resp.json(responeData);
                   //               console.log("updated successfully");
 ///////////////
 console.log("Inside e block");
-var val = `Hi ${request.body.input.sessionAttributes.coreusername},${msg1} otp has shared please type the same..`
+var val = `Hi ${request.body.input.sessionAttributes.coreusername}, OTP has been sent to your registered mobile number. Please type as “OTP is <OTP 6 digit number>”`
 var responeData = {"callbackMessage": val};
 auditModel.responseData =responeData;
 console.log("auditModel>>",auditModel);
