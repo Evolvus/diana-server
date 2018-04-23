@@ -1036,7 +1036,7 @@ resp.json(responeData);
 /////////////// transfers
 function handleTransferIntent(request, resp,auditModel) {
     console.log('Start handleTransferIntent');
-    console.log("Transfer request>>"request);
+    console.log("Transfer request>>",request);
     var cnt = 0;
     console.log('connect to Mongo Db server');
     var twitterid=request.body.input.sessionAttributes.twitterid
