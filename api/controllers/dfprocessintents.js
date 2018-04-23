@@ -1115,14 +1115,14 @@ function handleTransferIntent(request, resp,auditModel) {
 //         }
 //     }, (e) => {
 //
-//                                   console.log("Inside if block");
-//                                   var val = `Something went wrong `
-//                                   var responeData = {"callbackMessage": val};
-//                                   auditModel.responseData =responeData;
-//                                   console.log("auditModel>>",auditModel);
-//                                   saveAudit(request,auditModel);
-//                                   resp.json(responeData);
-//
+                                  console.log("Inside if block");
+                                  var val = `Something went wrong `
+                                  var responeData = {"callbackMessage": val};
+                                  auditModel.responseData =responeData;
+                                  console.log("auditModel>>",auditModel);
+                                  saveAudit(request,auditModel);
+                                  resp.json(responeData);
+
 //     });
 //   });
 //
