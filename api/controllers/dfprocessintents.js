@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 
 
 
+
 var mongoose = require('mongoose'),
 blacklistcheck = mongoose.model('blacklist'),
 audit = mongoose.model('audit'),
@@ -1035,12 +1036,12 @@ resp.json(responeData);
 /////////////// transfers
 function handleTransferIntent(request, resp,auditModel) {
     console.log('Start handleTransferIntent');
-    //console.log(request);
+    console.log("Transfer request>>"request);
     var cnt = 0;
     console.log('connect to Mongo Db server');
     var twitterid=request.body.input.sessionAttributes.twitterid
             console.log(twitterid);
-            console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters);
+          //  console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters);
           //  console.log("input.metadata.otp>>>",request.body.input.bodyjson.result.parameters.otp);
             // //var otp11 = request.body.input.bodyjson.result.parameters.otp[0];
             // console.log(otp11);
