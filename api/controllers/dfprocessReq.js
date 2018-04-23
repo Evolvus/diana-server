@@ -266,7 +266,7 @@ function handlelexrequest(req, res) {
        params.text = body1.result.fulfillment.speech;
        console.log("should call post method");
        console.log("Sent Response params >>", params);
-
+       console.log("Output Context");
        // registerrequest(body,response);
        postMessage(params);
 
