@@ -44,6 +44,7 @@ params = {
 var stream = bot.stream('user');
 
 
+
 stream.on('direct_message', function(eventMsg, res) {
  console.log("EVENT MESSAGE >>", eventMsg);
  console.log("eventMsg.direct_message.sender.screen_name", eventMsg.direct_message.sender.screen_name);
