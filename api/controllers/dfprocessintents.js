@@ -1,6 +1,5 @@
 'use strict';
 
-
 const date = new Date().getHours();
 var random = require('random-number-generator')
 var bodyParser = require('body-parser');
