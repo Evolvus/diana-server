@@ -287,6 +287,32 @@ function handlelexrequest(req, res) {
         }
        });
        ////
+       console.log("body.metadata.intentName>>>",body.metadata.intentName);
+        if (body.metadata.intentName ==="Default Fallback Intent") {
+          console.log("Inside to update the answer0");
+          console.log(typeof(options));
+          var optionsstring = JSON.stringify(options, null, 4);
+          var answersdata = {
+           channelName: "twitter",
+           ciservice: "GoogleDialogFlow",
+           query: optionsstring,
+           answerByCi: body1.result.fulfillment.speech,
+           userName: username,
+           requestDate: new Date(),
+           status: 0
+          };
+          //console.log(answersdata);
+
+          var answerinfo = new answers(answersdata);
+          answerinfo.save(function(err, task) {
+           if (err) {
+            console.log('Could not save answers' + err);
+           } else {
+            console.log('Answers0 saved');
+           };
+          });
+
+        } else {
        console.log("Inside to update the answer1");
        console.log(typeof(options));
        var optionsstring = JSON.stringify(options, null, 4);
@@ -310,7 +336,7 @@ function handlelexrequest(req, res) {
         };
        });
 
-      } else {
+     }}  else {
        console.log("error>>", error);
        channel.update({
         name: "twitter"
