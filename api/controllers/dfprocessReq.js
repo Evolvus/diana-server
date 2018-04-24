@@ -227,6 +227,7 @@ function handlelexrequest(req, res) {
      res.send(err);
     } else {
 
+
      console.log("req.body>>>", req.body);
      console.log(req.messager.screen_name);
      params.screen_name = req.messager.screen_name;
