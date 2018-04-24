@@ -288,7 +288,7 @@ function handlelexrequest(req, res) {
        });
        ////
        console.log("body.metadata.intentName>>>",body1.result.metadata.intentName);
-        if (body.result.metadata.intentName ==="Default Fallback Intent") {
+        if (body1.result.metadata.intentName ==="Default Fallback Intent") {
           console.log("Inside to update the answer0");
           console.log(typeof(options));
           var optionsstring = JSON.stringify(options, null, 4);
