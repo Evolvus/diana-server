@@ -8,6 +8,7 @@ module.exports = function(app) {
   var ciservice = require('../controllers/ciservice');
   var processintents = require('../controllers/processintents');
   var dfprocessintents = require('../controllers/dfprocessintents');
+  var onlydfprocessintents = require('../controllers/onlydfprocessintents');
   var processalexaintents = require('../controllers/processalexaintents');
   var audit = require('../controllers/audit');
   var answer = require('../controllers/answers');
@@ -34,6 +35,10 @@ module.exports = function(app) {
 
       app.route('/handledfintents')
         .post(dfprocessintents.handleintents)
+
+        /// reuest will hit directly to DF 
+      app.route('/handleonlydfintents')
+        .post(onlydfprocessintents.handleintents)
 
 
 	app.route('/handlealexaintents')
