@@ -242,6 +242,7 @@ function handlelexrequest(req, res) {
       'Authorization': 'Bearer ' + clientAccessToken,
       'Content-Type': 'application/json'
      }
+     
 
      // Configure the request//https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=hi&sessionId=12345
      var options = {
