@@ -242,7 +242,7 @@ function handlelexrequest(req, res) {
       'Authorization': 'Bearer ' + clientAccessToken,
       'Content-Type': 'application/json'
      }
-     
+
 
      // Configure the request//https://api.dialogflow.com/v1/query?v=20150910&lang=en&query=hi&sessionId=12345
      var options = {
@@ -333,6 +333,7 @@ function handlelexrequest(req, res) {
        console.log("Inside to update the answer2");
        console.log(typeof(options));
        var optionsstring = JSON.stringify(options, null, 4);
+
 
        var answersdata = {
         channelName: "twitter",
