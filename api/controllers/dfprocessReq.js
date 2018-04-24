@@ -296,7 +296,7 @@ function handlelexrequest(req, res) {
           var answersdata = {
            channelName: "twitter",
            ciservice: "GoogleDialogFlow",
-           query: optionsstring,
+           query: inputext,
            answerByCi: body1.result.fulfillment.speech,
            userName: username,
            requestDate: new Date(),
@@ -320,7 +320,7 @@ function handlelexrequest(req, res) {
        var answersdata = {
         channelName: "twitter",
         ciservice: "GoogleDialogFlow",
-        query: optionsstring,
+        query: inputext,
         answerByCi: body1.result.fulfillment.speech,
         userName: username,
         requestDate: new Date(),
