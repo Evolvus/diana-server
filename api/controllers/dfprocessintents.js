@@ -11,7 +11,6 @@ audit = mongoose.model('audit'),
 ciservice = mongoose.model('ciservice'),
 channel = mongoose.model('channel');
 
-
 var {CustomerAccDetails} = require('../models/customer_Acc');
 var {CustomerAuthDetails} = require('../models/Customer_auth');
 var {beneficiaryDetails} = require ('../models/beneficiarydetails');
