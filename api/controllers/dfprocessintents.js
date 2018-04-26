@@ -1032,6 +1032,7 @@ resp.json(responeData);
                   });
                   });
                 }
+
 /////////////// transfers
 function handleTransferIntent(request, resp,auditModel) {
     console.log('Start handleTransferIntent');
