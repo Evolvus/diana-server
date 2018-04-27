@@ -1036,6 +1036,12 @@ function handleTransferIntent(request, resp,auditModel) {
     console.log('Start handleTransferIntent');
     console.log("Transfer request>>",request);
     var cnt = 0;
+    var sessionAttributes = request.body.input.sessionAttributes;
+//      var requestAttributes = request.body.input.requestAttributes;
+
+    console.log(`Session Attr:${JSON.stringify(sessionAttributes)}`);
+    //var msg1 = date < 12 ? 'Good Morning' : date < 18 ? 'Good Afternoon' : 'Good Night';
+    var msg = `Transfer has been completed successfully`;
     console.log('connect to Mongo Db server');
     var twitterid=request.body.input.sessionAttributes.twitterid
             console.log(twitterid);
@@ -1116,7 +1122,7 @@ function handleTransferIntent(request, resp,auditModel) {
 //
                                   console.log("Inside if block");
                                   var val = `Something went wrong `
-                                  var responeData = {"callbackMessage": val};
+                                  var responeData = {"callbackMessage": msg};
                                   auditModel.responseData =responeData;
                                   console.log("auditModel>>",auditModel);
                                   saveAudit(request,auditModel);
