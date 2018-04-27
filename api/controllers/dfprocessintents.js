@@ -1115,6 +1115,7 @@ function handleTransferIntent(request, resp,auditModel) {
 //         }
 //     }, (e) => {
 //
+
                                   console.log("Inside if block");
                                   var val = `Transfer has been completed successfully`
                                   var responeData = {"callbackMessage": val};
