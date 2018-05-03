@@ -1114,7 +1114,7 @@ function handleTransferIntent(request, resp,auditModel) {
 //                                   resp.json(responeData);
 //         }
 //     }, (e) => {
-//
+
                                   console.log("Inside if block");
                                   var val = `Transfer has been completed successfully. Balance available in your savings account is 17527 INR. Is there any thing else i can help you with?`
                                   var responeData = {"callbackMessage": val};
