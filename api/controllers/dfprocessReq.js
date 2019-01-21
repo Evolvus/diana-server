@@ -20,7 +20,6 @@ var mongoose = require('mongoose'),
  channel = mongoose.model('channel'),
  answers = mongoose.model('answers');
 
-
 var randomItem = require('random-item');
 
 var request = require('request');
