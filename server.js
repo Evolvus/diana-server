@@ -68,6 +68,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 
 
 
+
 var routes = require('./api/routes/registration'); //importing route
 routes(app); //register the route
 
